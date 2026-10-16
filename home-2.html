@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Float Suites & Sanctuary Chambers | Stillwater Float Spa (Home 2)</title>
+  <meta name="description" content="Explore our architectural sensory deprivation chambers and private open hydro-wellness suites. Zero gravity, medical-grade Epsom salt, and bespoke soundscapes.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-main" role="banner">
+    <div class="container nav-container">
+      <!-- Brand Logo in Header -->
+      <a href="index.html" class="brand-logo" aria-label="Stillwater Float & Sensory Spa Home">
+        <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">STILLWATER</span>
+          <span class="brand-subtitle">Float & Sensory Spa</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <!-- Home Dropdown -->
+          <li class="nav-item" id="homeNavDropdown">
+            <button class="nav-link dropdown-toggle active" onclick="toggleHomeDropdown(event)" aria-expanded="false" aria-haspopup="true">
+              <span>Home</span>
+              <span class="dropdown-caret" aria-hidden="true">▼</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-item" role="none">
+                <a href="index.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">✦ Home 1 — Sanctuary & Science</span>
+                  <span class="dropdown-desc">Zero-gravity immersion, clinical research & pod simulator</span>
+                </a>
+              </li>
+              <li class="dropdown-item" role="none">
+                <a href="home-2.html" class="dropdown-link active" role="menuitem">
+                  <span class="dropdown-title">◈ Home 2 — Float Suites & Chambers</span>
+                  <span class="dropdown-desc">Architectural suites, basin rooms & contrast therapies</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Service</a>
+          </li>
+          <li class="nav-item">
+            <a href="first-time-guide.html" class="nav-link">First-Time Guide</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a href="dashboard.html" class="nav-link">Client Dashboard</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Direction, Theme, Booking & Mobile Hamburger) -->
+      <div class="nav-actions">
+        <!-- RTL / LTR Direction Toggle (Icon-Only) -->
+        <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch layout direction (LTR / RTL)" title="Switch layout direction (LTR / RTL)">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+
+        <!-- Light / Dark Theme Toggle -->
+        <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+          <span>☀️</span>
+          <span class="btn-label-text">Light</span>
+        </button>
+
+        <!-- Member Login Portal Button (Icon-Only) -->
+        <a href="login.html" class="btn-control nav-login-btn icon-only" aria-label="Member Login Portal" title="Member Login Portal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+
+        <!-- CTA Booking Button -->
+        <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary">
+          <span>Book A Float</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button onclick="toggleMobileMenu()" class="mobile-toggle" aria-label="Open navigation menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="brand-logo" onclick="closeMobileMenu()" style="text-decoration:none;">
+          <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+          <div class="brand-logo-text">
+            <span class="brand-title">STILLWATER</span>
+            <span class="brand-subtitle">Float & Sensory Spa</span>
+          </div>
+        </a>
+        <button onclick="closeMobileMenu()" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+
+      <ul class="mobile-nav-list">
+        <li>
+          <div class="mobile-nav-link active" onclick="toggleMobileHomeSubmenu(event)" style="cursor:pointer;">
+            <span>Home Variations</span>
+            <span id="mobileHomeCaret" style="font-size:11px; transition:transform 0.2s;">▼</span>
+          </div>
+          <ul id="mobileHomeSubmenu" class="mobile-submenu">
+            <li>
+              <a href="index.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ✦ Home 1 — Sanctuary & Science
+              </a>
+            </li>
+            <li>
+              <a href="home-2.html" class="mobile-sub-link active" onclick="closeMobileMenu()">
+                ◈ Home 2 — Float Suites & Chambers
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
+        </li>
+        <li>
+          <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Service</a>
+        </li>
+        <li>
+          <a href="first-time-guide.html" class="mobile-nav-link" onclick="closeMobileMenu()">First-Time Guide</a>
+        </li>
+        <li>
+          <a href="blog.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+        </li>
+        <li>
+          <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
+        </li>
+        <li>
+          <a href="dashboard.html" class="mobile-nav-link" onclick="closeMobileMenu()">Client Dashboard</a>
+        </li>
+      </ul>
+
+      <div class="mobile-drawer-actions">
+        <div class="mobile-controls-row">
+          <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Toggle direction">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+          <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle theme">
+            <span>☀️ Light</span>
+          </button>
+          <a href="login.html" class="btn-control nav-login-btn icon-only" onclick="closeMobileMenu()" aria-label="Member Login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+        </div>
+        <button onclick="closeMobileMenu(); openBookingModal('60-Minute Signature Sensory Float');" class="btn-book-primary" style="justify-content:center; width:100%;">
+          Book A Float Session
+        </button>
+        <a href="login.html" class="btn-outline" style="justify-content:center; width:100%; text-align:center;" onclick="closeMobileMenu()">
+          Member Login / Portal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Home 2 Architectural Hero Section -->
+    <section class="hero-section" style="padding-bottom:20px; overflow:hidden; max-width:100%;">
+      <div class="hero-glow" style="width:750px; max-width:100%; background:radial-gradient(circle, var(--teal-glow) 0%, rgba(56,189,248,0.06) 60%, transparent 80%);"></div>
+      <div class="container" style="position:relative; z-index:10;">
+        <div class="hero-pill">
+          <span>◈ Architectural Hydro-Wellness Suites • Home 2</span>
+        </div>
+
+        <h1 class="hero-title">
+          Bespoke chambers.<br>
+          <span>Unbounded stillness.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Designed for floaters who desire expansive spatial tranquility. From open architectural basins with starlight ceilings to acoustic isolation vaults, choose the environment that speaks to your senses.
+        </p>
+
+        <!-- DISTINCT HOME 2 HERO IMAGE SHOWCASE (Float Basin Suite) -->
+        <div style="max-width:1040px; margin:0 auto 48px;">
+          <div class="float-img-wrapper" style="box-shadow: 0 25px 60px -20px var(--teal-glow); border-color:var(--border-highlight);">
+            <img src="assets/float-basin-suite.jpg" alt="Architectural open sensory deprivation float basin suite with turquoise underwater illumination, cedar walls, and starlight ceiling in private luxury spa" loading="eager" style="max-height:480px;">
+            <div class="float-img-badge">
+              <span>●</span>
+              <span>Basin Suite Beta • Open Float Sanctuary</span>
+            </div>
+            <div class="float-img-caption">
+              <h3 style="font-size:20px; font-weight:500; margin-bottom:4px; color:#ffffff;">Open Ocean Basin Suite</h3>
+              <p style="font-size:13px; color:rgba(255,255,255,0.9); line-height:1.5;">
+                9-foot vaulted cedar ceilings, soft turquoise underwater chromotherapy, and zero enclosure for total spatial relaxation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+          <button onclick="openBookingModal('Basin Beta — Open Ocean Suite')" class="btn-book-primary" style="padding:14px 20px; font-size:13px; max-width:100%;">
+            <span>Reserve Open Basin Suite</span>
+          </button>
+          <a href="services.html" class="btn-outline" style="padding:13px 20px; font-size:13px; max-width:100%;">
+            <span>Explore All 3 Chamber Types</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chamber Architecture Comparison (Distinct to Home 2) -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Sanctuary Architecture</span>
+          <h2 class="section-title">Three Tailored Float Environments</h2>
+          <p class="section-desc">Every individual arrives with different nervous system sensitivities. Choose the architectural geometry that best comforts your body.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap:24px;">
+          <!-- Pod Alpha -->
+          <div class="glass-panel" style="padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="section-tag" style="margin-bottom:8px;">Chamber 01</span>
+              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin-bottom:10px;">Pod Alpha — Zero-Gravity Capsule</h3>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+                The quintessential sensory deprivation pod. Sleek organic curvature with an interior hydraulic gas-strut lid. Keep it wide open, cracked, or completely sealed in silence.
+              </p>
+              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:20px;">
+                <li>✓ Full acoustic & photonic blackout</li>
+                <li>✓ In-pod tactile audio transducer buttons</li>
+                <li>✓ Internal spray bottle & halo support</li>
+                <li>✓ Best for: Deep Theta meditation & seasoned floaters</li>
+              </ul>
+            </div>
+            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;">
+              <button type="button" onclick="openChamberDetailModal('pod-alpha')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;" aria-label="Explore Pod Alpha Zero-Gravity Capsule details">
+                <span>Explore Chamber</span>
+              </button>
+              <button type="button" onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;">
+                <span>Book Capsule</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Basin Beta -->
+          <div class="glass-panel-glow" style="padding:32px; display:flex; flex-direction:column; justify-content:space-between; border-color:var(--border-highlight);">
+            <div>
+              <span style="font-size:10px; font-family:monospace; background:var(--teal-primary); color:var(--text-on-accent); padding:3px 10px; border-radius:9999px; font-weight:700;">POPULAR FOR BEGINNERS</span>
+              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin:12px 0 10px;">Basin Beta — Open Ocean Suite</h3>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+                A room-scale 8ft × 5ft heated basin set within a private tiled oasis with high ceilings. Zero sensation of confinement or enclosed doors.
+              </p>
+              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:20px;">
+                <li>✓ 100% open-air floating with zero lids</li>
+                <li>✓ Gentle indirect ambient perimeter illumination</li>
+                <li>✓ Heated limestone surrounding floor</li>
+                <li>✓ Best for: Claustrophobia concerns & first-timers</li>
+              </ul>
+            </div>
+            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;">
+              <button type="button" onclick="openChamberDetailModal('basin-beta')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;" aria-label="Explore Basin Beta Open Ocean Suite details">
+                <span>Explore Chamber</span>
+              </button>
+              <button type="button" onclick="openBookingModal('Basin Beta — Open Ocean Suite')" class="btn-book-primary" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;">
+                <span>Book Open Basin</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Sanctuary Delta -->
+          <div class="glass-panel" style="padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="section-tag" style="margin-bottom:8px;">Chamber 03</span>
+              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin-bottom:10px;">Sanctuary Delta — Starlight Oasis</h3>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+                Our ultra-luxury duo suite featuring 1,500 miniature fiber-optic constellation points across an arched barrel ceiling. Ideal for solo contemplation or couple floats.
+              </p>
+              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:20px;">
+                <li>✓ Fiber-optic night sky constellation simulation</li>
+                <li>✓ Oversized dimension supports dual floating</li>
+                <li>✓ Private chromotherapy rainfall washroom</li>
+                <li>✓ Best for: Couples & sensory aesthetic reset</li>
+              </ul>
+            </div>
+            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;">
+              <button type="button" onclick="openChamberDetailModal('sanctuary-delta')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;" aria-label="Explore Sanctuary Delta Starlight Oasis details">
+                <span>Explore Chamber</span>
+              </button>
+              <button type="button" onclick="openBookingModal('Couple’s Synchrony Float')" class="btn-book-primary" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;">
+                <span>Book Starlight</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contrast Therapy Circuit Section (Distinct to Home 2) -->
+    <section class="section-pad" style="background:var(--bg-secondary); border-top:1px solid var(--border-divider); border-bottom:1px solid var(--border-divider);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Circulatory & Neural Recalibration</span>
+          <h2 class="section-title">The Contrast Sanctuary Circuit</h2>
+          <p class="section-desc">Multiply the anti-inflammatory benefits of zero gravity by cycling through hot infrared hyperthermia and cold water plunge before floating.</p>
+        </div>
+
+        <div class="glass-panel" style="margin-bottom:32px; overflow:hidden; border-radius:18px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:0;">
+            <div style="position:relative; min-height:280px;">
+              <img src="assets/contrast-sauna.jpg" alt="Luxury private contrast therapy suite with Nordic cedar infrared sauna and chilled dark stone cold plunge tub" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+              <div class="float-img-badge">
+                <span>●</span>
+                <span>Sanctuary Contrast Wing</span>
+              </div>
+            </div>
+            <div style="padding:32px; display:flex; flex-direction:column; justify-content:center;">
+              <span class="section-tag">Thermal Priming</span>
+              <h3 style="font-size:22px; color:var(--text-primary); margin-bottom:12px; font-weight:400;">Nordic Infrared & Chilled Plunge Suite</h3>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+                Experience vascular flushing in our cedar sauna at 150°F before stepping into our 50°F chilled magnesium plunge. This biological contrast supercharges microcirculation, ensuring that by the time you enter the float pod, your nervous system is primed for total stillness.
+              </p>
+              <div class="float-spec-pills">
+                <span class="float-spec-pill">150°F Cedar Sauna</span>
+                <span class="float-spec-pill">50°F Cold Plunge</span>
+                <span class="float-spec-pill">Vascular Flushing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+          <div class="glass-panel" style="padding:28px;">
+            <div style="font-size:28px; margin-bottom:12px;">🔥</div>
+            <h4 style="font-size:17px; color:var(--text-primary); margin-bottom:8px;">1. Far-Infrared Cedar Sauna (150°F)</h4>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+              Deep cellular heat penetrating 2 inches past the dermis to dilate capillaries, purge metabolic waste, and prime muscles for relaxation.
+            </p>
+          </div>
+
+          <div class="glass-panel" style="padding:28px;">
+            <div style="font-size:28px; margin-bottom:12px;">❄️</div>
+            <h4 style="font-size:17px; color:var(--text-primary); margin-bottom:8px;">2. Chilled Magnesium Plunge (50°F)</h4>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+              A 3-minute cold shock triggers massive norepinephrine release, instantly constricting blood vessels and clearing inflammation.
+            </p>
+          </div>
+
+          <div class="glass-panel" style="padding:28px;">
+            <div style="font-size:28px; margin-bottom:12px;">✨</div>
+            <h4 style="font-size:17px; color:var(--text-primary); margin-bottom:8px;">3. 60-Minute Zero-Gravity Float</h4>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+              Float in 93.5°F thermal neutrality. With circulatory channels wide open, your muscular system surrenders completely into parasympathetic bliss.
+            </p>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:36px;">
+          <button onclick="openBookingModal('Contrast Sanctuary: Sauna + Plunge + Float')" class="btn-book-primary" style="padding:14px 32px;">
+            Book Contrast Sanctuary Trio ($145)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Four Phases of Immersion (Distinct to Home 2) -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Physiological Timeline</span>
+          <h2 class="section-title">The 4 Phases of A 60-Minute Float</h2>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:20px;">
+          <div class="glass-panel" style="padding:20px; display:flex; flex-direction:column;">
+            <div style="width:100%; height:150px; border-radius:12px; overflow:hidden; margin-bottom:14px; position:relative; background:var(--bg-glass);">
+              <img src="assets/timeline-phase1-acclimation.jpg" alt="Phase 1 Sensory Acclimation: buoyant stillness at the water-air interface" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <span style="font-size:11px; font-family:monospace; color:var(--teal-primary);">PHASE 01 • MIN 00–15</span>
+            <h4 style="font-size:16px; color:var(--text-primary); margin:8px 0 6px;">Sensory Acclimation</h4>
+            <p style="font-size:12px; color:var(--text-secondary); line-height:1.6; margin:0;">
+              The brain tests the boundary between water and air. Heart rate drops as the body learns it cannot sink.
+            </p>
+          </div>
+
+          <div class="glass-panel" style="padding:20px; display:flex; flex-direction:column;">
+            <div style="width:100%; height:150px; border-radius:12px; overflow:hidden; margin-bottom:14px; position:relative; background:var(--bg-glass);">
+              <img src="assets/timeline-phase2-release.jpg" alt="Phase 2 Neuromuscular Release: cervical spine and muscular decompression floating effortlessly" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <span style="font-size:11px; font-family:monospace; color:var(--teal-primary);">PHASE 02 • MIN 15–30</span>
+            <h4 style="font-size:16px; color:var(--text-primary); margin:8px 0 6px;">Neuromuscular Release</h4>
+            <p style="font-size:12px; color:var(--text-secondary); line-height:1.6; margin:0;">
+              Deep postural muscles in the neck, spine, and lower back finally let go of postural bracing.
+            </p>
+          </div>
+
+          <div class="glass-panel" style="padding:20px; display:flex; flex-direction:column;">
+            <div style="width:100%; height:150px; border-radius:12px; overflow:hidden; margin-bottom:14px; position:relative; background:var(--bg-glass);">
+              <img src="assets/timeline-phase3-theta.jpg" alt="Phase 3 Theta Wave Dominance: chromotherapy float pod interior inducing lucid theta brainwaves" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <span style="font-size:11px; font-family:monospace; color:var(--teal-primary);">PHASE 03 • MIN 30–50</span>
+            <h4 style="font-size:16px; color:var(--text-primary); margin:8px 0 6px;">Theta Wave Dominance</h4>
+            <p style="font-size:12px; color:var(--text-secondary); line-height:1.6; margin:0;">
+              Vivid lucid dreams and non-linear thought patterns occur while conscious. Time perception melts away.
+            </p>
+          </div>
+
+          <div class="glass-panel" style="padding:20px; display:flex; flex-direction:column;">
+            <div style="width:100%; height:150px; border-radius:12px; overflow:hidden; margin-bottom:14px; position:relative; background:var(--bg-glass);">
+              <img src="assets/timeline-phase4-glow.jpg" alt="Phase 4 Post-Float Glow: transition suite with rain shower and chamber exit" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <span style="font-size:11px; font-family:monospace; color:var(--teal-primary);">PHASE 04 • MIN 50–60</span>
+            <h4 style="font-size:16px; color:var(--text-primary); margin:8px 0 6px;">Post-Float Glow</h4>
+            <p style="font-size:12px; color:var(--text-secondary); line-height:1.6; margin:0;">
+              Gentle chime audio fades in. Stepping out onto warm slate, you feel a profound grounded calm lasting days.
+            </p>
+          </div>
+        </div>
+
+        <!-- Post-Float Reflection Lounge -->
+        <div class="glass-panel" style="margin-top:36px; overflow:hidden; border-radius:18px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:0;">
+            <div style="padding:32px; display:flex; flex-direction:column; justify-content:center;">
+              <span class="section-tag">Phase 05 • Gentle Return</span>
+              <h3 style="font-size:22px; color:var(--text-primary); margin-bottom:12px; font-weight:400;">Post-Float Organic Tea Lounge</h3>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+                Never rush back into the street. Transition peacefully in our low-lit lounge with organic linen daybeds, complimentary herbal infusions, and journals to capture the creative insights sparked during your sensory theta state.
+              </p>
+              <div class="float-spec-pills">
+                <span class="float-spec-pill">Herbal Adaptogen Teas</span>
+                <span class="float-spec-pill">Linen Daybeds</span>
+                <span class="float-spec-pill">No Hurried Exits</span>
+              </div>
+            </div>
+            <div style="position:relative; min-height:280px;">
+              <img src="assets/timeline-phase5-tea-lounge.jpg" alt="Authentic post-float organic tea lounge sanctuary with serene low-lit daybeds and artisanal ceramics" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+              <div class="float-img-badge">
+                <span>●</span>
+                <span>Sanctuary Lounge</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalHeadingHome2">
+    <div class="modal-window">
+      <button onclick="closeBookingModal()" class="modal-close" aria-label="Close modal">&times;</button>
+      <span class="section-tag">Private Sanctuary Scheduling</span>
+      <h3 id="modalHeadingHome2" style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Reserve Float Session Slot</h3>
+
+      <form onsubmit="handleBookingSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="modalPod">Chamber Architecture</label>
+          <select id="modalPod" class="form-select">
+            <option value="Basin Beta — Open Ocean Suite">Basin Beta — Open Ocean Suite</option>
+            <option value="Pod Alpha — Zero-Gravity Capsule">Pod Alpha — Zero-Gravity Capsule</option>
+            <option value="Sanctuary Delta — Starlight Oasis">Sanctuary Delta — Starlight Oasis</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalService">Session Offering</label>
+          <select id="modalService" class="form-select">
+            <option value="60-Minute Signature Sensory Float">60-Minute Signature Sensory Float ($79)</option>
+            <option value="90-Minute Deep Journey Float">90-Minute Deep Journey Float ($105)</option>
+            <option value="Contrast Sanctuary: Sauna + Plunge + Float">Contrast Sanctuary Trio ($145)</option>
+            <option value="Couple’s Synchrony Float">Couple’s Synchrony Float ($150)</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label" for="modalDate">Float Date</label>
+            <input type="date" id="modalDate" class="form-input" value="2026-10-19" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modalSlot">Time Slot</label>
+            <select id="modalSlot" class="form-select">
+              <option value="09:00 AM – 10:30 AM">09:00 AM – Morning Stillness</option>
+              <option value="11:00 AM – 12:30 PM">11:00 AM – Midday Reset</option>
+              <option value="02:00 PM – 03:30 PM">02:00 PM – Afternoon Silence</option>
+              <option value="04:30 PM – 06:00 PM">04:30 PM – Twilight Decompression</option>
+              <option value="07:00 PM – 08:30 PM">07:00 PM – Deep Evening Rest</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalLight">Lighting Preference</label>
+          <select id="modalLight" class="form-select">
+            <option value="Constellation Starlight Ceiling">Constellation Starlight Ceiling</option>
+            <option value="Total Darkness (Sensory Void)">Total Darkness (Sensory Void)</option>
+            <option value="Oceanic Cyan Chromotherapy">Oceanic Cyan Chromotherapy</option>
+            <option value="Warm Amber Sunset">Warm Amber Sunset</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalAudio">Acoustic Audio Setting</label>
+          <select id="modalAudio" class="form-select">
+            <option value="Theta Waves 432Hz (First 10 min)">Theta Waves 432Hz (First 10 min, then silence)</option>
+            <option value="Pure Silence Throughout">Pure Silence Throughout</option>
+            <option value="Ocean Rain Swell">Ocean Rain Swell</option>
+            <option value="Tibetan Singing Bowls">Tibetan Singing Bowls</option>
+          </select>
+        </div>
+
+        <div style="padding:14px; background:var(--teal-subtle); border-radius:12px; margin-bottom:20px; font-size:12px; color:var(--text-secondary); display:flex; justify-content:space-between;">
+          <span>Session Package Balance:</span>
+          <span style="color:var(--teal-primary); font-family:monospace; font-weight:600;">1 Credit Will Be Deducted</span>
+        </div>
+
+        <button type="submit" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px;">
+          Confirm Sanctuary Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Chamber Detail Modal -->
+  <div id="chamberDetailModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="chamberModalTitle">
+    <div class="modal-window card-lift" style="max-width:640px; width:92%; max-height:90vh; overflow-y:auto; padding:32px;">
+      <button onclick="closeChamberDetailModal()" class="modal-close" aria-label="Close chamber details modal">&times;</button>
+      <span id="chamberModalBadge" class="section-tag" style="margin-bottom:8px; display:inline-block;">Chamber Overview</span>
+      <h3 id="chamberModalTitle" style="font-size:24px; font-weight:400; color:var(--text-primary); margin-bottom:12px;">Chamber Details</h3>
+      <p id="chamberModalDesc" style="font-size:13.5px; color:var(--text-secondary); line-height:1.7; margin-bottom:20px;"></p>
+      
+      <!-- Chamber Technical Specs Grid -->
+      <div id="chamberModalSpecs" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px; margin-bottom:20px;"></div>
+
+      <!-- Key Benefits List -->
+      <div style="margin-bottom:24px;">
+        <h4 style="font-size:13px; font-weight:600; color:var(--teal-primary); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.06em;">Chamber Architecture &amp; Features</h4>
+        <ul id="chamberModalFeatures" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--text-secondary);"></ul>
+      </div>
+
+      <div style="display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap; border-top:1px solid var(--border-divider); padding-top:18px;">
+        <button type="button" onclick="closeChamberDetailModal()" class="btn-outline" style="padding:10px 20px;">Close</button>
+        <button type="button" id="chamberModalBookBtn" class="btn-book-primary" style="padding:10px 24px;">Book This Chamber</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-main" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <!-- Exact Same Clickable Brand Logo as Header -->
+          <a href="index.html" class="brand-logo" style="margin-bottom:14px; text-decoration:none;" aria-label="Stillwater Float & Sensory Spa Home">
+            <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+            <div class="brand-logo-text">
+              <span class="brand-title">STILLWATER</span>
+              <span class="brand-subtitle">Float & Sensory Spa</span>
+            </div>
+          </a>
+          <p style="font-size:12px; line-height:1.7; max-width:280px; color:var(--text-secondary);">A sensory deprivation sanctuary engineered for nervous system recalibration, spinal decompression, and theta meditation.</p>
+          <p style="font-size:11px; font-family:monospace; color:var(--teal-primary); margin-top:12px;">Quiet Sanctuary Policy • Shoes Off At Threshold</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Sanctuary Nav</h4>
+          <p style="margin-bottom:8px;"><a href="index.html">Home 1: Sanctuary</a></p>
+          <p style="margin-bottom:8px;"><a href="home-2.html">Home 2: Float Suites</a></p>
+          <p style="margin-bottom:8px;"><a href="services.html">Services & Packages</a></p>
+          <p style="margin-bottom:8px;"><a href="first-time-guide.html">First-Time Guide</a></p>
+          <p><a href="dashboard.html">Client Dashboard</a></p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Chambers</h4>
+          <p style="margin-bottom:8px;">Pod Alpha (Capsule)</p>
+          <p style="margin-bottom:8px;">Basin Beta (Open Suite)</p>
+          <p style="margin-bottom:8px;">Sanctuary Delta (Starlight)</p>
+          <p>Infrared & Ice Plunge</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Location & Social</h4>
+          <p style="margin-bottom:6px;">420 Stillwater Pavilion Blvd, Tranquil Grove, CA</p>
+          <p style="margin-bottom:6px;">Mon – Sun: 7:30 AM – 10:00 PM</p>
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit Facebook Login" title="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit Instagram Login" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/login" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit LinkedIn Login" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Stillwater Float & Sensory Sanctuary. All rights reserved.</span>
+        <span>Zero Gravity Recovery • 1,200 lbs USP Epsom Salt</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    function openBookingModal(serviceName) {
+      if (serviceName) {
+        const select = document.getElementById('modalService');
+        if (select) select.value = serviceName;
+      }
+      const modal = document.getElementById('bookingModal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const pod = document.getElementById('modalPod').value;
+      const svc = document.getElementById('modalService').value;
+      const dt = document.getElementById('modalDate').value;
+      const slot = document.getElementById('modalSlot').value;
+      const light = document.getElementById('modalLight').value;
+      const audio = document.getElementById('modalAudio').value;
+      bookFloatSlot(svc, pod, dt, slot, light, audio);
+      closeBookingModal();
+    }
+
+    // Chamber Detail Modal Data and Handlers
+    const CHAMBER_DETAILS = {
+      'pod-alpha': {
+        badge: 'Chamber 01 • Sensory Void',
+        title: 'Pod Alpha — Zero-Gravity Capsule',
+        desc: 'The quintessential sensory deprivation pod. Sleek organic curvature with an interior hydraulic gas-strut lid. Keep it wide open, cracked, or completely sealed in silence. Engineered with a vibration-damped foundation to eliminate acoustic transmission.',
+        service: '60-Minute Signature Sensory Float',
+        specs: [
+          { label: 'Enclosure', val: 'Hydraulic Gas-Strut Lid' },
+          { label: 'Epsom Salt', val: '1,200 LBS USP Grade' },
+          { label: 'Water Temp', val: '93.5°F Skin Neutral' },
+          { label: 'Acoustics', val: 'STC 65 Blackout' }
+        ],
+        features: [
+          'Full acoustic and photonic blackout with internal controls',
+          'Tactile underwater audio transducers for 432Hz binaural frequencies',
+          'Ergonomic buoyancy neck halo and fresh-water interior rinse spray',
+          'Recommended for: Seasoned floaters, theta meditation, and absolute sensory reduction'
+        ]
+      },
+      'basin-beta': {
+        badge: 'Chamber 02 • Open Sanctuary',
+        title: 'Basin Beta — Open Ocean Suite',
+        desc: 'A room-scale 8ft × 5ft heated basin set within a private tiled oasis with 9-foot vaulted cedar ceilings. Zero sensation of confinement or enclosed doors, providing total spatial relaxation with heated limestone surrounding floors.',
+        service: 'Basin Beta — Open Ocean Suite',
+        specs: [
+          { label: 'Enclosure', val: '100% Open Air' },
+          { label: 'Dimensions', val: '8ft × 5ft Basin' },
+          { label: 'Ceiling', val: '9ft Cedar Vault' },
+          { label: 'Epsom Salt', val: '1,400 LBS USP Grade' }
+        ],
+        features: [
+          '100% open-air floating with zero lids, doors, or physical boundaries',
+          'Gentle perimeter chromotherapy illumination with soft oceanic cyan glow',
+          'Heated limestone surround and private rainfall rinse shower',
+          'Recommended for: Claustrophobia concerns, first-time floaters, and expansive mindfulness'
+        ]
+      },
+      'sanctuary-delta': {
+        badge: 'Chamber 03 • Constellation Suite',
+        title: 'Sanctuary Delta — Starlight Oasis',
+        desc: 'Our ultra-luxury duo suite featuring 1,500 miniature fiber-optic constellation points across an arched barrel ceiling. Custom calibrated acoustic surround and expansive water surface ideal for solo contemplation or synchronized couple immersion.',
+        service: 'Couple’s Synchrony Float',
+        specs: [
+          { label: 'Enclosure', val: 'Arched Barrel Vault' },
+          { label: 'Starlight', val: '1,500 Optic Fibers' },
+          { label: 'Capacity', val: 'Solo or Dual' },
+          { label: 'Water Temp', val: '93.5°F Calibrated' }
+        ],
+        features: [
+          'Fiber-optic night sky constellation simulation with gradual fade dimmer',
+          'Oversized basin dimensions specifically engineered for synchronized couple floating',
+          'Private chromotherapy washroom with organic botanical elixirs',
+          'Recommended for: Couples, experiential meditation, and nervous system recalibration'
+        ]
+      }
+    };
+
+    function openChamberDetailModal(chamberId) {
+      const chamber = CHAMBER_DETAILS[chamberId];
+      if (!chamber) return;
+
+      document.getElementById('chamberModalBadge').textContent = chamber.badge;
+      document.getElementById('chamberModalTitle').textContent = chamber.title;
+      document.getElementById('chamberModalDesc').textContent = chamber.desc;
+
+      const specsContainer = document.getElementById('chamberModalSpecs');
+      specsContainer.innerHTML = chamber.specs.map(s => `
+        <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:10px; padding:10px 12px; text-align:center;">
+          <div style="font-size:10px; font-family:monospace; color:var(--teal-primary); text-transform:uppercase; margin-bottom:2px;">${s.label}</div>
+          <div style="font-size:12px; font-weight:600; color:var(--text-primary);">${s.val}</div>
+        </div>
+      `).join('');
+
+      const featuresContainer = document.getElementById('chamberModalFeatures');
+      featuresContainer.innerHTML = chamber.features.map(f => `
+        <li style="display:flex; align-items:flex-start; gap:8px;">
+          <span style="color:var(--teal-primary); font-weight:700;">✓</span>
+          <span>${f}</span>
+        </li>
+      `).join('');
+
+      const bookBtn = document.getElementById('chamberModalBookBtn');
+      bookBtn.onclick = () => {
+        closeChamberDetailModal();
+        openBookingModal(chamber.service);
+      };
+
+      const modal = document.getElementById('chamberDetailModal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeChamberDetailModal() {
+      const modal = document.getElementById('chamberDetailModal');
+      if (modal) modal.classList.remove('active');
+    }
+  </script>
+</body>
+</html>

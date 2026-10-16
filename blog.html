@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanctuary Journal &amp; Float Science Blog | Stillwater Float &amp; Sensory Spa</title>
+  <meta name="description" content="Explore peer-reviewed research, neurobiology insights, flotation REST mechanics, and wellness protocols from the Stillwater sensory sanctuary specialists.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Header & Navbar -->
+  <header class="navbar-main" role="banner">
+    <div class="container nav-container">
+      <!-- Left Side — Spa Brand Logo & Name -->
+      <a href="index.html" class="brand-logo" aria-label="Stillwater Float &amp; Sensory Spa Home">
+        <img src="assets/logo.svg" alt="Stillwater Float &amp; Sensory Spa Brand Logo" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">STILLWATER</span>
+          <span class="brand-subtitle">Float & Sensory Spa</span>
+        </div>
+      </a>
+
+      <!-- Center Section — Main Navigation (Exact 7 items in strict order) -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <!-- 1. Home Dropdown -->
+          <li class="nav-item" id="homeNavDropdown">
+            <button class="nav-link dropdown-toggle" onclick="toggleHomeDropdown(event)" aria-expanded="false" aria-haspopup="true">
+              <span>Home</span>
+              <span class="dropdown-caret" aria-hidden="true">▼</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-item" role="none">
+                <a href="index.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">✦ Home 1 — Sanctuary &amp; Science</span>
+                  <span class="dropdown-desc">Zero-gravity immersion, clinical research &amp; pod simulator</span>
+                </a>
+              </li>
+              <li class="dropdown-item" role="none">
+                <a href="home-2.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">◈ Home 2 — Float Suites &amp; Chambers</span>
+                  <span class="dropdown-desc">Architectural suites, basin rooms &amp; contrast therapies</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- 2. About -->
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+
+          <!-- 3. Service -->
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Service</a>
+          </li>
+
+          <!-- 4. First-Time Guide -->
+          <li class="nav-item">
+            <a href="first-time-guide.html" class="nav-link">First-Time Guide</a>
+          </li>
+
+          <!-- 5. Blog (Active) -->
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link active">Blog</a>
+          </li>
+
+          <!-- 6. Contact -->
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+          <!-- 7. Client Dashboard -->
+          <li class="nav-item">
+            <a href="dashboard.html" class="nav-link">Client Dashboard</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Side — Controls & Booking Button (Exact 4 controls in strict order) -->
+      <div class="nav-actions">
+        <!-- 1. RTL / LTR Direction Toggle -->
+        <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch text direction RTL or LTR" title="Switch layout direction (LTR / RTL)">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+
+        <!-- 2. Dark Mode / Light Mode Toggle -->
+        <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+          <span>☀️</span>
+          <span class="btn-label-text">Light</span>
+        </button>
+
+        <!-- 3. Member Login Portal -->
+        <a href="login.html" class="btn-control nav-login-btn icon-only" aria-label="Member Login Portal" title="Member Login Portal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+
+        <!-- 4. Book a Float Button -->
+        <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary">
+          <span>Book A Float</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button onclick="toggleMobileMenu()" class="mobile-toggle" aria-label="Open navigation menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="brand-logo" aria-label="Stillwater Float &amp; Sensory Spa Home">
+          <img src="assets/logo.svg" alt="Stillwater Float &amp; Sensory Spa Brand Logo" class="brand-logo-img">
+          <div class="brand-logo-text">
+            <span class="brand-title">STILLWATER</span>
+            <span class="brand-subtitle">Float & Sensory Spa</span>
+          </div>
+        </a>
+        <button onclick="closeMobileMenu()" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+
+      <ul class="mobile-nav-list">
+        <li>
+          <div class="mobile-nav-link" onclick="toggleMobileHomeSubmenu(event)" style="cursor:pointer;">
+            <span>Home Variations</span>
+            <span id="mobileHomeCaret" style="font-size:11px; transition:transform 0.2s;">▼</span>
+          </div>
+          <ul id="mobileHomeSubmenu" class="mobile-submenu" style="display:none;">
+            <li>
+              <a href="index.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ✦ Home 1 — Sanctuary &amp; Science
+              </a>
+            </li>
+            <li>
+              <a href="home-2.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ◈ Home 2 — Float Suites &amp; Chambers
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
+        </li>
+        <li>
+          <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Service</a>
+        </li>
+        <li>
+          <a href="first-time-guide.html" class="mobile-nav-link" onclick="closeMobileMenu()">First-Time Guide</a>
+        </li>
+        <li>
+          <a href="blog.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Blog</a>
+        </li>
+        <li>
+          <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
+        </li>
+        <li>
+          <a href="dashboard.html" class="mobile-nav-link" onclick="closeMobileMenu()">Client Dashboard</a>
+        </li>
+        <li>
+          <a href="login.html" class="mobile-nav-link" onclick="closeMobileMenu()">Member Login</a>
+        </li>
+      </ul>
+
+      <div class="mobile-drawer-actions">
+        <div class="mobile-controls-row">
+          <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Toggle direction" title="Switch layout direction (LTR / RTL)">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+          <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle theme">
+            <span>☀️ Light</span>
+          </button>
+          <a href="login.html" class="btn-control nav-login-btn icon-only" onclick="closeMobileMenu()" aria-label="Member Login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+        </div>
+        <button onclick="closeMobileMenu(); openBookingModal('60-Minute Signature Sensory Float');" class="btn-book-primary" style="justify-content:center; width:100%;">
+          Book A Float Session
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <main id="mainContent">
+    <!-- Blog Hero Section with High-Definition Background -->
+    <section class="hero-section hero-blog-bg" style="padding: 85px 0 60px; border-bottom: 1px solid var(--border-subtle);" data-hero-bg="assets/hero-blog-bg.jpg">
+      <div class="container text-center">
+        <div class="hero-eyebrow" style="display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border-radius:9999px; background:var(--teal-subtle); border:1px solid var(--border-highlight); margin-bottom:18px;">
+          <span style="font-size:12px; font-weight:600; color:var(--teal-primary); letter-spacing:0.12em; text-transform:uppercase;">Sanctuary Research &amp; Clinical Journal</span>
+        </div>
+        <h1 class="hero-title" style="font-size:clamp(30px, 4.5vw, 48px); font-weight:300; letter-spacing:-0.01em; margin-bottom:16px;">
+          The Science of <span style="font-style:italic; color:var(--teal-primary);">Stillness</span> &amp; REST
+        </h1>
+        <p class="hero-subtitle" style="max-width:720px; margin:0 auto 30px; font-size:16px; line-height:1.7; color:var(--text-secondary);">
+          Peer-reviewed neurobiology, sensory deprivation clinical protocols, transdermal magnesium absorption, and recovery practices compiled by our resident flotation researchers.
+        </p>
+
+        <!-- Topic Filter Badges -->
+        <div class="blog-filter-bar" style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:20px;">
+          <button class="btn-control blog-filter-btn active" data-category="all" onclick="filterBlogCategory('all', this)">All Articles</button>
+          <button class="btn-control blog-filter-btn" data-category="neurobiology" onclick="filterBlogCategory('neurobiology', this)">Neurobiology</button>
+          <button class="btn-control blog-filter-btn" data-category="float-rest" onclick="filterBlogCategory('float-rest', this)">Float REST Science</button>
+          <button class="btn-control blog-filter-btn" data-category="athletic-recovery" onclick="filterBlogCategory('athletic-recovery', this)">Athletic Recovery</button>
+          <button class="btn-control blog-filter-btn" data-category="magnesium-therapy" onclick="filterBlogCategory('magnesium-therapy', this)">Magnesium Therapy</button>
+          <button class="btn-control blog-filter-btn" data-category="mindfulness-protocols" onclick="filterBlogCategory('mindfulness-protocols', this)">Mindfulness Protocols</button>
+        </div>
+        <div id="blogCountBadge" style="margin-top:16px; font-size:13.5px; color:var(--teal-primary); font-weight:500;">
+          Showing all 7 peer-reviewed research articles
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="section-pad" style="padding-top:20px; padding-bottom:30px;">
+      <div class="container">
+        <article class="card-glass card-lift reveal fade-in-up blog-article-card featured-article-card" data-category="neurobiology" style="padding:36px; border-radius:24px; border:1px solid var(--border-highlight);">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap:32px; align-items:center;">
+            <a href="article-theta-neurochemistry.html" class="img-zoom-wrap" style="border-radius:18px; overflow:hidden; aspect-ratio:16/10; box-shadow:0 12px 30px rgba(0,0,0,0.35); display:block;">
+              <img src="assets/blog-theta-brainwaves.jpg" alt="Neurochemistry of the theta meditative state during zero-gravity sensory deprivation floatation REST" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </a>
+            <div>
+              <div style="display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px; font-size:12px; color:var(--teal-primary);">
+                <span class="article-category-badge">Neurobiology</span>
+                <span>•</span>
+                <span class="reading-time-pill">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  8 Min Read
+                </span>
+                <span>•</span>
+                <span style="color:var(--text-muted);">Dr. Julian Mercer, Ph.D.</span>
+              </div>
+              <h2 style="font-size:clamp(22px, 3vw, 32px); font-weight:400; color:var(--text-primary); margin-bottom:14px; line-height:1.3;">
+                <a href="article-theta-neurochemistry.html" style="color:inherit; text-decoration:none;">The Neurochemistry of the Theta State: How Flotation REST Deactivates the Default Mode Network</a>
+              </h2>
+              <p style="font-size:15px; color:var(--text-secondary); line-height:1.7; margin-bottom:20px;">
+                Within 25 minutes of zero-gravity sensory reduction, the human brain transitions out of hyperactive Beta oscillations into rhythmic 4–7 Hz Theta waves. Functional MRI studies reveal a simultaneous calming of the Default Mode Network (DMN), triggering profound autonomic down-regulation, cortisol suppression, and neuroplastic consolidation.
+              </p>
+              <div style="display:flex; align-items:center; flex-wrap:wrap; gap:16px;">
+                <a href="article-theta-neurochemistry.html" class="article-read-link" style="font-size:14px;">
+                  Read Full Clinical Study &rarr;
+                </a>
+                <span style="font-size:13px; color:var(--text-muted);">Published October 2026 • Clinical Protocol #72</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Articles Grid Section -->
+    <section class="section-pad" style="padding-top:10px;">
+      <div class="container">
+        <!-- Empty State Container -->
+        <div id="blogEmptyState" style="display:none; text-align:center; padding: 60px 20px; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border-subtle); margin-bottom: 30px;">
+          <p style="font-size: 18px; color: var(--text-primary); margin-bottom: 8px;">No articles found in this category.</p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">Try selecting another topic or view all clinical publications.</p>
+          <button onclick="filterBlogCategory('all')" class="btn-book-primary" style="margin: 0 auto;">Show All Articles</button>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap:28px;">
+          <!-- Article 1: Float REST Science -->
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="float-rest" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+            <a href="article-epsom-salt-hydrodynamics.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
+              <img src="assets/blog-float-rest-epsom.jpg" alt="Dense Epsom salt hydrotherapy solution providing zero-gravity buoyancy in sensory float chamber" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </a>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <span class="article-category-badge" style="font-size:11px;">Float REST Science</span>
+              <span class="reading-time-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6 min read
+              </span>
+            </div>
+            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
+              <a href="article-epsom-salt-hydrodynamics.html" style="color:inherit; text-decoration:none;">Why 1,200 Pounds of Medical-Grade Epsom Salt Resets the Autonomic Nervous System</a>
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+              By elevating specific gravity to 1.28, your spine, discs, and muscular framework experience effortless zero-gravity floating, instantly relieving musculoskeletal strain and halting sympathetic adrenaline cascades.
+            </p>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
+              <span style="color:var(--text-muted);">Biophysics &amp; Density</span>
+              <a href="article-epsom-salt-hydrodynamics.html" class="article-read-link">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 2: Mindfulness Protocols -->
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="mindfulness-protocols" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+            <a href="article-sensory-deprivation-meditation.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
+              <img src="assets/blog-mindfulness-meditation.jpg" alt="Mindfulness meditation and sensory deprivation acoustic quiet in float chamber" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </a>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <span class="article-category-badge" style="font-size:11px;">Mindfulness Protocols</span>
+              <span class="reading-time-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                5 min read
+              </span>
+            </div>
+            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
+              <a href="article-sensory-deprivation-meditation.html" style="color:inherit; text-decoration:none;">Sensory Deprivation vs. Meditation: Why Flotation Accelerates Deep Rest</a>
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+              Sitting meditation requires continuous postural discipline and internal vigilance. In a light-free, sound-insulated float chamber, external inputs are filtered mechanically, inducing rapid parasympathetic recovery.
+            </p>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
+              <span style="color:var(--text-muted);">Somatic Quietude</span>
+              <a href="article-sensory-deprivation-meditation.html" class="article-read-link">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 3: Athletic Recovery -->
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="athletic-recovery" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+            <a href="article-athletic-recovery-cortisol.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
+              <img src="assets/blog-athletic-recovery.jpg" alt="Athletic muscular recovery and spinal decompression in Epsom saltwater float chamber" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </a>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <span class="article-category-badge" style="font-size:11px;">Athletic Recovery</span>
+              <span class="reading-time-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                7 min read
+              </span>
+            </div>
+            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
+              <a href="article-athletic-recovery-cortisol.html" style="color:inherit; text-decoration:none;">Cortisol Clearance &amp; Rapid Muscle Repair: The Athlete's Recovery Protocol</a>
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+              Elite marathoners, triathletes, and weightlifters utilize post-exertion sensory floatation to rapidly clear blood lactate, lower resting heart rate, and enhance cellular repair through magnesium immersion.
+            </p>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
+              <span style="color:var(--text-muted);">Lactate &amp; Spine Relief</span>
+              <a href="article-athletic-recovery-cortisol.html" class="article-read-link">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 4: Neurobiology -->
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="neurobiology" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+            <a href="article-digital-fatigue-silence.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
+              <img src="assets/blog-digital-detox.jpg" alt="Mindful digital detox and cognitive relief in dark sensory isolation pod" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </a>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <span class="article-category-badge" style="font-size:11px;">Neurobiology</span>
+              <span class="reading-time-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6 min read
+              </span>
+            </div>
+            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
+              <a href="article-digital-fatigue-silence.html" style="color:inherit; text-decoration:none;">Digital Fatigue in 2026: The Neurological Case for Intentional Sensory Silence</a>
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+              Modern humans process over 34 gigabytes of high-frequency information daily. Scheduled sensory deprivation acts as an intentional circuit-breaker for dopamine exhaustion and cognitive overload.
+            </p>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
+              <span style="color:var(--text-muted);">Cognitive Neuroprotection</span>
+              <a href="article-digital-fatigue-silence.html" class="article-read-link">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 5: Magnesium Therapy -->
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="magnesium-therapy" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+            <a href="article-magnesium-sleep-architecture.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
+              <img src="assets/blog-magnesium-sleep.jpg" alt="Pharmaceutical-grade Epsom magnesium sulfate salt crystals and mineral hydrotherapy water" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </a>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <span class="article-category-badge" style="font-size:11px;">Magnesium Therapy</span>
+              <span class="reading-time-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                5 min read
+              </span>
+            </div>
+            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
+              <a href="article-magnesium-sleep-architecture.html" style="color:inherit; text-decoration:none;">Magnesium Sulfate Bio-Availability: Deep Sleep Architecture &amp; Muscle Balance</a>
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+              Magnesium is an essential cofactor in over 300 enzymatic reactions. Transdermal diffusion during a 60-minute float bypasses the GI tract to directly relax vascular smooth muscle and stimulate GABA synthesis.
+            </p>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
+              <span style="color:var(--text-muted);">Transdermal Bioavailability</span>
+              <a href="article-magnesium-sleep-architecture.html" class="article-read-link">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 6: Float REST Science -->
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="float-rest" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+            <a href="article-time-dilation-stillness.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
+              <img src="assets/blog-time-dilation.jpg" alt="Atmospheric sensory float suite interior representing acoustic stillness and time dilation" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </a>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <span class="article-category-badge" style="font-size:11px;">Float REST Science</span>
+              <span class="reading-time-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6 min read
+              </span>
+            </div>
+            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
+              <a href="article-time-dilation-stillness.html" style="color:inherit; text-decoration:none;">Time Dilation and Acoustic Stillness: What Happens Inside an Isolation Capsule</a>
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+              Without light markers, gravity anchors, or acoustic cues, the brain's internal clock decelerates. 60 minutes inside the float chamber regularly feels like a restorative 20-minute daydream or a 4-hour slumber.
+            </p>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
+              <span style="color:var(--text-muted);">Perception &amp; Chronobiology</span>
+              <a href="article-time-dilation-stillness.html" class="article-read-link">Read Article &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Subscription Box (Standalone Demo) -->
+    <section class="section-pad" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle); margin-top:60px;">
+      <div class="container text-center" style="max-width:680px;">
+        <h3 style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:12px;">
+          Receive the Monthly Sanctuary Science Digest
+        </h3>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:24px;">
+          Curated clinical papers on flotation REST, chromotherapy protocols, and circadian sleep optimization. Zero marketing noise.
+        </p>
+
+        <!-- Subscription feedback message -->
+        <div id="newsletterSuccess" style="display:none; background:rgba(45, 212, 191, 0.1); border:1px solid var(--teal-primary); border-radius:12px; padding:14px; margin-bottom:20px; font-size:13px; color:var(--text-primary);">
+          ✓ <strong>Subscription Confirmed (Demo):</strong> Thank you for joining our research community. You will remain on this page.
+        </div>
+
+        <form onsubmit="handleNewsletterSubmit(event)" style="display:flex; gap:12px; max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+          <input 
+            type="email" 
+            id="newsletterEmail" 
+            class="form-input" 
+            placeholder="Enter your email address" 
+            style="flex:1; min-width:240px;" 
+            required
+          >
+          <button type="submit" class="btn-book-primary">
+            <span>Subscribe</span>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Consistent Sticky Footer Across All Pages with Exact Header Brand Identity -->
+  <footer class="footer-main" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <!-- Exact Same Brand Identity as Header -->
+          <a href="index.html" class="brand-logo" style="margin-bottom:14px; text-decoration:none;" aria-label="Stillwater Float &amp; Sensory Spa Home">
+            <img src="assets/logo.svg" alt="Stillwater Float &amp; Sensory Spa Brand Logo" class="brand-logo-img">
+            <div class="brand-logo-text">
+              <span class="brand-title">STILLWATER</span>
+              <span class="brand-subtitle">Float & Sensory Spa</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            A medical-grade sensory deprivation sanctuary engineered for profound decompression, nervous system recalibration, and musculoskeletal recovery.
+          </p>
+          <div style="display:flex; gap:12px; margin-top:16px;">
+            <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer" class="btn-control" aria-label="Official Facebook Profile" title="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer" class="btn-control" aria-label="Official Instagram Profile" title="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/login" target="_blank" rel="noopener noreferrer" class="btn-control" aria-label="Official LinkedIn Profile" title="LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Explore Sanctuary</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">✦ Home 1 — Sanctuary &amp; Science</a></li>
+            <li><a href="home-2.html">◈ Home 2 — Float Suites &amp; Chambers</a></li>
+            <li><a href="about.html">About Stillwater</a></li>
+            <li><a href="services.html">Services &amp; Offerings</a></li>
+            <li><a href="first-time-guide.html">First-Time Orientation Guide</a></li>
+            <li><a href="blog.html">Sanctuary Journal &amp; Science</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Member Services</h4>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Client Dashboard</a></li>
+            <li><a href="login.html">Member Sanctuary Login</a></li>
+            <li><button onclick="openBookingModal('60-Minute Signature Sensory Float')" style="background:none; border:none; padding:0; color:var(--text-secondary); cursor:pointer; font-size:inherit;">Reserve Float Session</button></li>
+            <li><a href="contact.html">Sanctuary Concierge &amp; Map</a></li>
+            <li><a href="first-time-guide.html#faq">Flotation Contraindications &amp; FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Sanctuary Hours</h4>
+          <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+            <p style="margin: 0;">Monday – Friday: 07:00 AM – 10:00 PM</p>
+            <p style="margin: 0;">Saturday – Sunday: 08:00 AM – 11:00 PM</p>
+            <p style="margin: 12px 0 0; color: var(--teal-primary); font-weight: 500;">Private quiet pods sanitized by 1-micron filtration between every guest.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Stillwater Float &amp; Sensory Spa. All rights reserved. Zero-gravity sensory isolation systems.</span>
+        <div style="display: flex; gap: 20px;">
+          <a href="first-time-guide.html#waiver" style="color: var(--text-muted); text-decoration: none; font-size: 12px;">Health &amp; Safety Protocol</a>
+          <a href="contact.html" style="color: var(--text-muted); text-decoration: none; font-size: 12px;">Sanctuary Location</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalBookingHeading" style="display:none;">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.15em; color:var(--teal-primary); font-weight:600;">Sanctuary Reservation</span>
+        <button onclick="closeBookingModal()" class="mobile-drawer-close" aria-label="Close modal">&times;</button>
+      </div>
+      <h3 id="modalBookingHeading" style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Reserve Float Session</h3>
+      <form onsubmit="handleBookingSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="modalService">Session Offering</label>
+          <select id="modalService" class="form-select">
+            <option value="60-Minute Signature Sensory Float">60-Minute Signature Sensory Float ($79)</option>
+            <option value="90-Minute Deep Journey Float">90-Minute Deep Journey Float ($105)</option>
+            <option value="Contrast Sanctuary: Sauna + Plunge + Float">Contrast Sanctuary Trio ($145)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="modalPod">Chamber</label>
+          <select id="modalPod" class="form-select">
+            <option value="Pod Alpha — Zero-Gravity Capsule">Pod Alpha — Zero-Gravity Capsule</option>
+            <option value="Basin Beta — Open Ocean Suite">Basin Beta — Open Ocean Suite</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label" for="modalDate">Float Date</label>
+            <input type="date" id="modalDate" class="form-input" value="2026-10-19" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modalSlot">Time Slot</label>
+            <select id="modalSlot" class="form-select">
+              <option value="11:00 AM – 12:30 PM">11:00 AM – Midday Reset</option>
+              <option value="04:30 PM – 06:00 PM">04:30 PM – Twilight Decompression</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px; margin-top:10px;">
+          Confirm Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('newsletterEmail');
+      const successBox = document.getElementById('newsletterSuccess');
+      if (emailInput && successBox) {
+        successBox.style.display = 'block';
+        emailInput.value = '';
+      }
+    }
+  </script>
+</body>
+</html>

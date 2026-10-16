@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First-Time Guide | Stillwater Float & Sensory Spa</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+    .checklist-item:hover {
+      border-color: var(--teal-primary);
+    }
+    .faq-item {
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+    .faq-question {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .faq-answer {
+      padding: 0 24px 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      display: none;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-main" role="banner">
+    <div class="container nav-container">
+      <!-- Brand Logo in Header -->
+      <a href="index.html" class="brand-logo" aria-label="Stillwater Float & Sensory Spa Home">
+        <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">STILLWATER</span>
+          <span class="brand-subtitle">Float & Sensory Spa</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <!-- Home Dropdown -->
+          <li class="nav-item" id="homeNavDropdown">
+            <button class="nav-link dropdown-toggle" onclick="toggleHomeDropdown(event)" aria-expanded="false" aria-haspopup="true">
+              <span>Home</span>
+              <span class="dropdown-caret" aria-hidden="true">▼</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-item" role="none">
+                <a href="index.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">✦ Home 1 — Sanctuary & Science</span>
+                  <span class="dropdown-desc">Zero-gravity immersion, clinical research & pod simulator</span>
+                </a>
+              </li>
+              <li class="dropdown-item" role="none">
+                <a href="home-2.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">◈ Home 2 — Float Suites & Chambers</span>
+                  <span class="dropdown-desc">Architectural suites, basin rooms & contrast therapies</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Service</a>
+          </li>
+          <li class="nav-item">
+            <a href="first-time-guide.html" class="nav-link active">First-Time Guide</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a href="dashboard.html" class="nav-link">Client Dashboard</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Direction, Theme, Booking & Mobile Hamburger) -->
+      <div class="nav-actions">
+        <!-- RTL / LTR Direction Toggle (Icon-Only) -->
+        <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch layout direction (LTR / RTL)" title="Switch layout direction (LTR / RTL)">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+
+        <!-- Light / Dark Theme Toggle -->
+        <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+          <span>☀️</span>
+          <span class="btn-label-text">Light</span>
+        </button>
+
+        <!-- Member Login Portal Button (Icon-Only) -->
+        <a href="login.html" class="btn-control nav-login-btn icon-only" aria-label="Member Login Portal" title="Member Login Portal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+
+        <!-- CTA Booking Button -->
+        <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary">
+          <span>Book A Float</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button onclick="toggleMobileMenu()" class="mobile-toggle" aria-label="Open navigation menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="brand-logo" onclick="closeMobileMenu()" style="text-decoration:none;">
+          <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+          <div class="brand-logo-text">
+            <span class="brand-title">STILLWATER</span>
+            <span class="brand-subtitle">Float & Sensory Spa</span>
+          </div>
+        </a>
+        <button onclick="closeMobileMenu()" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+
+      <ul class="mobile-nav-list">
+        <li>
+          <div class="mobile-nav-link" onclick="toggleMobileHomeSubmenu(event)" style="cursor:pointer;">
+            <span>Home Variations</span>
+            <span id="mobileHomeCaret" style="font-size:11px; transition:transform 0.2s;">▼</span>
+          </div>
+          <ul id="mobileHomeSubmenu" class="mobile-submenu" style="display:none;">
+            <li>
+              <a href="index.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ✦ Home 1 — Sanctuary & Science
+              </a>
+            </li>
+            <li>
+              <a href="home-2.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ◈ Home 2 — Float Suites & Chambers
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
+        </li>
+        <li>
+          <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Service</a>
+        </li>
+        <li>
+          <a href="first-time-guide.html" class="mobile-nav-link active" onclick="closeMobileMenu()">First-Time Guide</a>
+        </li>
+        <li>
+          <a href="blog.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+        </li>
+        <li>
+          <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
+        </li>
+        <li>
+          <a href="dashboard.html" class="mobile-nav-link" onclick="closeMobileMenu()">Client Dashboard</a>
+        </li>
+      </ul>
+
+      <div class="mobile-drawer-actions">
+        <div class="mobile-controls-row">
+          <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Toggle direction" title="Switch layout direction (LTR / RTL)">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+          <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle theme">
+            <span>☀️ Light</span>
+          </button>
+          <a href="login.html" class="btn-control nav-login-btn icon-only" onclick="closeMobileMenu()" aria-label="Member Login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+        </div>
+        <button onclick="closeMobileMenu(); openBookingModal('60-Minute Signature Sensory Float');" class="btn-book-primary" style="justify-content:center; width:100%;">
+          Book A Float Session
+        </button>
+        <a href="login.html" class="btn-outline" style="justify-content:center; width:100%; text-align:center;" onclick="closeMobileMenu()">
+          Member Login / Portal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- First-Timer Hero Section with High-Definition Background -->
+  <section class="hero-section hero-guide-bg" style="padding: 75px 0 55px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 40px;" data-hero-bg="assets/hero-guide-bg.jpg">
+    <div class="container text-center">
+      <div class="hero-eyebrow" style="display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border-radius:9999px; background:var(--teal-subtle); border:1px solid var(--border-highlight); margin-bottom:18px;">
+        <span style="font-size:12px; font-weight:600; color:var(--teal-primary); letter-spacing:0.12em; text-transform:uppercase;">First-Timer Orientation</span>
+      </div>
+      <h1 class="hero-title" style="font-size:clamp(30px, 4.5vw, 48px); font-weight:300; letter-spacing:-0.01em; margin-bottom:16px;">
+        Your Maiden Voyage Into <span style="font-style:italic; color:var(--teal-primary);">Stillness</span>
+      </h1>
+      <p class="hero-subtitle" style="max-width:720px; margin:0 auto; font-size:16px; line-height:1.7; color:var(--text-secondary);">
+        It is completely normal to have questions before entering zero gravity. We have perfected every step to ensure your maiden float is serene and effortless.
+      </p>
+    </div>
+  </section>
+
+  <main class="container" style="padding-top:10px; padding-bottom:80px;">
+
+    <!-- 1. The 4-Stage Journey -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-bottom:60px;">
+      <div class="glass-panel" style="padding:24px;">
+        <span style="font-size:24px; font-family:monospace; color:var(--teal-primary);">01</span>
+        <h4 style="font-size:16px; color:var(--text-primary); margin:8px 0 10px;">Before You Arrive</h4>
+        <ul style="font-size:12px; color:var(--text-secondary); line-height:1.7; list-style:none;">
+          <li>• Avoid caffeine 4 hours prior</li>
+          <li>• Eat a light snack ~90 mins before</li>
+          <li>• Avoid shaving or waxing today</li>
+          <li>• Robes & towels are provided</li>
+        </ul>
+      </div>
+
+      <div class="glass-panel" style="padding:24px;">
+        <span style="font-size:24px; font-family:monospace; color:var(--teal-primary);">02</span>
+        <h4 style="font-size:16px; color:var(--text-primary); margin:8px 0 10px;">Orientation & Shower</h4>
+        <ul style="font-size:12px; color:var(--text-secondary); line-height:1.7; list-style:none;">
+          <li>• Guided walkthrough of suite controls</li>
+          <li>• Insert silicone earplugs securely</li>
+          <li>• Pre-float clarifying shower</li>
+          <li>• Step into skin-neutral water (93.5°F)</li>
+        </ul>
+      </div>
+
+      <div class="glass-panel" style="padding:24px;">
+        <span style="font-size:24px; font-family:monospace; color:var(--teal-primary);">03</span>
+        <h4 style="font-size:16px; color:var(--text-primary); margin:8px 0 10px;">Inside The Pod</h4>
+        <ul style="font-size:12px; color:var(--text-secondary); line-height:1.7; list-style:none;">
+          <li>• Lie back gently; water holds your neck</li>
+          <li>• Turn lights off or keep soft amber glow</li>
+          <li>• 5 mins intro chimes fade to silence</li>
+          <li>• Body boundary dissolves effortlessly</li>
+        </ul>
+      </div>
+
+      <div class="glass-panel" style="padding:24px;">
+        <span style="font-size:24px; font-family:monospace; color:var(--teal-primary);">04</span>
+        <h4 style="font-size:16px; color:var(--text-primary); margin:8px 0 10px;">Post-Float Awakening</h4>
+        <ul style="font-size:12px; color:var(--text-secondary); line-height:1.7; list-style:none;">
+          <li>• Soft chimes signify completion</li>
+          <li>• Warm rinse shower to wash salt</li>
+          <li>• Dyson vanity & botanical hair care</li>
+          <li>• Herbal tea in reflection lounge</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Visual Sanctuary Immersion Steps -->
+    <div style="margin-bottom:60px;">
+      <div class="section-header" style="margin-bottom:32px;">
+        <span class="section-tag">Visual Walkthrough</span>
+        <h3 class="section-title" style="font-size:26px;">The Sanctuary Experience in Pictures</h3>
+        <p class="section-desc">From your private preparation suite to zero-gravity immersion and post-float tea lounge.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:24px;">
+        <!-- Card 1: Preparation Suite -->
+        <div class="glass-panel card-elevation-hover fade-in-up stagger-1" style="border-radius:20px; overflow:hidden;">
+          <div class="img-zoom-wrap" style="height:220px;">
+            <img src="assets/guide-preparation-suite.jpg" alt="Private float preparation suite with rain shower, neatly arranged towels, ambient lighting, and sensory float pod" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div class="float-img-badge">
+              <span>●</span>
+              <span>Stage 1: Preparation</span>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <h4 style="font-size:18px; color:var(--text-primary); margin-bottom:8px; font-weight:500;">Private Preparation Suite</h4>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.65;">
+              Each guest is welcomed into an individual private suite featuring organic botanical bath amenities, warm rain shower, and skin preparation halo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: Floating Experience -->
+        <div class="glass-panel card-elevation-hover fade-in-up stagger-2" style="border-radius:20px; overflow:hidden;">
+          <div class="img-zoom-wrap" style="height:220px;">
+            <img src="assets/guide-floating-experience.jpg" alt="Effortless hydro-buoyancy inside an illuminated modern sensory deprivation float pod with tranquil cyan saltwater" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div class="float-img-badge">
+              <span>●</span>
+              <span>Stage 2: Zero Gravity</span>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <h4 style="font-size:18px; color:var(--text-primary); margin-bottom:8px; font-weight:500;">Effortless Hydro-Buoyancy</h4>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.65;">
+              Lie back as 1,200 pounds of dissolved Epsom salt elevates your body effortlessly. Your neck, spine, and joints decompress completely without effort.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3: Post-Float Lounge -->
+        <div class="glass-panel card-elevation-hover fade-in-up stagger-3" style="border-radius:20px; overflow:hidden;">
+          <div class="img-zoom-wrap" style="height:220px;">
+            <img src="assets/guide-post-float-integration.jpg" alt="Quiet post-float relaxation lounge with comfortable linen daybeds, warm ambient lighting, and artisan tea trays" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div class="float-img-badge">
+              <span>●</span>
+              <span>Stage 3: Integration</span>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <h4 style="font-size:18px; color:var(--text-primary); margin-bottom:8px; font-weight:500;">Post-Float Reflection Lounge</h4>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.65;">
+              Re-integrate gradually with complementary loose-leaf botanical tea, journal prompts, and ambient stillness before returning to the outside world.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Interactive Readiness Checklist -->
+    <div class="glass-panel-glow" style="padding:36px; max-width:760px; margin:0 auto 60px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:14px;">
+        <div>
+          <span class="section-tag" style="margin-bottom:4px;">Readiness Tracker</span>
+          <h3 style="font-size:20px; font-weight:300; color:var(--text-primary);">Interactive Preparation Checklist</h3>
+        </div>
+        <span id="checklistScore" style="font-size:12px; font-family:monospace; color:var(--teal-primary); background:rgba(45,212,191,0.1); padding:4px 12px; border-radius:9999px;">
+          3 of 5 Ready
+        </span>
+      </div>
+
+      <div id="checklistItems">
+        <div class="checklist-item" onclick="toggleCheckItem(this)">
+          <input type="checkbox" checked style="accent-color:var(--teal-primary);">
+          <span>Avoided caffeine & energy drinks for at least 4 hours</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckItem(this)">
+          <input type="checkbox" style="accent-color:var(--teal-primary);">
+          <span>Ate a light meal ~90 minutes prior (not overly stuffed, not empty)</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckItem(this)">
+          <input type="checkbox" checked style="accent-color:var(--teal-primary);">
+          <span>Avoided shaving or waxing sensitive skin today</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckItem(this)">
+          <input type="checkbox" style="accent-color:var(--teal-primary);">
+          <span>Insert silicone earplugs securely before entering pre-float shower</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheckItem(this)">
+          <input type="checkbox" checked style="accent-color:var(--teal-primary);">
+          <span>Hydrated with fresh water before arrival</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Safety & Myth Busting FAQ Accordion -->
+    <div style="max-width:800px; margin:0 auto 60px;">
+      <div class="section-header" style="margin-bottom:32px;">
+        <span class="section-tag">Clarity & Confidence</span>
+        <h3 class="section-title" style="font-size:28px;">Frequently Asked Questions</h3>
+      </div>
+
+      <div class="faq-item active" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span>Will I feel claustrophobic inside the pod?</span>
+          <span>▾</span>
+        </div>
+        <div class="faq-answer">
+          Almost everyone is pleasantly surprised! Pod Alpha is over 8.5 feet long and 5 feet wide. You are in complete control: the lid never locks, opens with a gentle touch, and you can leave internal lights on or door cracked. We also offer Basin Beta, an open-concept room with 9-foot ceilings and no lid whatsoever.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span>How clean is the float water?</span>
+          <span>▾</span>
+        </div>
+        <div class="faq-answer">
+          Float water is extraordinarily pure. Over 1,200 pounds of medical-grade Epsom salt creates a saline environment so dense that bacteria and pathogens cannot survive. Furthermore, between every single guest, 100% of the water runs through a 4-stage hospital filtration cycle with 1-micron sediment filters, high-output germicidal UV-C light, and ozone purification.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span>What happens if I fall asleep inside the pod?</span>
+          <span>▾</span>
+        </div>
+        <div class="faq-answer">
+          Sleeping is safe and encouraged! With 1,200 lbs of dissolved salt, the water has a specific gravity of 1.28. It is physically impossible to sink. Even if you turn, the dense water will gently rotate you back onto your back.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span>What should I wear during the float?</span>
+          <span>▾</span>
+        </div>
+        <div class="faq-answer">
+          Because each chamber is inside your own private, locked suite with an en-suite rain shower, most guests float without clothing to eliminate tactile sensations. However, clean swimsuits are completely welcome if you prefer.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-main" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <!-- Exact Same Clickable Brand Logo as Header -->
+          <a href="index.html" class="brand-logo" style="margin-bottom:14px; text-decoration:none;" aria-label="Stillwater Float & Sensory Spa Home">
+            <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+            <div class="brand-logo-text">
+              <span class="brand-title">STILLWATER</span>
+              <span class="brand-subtitle">Float & Sensory Spa</span>
+            </div>
+          </a>
+          <p style="font-size:12px; line-height:1.7; max-width:280px; color:var(--text-secondary);">A sensory deprivation sanctuary engineered for nervous system recalibration, spinal decompression, and theta meditation.</p>
+          <p style="font-size:11px; font-family:monospace; color:var(--teal-primary); margin-top:12px;">Quiet Sanctuary Policy • Shoes Off At Threshold</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Sanctuary Nav</h4>
+          <p style="margin-bottom:8px;"><a href="index.html">Home 1: Sanctuary</a></p>
+          <p style="margin-bottom:8px;"><a href="home-2.html">Home 2: Float Suites</a></p>
+          <p style="margin-bottom:8px;"><a href="services.html">Services & Packages</a></p>
+          <p style="margin-bottom:8px;"><a href="first-time-guide.html">First-Time Guide</a></p>
+          <p style="margin-bottom:8px;"><a href="contact.html">Contact Us</a></p>
+          <p><a href="dashboard.html">Client Dashboard</a></p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Sanctuary Chambers</h4>
+          <p style="margin-bottom:8px;">Pod Alpha (Capsule)</p>
+          <p style="margin-bottom:8px;">Basin Beta (Open Suite)</p>
+          <p style="margin-bottom:8px;">Sanctuary Delta (Starlight)</p>
+          <p>Infrared & Ice Plunge</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Location & Social</h4>
+          <p style="margin-bottom:6px;">420 Stillwater Pavilion Blvd, Tranquil Grove, CA</p>
+          <p style="margin-bottom:6px;">Mon – Sun: 7:30 AM – 10:00 PM</p>
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit Facebook Login" title="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit Instagram Login" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/login" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit LinkedIn Login" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Stillwater Float & Sensory Sanctuary. All rights reserved.</span>
+        <span>Zero Gravity Recovery • 1,200 lbs USP Epsom Salt</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    function toggleCheckItem(el) {
+      const cb = el.querySelector('input[type="checkbox"]');
+      cb.checked = !cb.checked;
+      updateCheckScore();
+    }
+    function updateCheckScore() {
+      const all = document.querySelectorAll('#checklistItems input[type="checkbox"]');
+      let ready = 0;
+      all.forEach(c => { if(c.checked) ready++; });
+      document.getElementById('checklistScore').textContent = `${ready} of ${all.length} Ready`;
+    }
+    function toggleFaq(el) {
+      el.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Sanctuary Location | Stillwater Float & Sensory Spa</title>
+  <meta name="description" content="Reach the Stillwater sanctuary concierges. Book private facility buyouts, ask questions, or locate our tranquil grove pavilion.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-main" role="banner">
+    <div class="container nav-container">
+      <!-- Brand Logo in Header -->
+      <a href="index.html" class="brand-logo" aria-label="Stillwater Float & Sensory Spa Home">
+        <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">STILLWATER</span>
+          <span class="brand-subtitle">Float & Sensory Spa</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <!-- Home Dropdown -->
+          <li class="nav-item" id="homeNavDropdown">
+            <button class="nav-link dropdown-toggle" onclick="toggleHomeDropdown(event)" aria-expanded="false" aria-haspopup="true">
+              <span>Home</span>
+              <span class="dropdown-caret" aria-hidden="true">▼</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-item" role="none">
+                <a href="index.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">✦ Home 1 — Sanctuary & Science</span>
+                  <span class="dropdown-desc">Zero-gravity immersion, clinical research & pod simulator</span>
+                </a>
+              </li>
+              <li class="dropdown-item" role="none">
+                <a href="home-2.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">◈ Home 2 — Float Suites & Chambers</span>
+                  <span class="dropdown-desc">Architectural suites, basin rooms & contrast therapies</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Service</a>
+          </li>
+          <li class="nav-item">
+            <a href="first-time-guide.html" class="nav-link">First-Time Guide</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link active">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a href="dashboard.html" class="nav-link">Client Dashboard</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Direction, Theme, Booking & Mobile Hamburger) -->
+      <div class="nav-actions">
+        <!-- RTL / LTR Direction Toggle (Icon-Only) -->
+        <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch layout direction (LTR / RTL)" title="Switch layout direction (LTR / RTL)">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+
+        <!-- Light / Dark Theme Toggle -->
+        <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+          <span>☀️</span>
+          <span class="btn-label-text">Light</span>
+        </button>
+
+        <!-- Member Login Portal Button (Icon-Only) -->
+        <a href="login.html" class="btn-control nav-login-btn icon-only" aria-label="Member Login Portal" title="Member Login Portal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+
+        <!-- CTA Booking Button -->
+        <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary">
+          <span>Book A Float</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button onclick="toggleMobileMenu()" class="mobile-toggle" aria-label="Open navigation menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="brand-logo" onclick="closeMobileMenu()" style="text-decoration:none;">
+          <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+          <div class="brand-logo-text">
+            <span class="brand-title">STILLWATER</span>
+            <span class="brand-subtitle">Float & Sensory Spa</span>
+          </div>
+        </a>
+        <button onclick="closeMobileMenu()" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+
+      <ul class="mobile-nav-list">
+        <li>
+          <div class="mobile-nav-link" onclick="toggleMobileHomeSubmenu(event)" style="cursor:pointer;">
+            <span>Home Variations</span>
+            <span id="mobileHomeCaret" style="font-size:11px; transition:transform 0.2s;">▼</span>
+          </div>
+          <ul id="mobileHomeSubmenu" class="mobile-submenu" style="display:none;">
+            <li>
+              <a href="index.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ✦ Home 1 — Sanctuary & Science
+              </a>
+            </li>
+            <li>
+              <a href="home-2.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ◈ Home 2 — Float Suites & Chambers
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
+        </li>
+        <li>
+          <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Service</a>
+        </li>
+        <li>
+          <a href="first-time-guide.html" class="mobile-nav-link" onclick="closeMobileMenu()">First-Time Guide</a>
+        </li>
+        <li>
+          <a href="blog.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+        </li>
+        <li>
+          <a href="contact.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Contact</a>
+        </li>
+        <li>
+          <a href="dashboard.html" class="mobile-nav-link" onclick="closeMobileMenu()">Client Dashboard</a>
+        </li>
+      </ul>
+
+      <div class="mobile-drawer-actions">
+        <div class="mobile-controls-row">
+          <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Toggle direction">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+          <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle theme">
+            <span>☀️ Light</span>
+          </button>
+          <a href="login.html" class="btn-control nav-login-btn icon-only" onclick="closeMobileMenu()" aria-label="Member Login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+        </div>
+        <button onclick="closeMobileMenu(); openBookingModal('60-Minute Signature Sensory Float');" class="btn-book-primary" style="justify-content:center; width:100%;">
+          Book A Float Session
+        </button>
+        <a href="login.html" class="btn-outline" style="justify-content:center; width:100%; text-align:center;" onclick="closeMobileMenu()">
+          Member Login / Portal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container" style="padding-top:40px; padding-bottom:80px;">
+    <!-- Header -->
+    <div class="section-header" style="margin-bottom:48px;">
+      <span class="section-tag">Sanctuary Concierge</span>
+      <h1 class="section-title">Inquire & Visit Our Sanctuary</h1>
+      <p class="section-desc">Our sanctuary hosts are available to help you choose the ideal session length, schedule group buyouts, or answer any first-time floating questions.</p>
+    </div>
+
+    <!-- Contact Grid -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap:32px;">
+      <!-- Contact Info Panel -->
+      <div class="glass-panel reveal fade-in-up" style="padding:36px;">
+        <div class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:20px; aspect-ratio:16/9; box-shadow:0 8px 24px rgba(0,0,0,0.3);">
+          <img src="assets/contact-reception-sanctuary.jpg" alt="Serene luxury float spa reception and guest consultation welcome lounge with botanical tea table and concierge suite" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <span class="section-tag">Pavilion Location</span>
+        <h3 style="font-size:22px; color:var(--text-primary); margin-bottom:18px; font-weight:400;">Tranquil Grove Sanctuary</h3>
+
+        <div style="display:flex; flex-direction:column; gap:16px; font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:28px;">
+          <div>
+            <strong style="color:var(--text-primary); display:block;">Physical Address</strong>
+            <span>420 Stillwater Pavilion Blvd, Suite 100<br>Tranquil Grove, CA 90291</span>
+          </div>
+          <div>
+            <strong style="color:var(--text-primary); display:block;">Sanctuary Operating Hours</strong>
+            <span>Monday – Sunday: 7:30 AM – 10:00 PM<br>(First session begins at 8:00 AM)</span>
+          </div>
+          <div>
+            <strong style="color:var(--text-primary); display:block;">Contact Number</strong>
+            <span>Direct Concierge: <a href="tel:+13105550198" style="color:var(--teal-primary); text-decoration:none; font-weight:500;">(310) 555-0198</a></span>
+          </div>
+          <div>
+            <strong style="color:var(--text-primary); display:block;">Electronic Inquiries</strong>
+            <span>Email: <a href="mailto:sanctuary@stillwater-spa.com" style="color:var(--teal-primary); text-decoration:none;">sanctuary@stillwater-spa.com</a></span>
+          </div>
+        </div>
+
+        <div style="padding:16px; background:var(--teal-subtle); border-radius:12px; border:1px solid var(--border-subtle); font-size:12px; color:var(--teal-primary);">
+          ✦ Complimentary valet parking with private tranquil garden entrance.
+        </div>
+      </div>
+
+      <!-- Inquiries Form -->
+      <div class="glass-panel-glow reveal fade-in-up" style="padding:36px; border-color:var(--border-highlight);">
+        <span class="section-tag">Digital Inquiry</span>
+        <h3 style="font-size:22px; color:var(--text-primary); margin-bottom:18px; font-weight:400;">Send Concierge A Message</h3>
+
+        <form id="contactForm" onsubmit="handleContactSubmit(event)" novalidate>
+          <div class="form-group" style="margin-bottom:18px;">
+            <label class="form-label" for="contactName">Your Name <span style="color:#ef4444;">*</span></label>
+            <input type="text" id="contactName" class="form-input" placeholder="Elena Vance" required autocomplete="name">
+            <div id="contactNameError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;" role="alert"></div>
+          </div>
+          <div class="form-group" style="margin-bottom:18px;">
+            <label class="form-label" for="contactPhone">Contact Number <span style="color:#ef4444;">*</span></label>
+            <input type="tel" id="contactPhone" class="form-input" placeholder="(310) 555-0198" required autocomplete="tel">
+            <div id="contactPhoneError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;" role="alert"></div>
+          </div>
+          <div class="form-group" style="margin-bottom:18px;">
+            <label class="form-label" for="contactEmail">Email Address <span style="color:#ef4444;">*</span></label>
+            <input type="email" id="contactEmail" class="form-input" placeholder="elena@example.com" required autocomplete="email">
+            <div id="contactEmailError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;" role="alert"></div>
+          </div>
+          <div class="form-group" style="margin-bottom:18px;">
+            <label class="form-label" for="contactTopic">Inquiry Topic</label>
+            <select id="contactTopic" class="form-select">
+              <option value="First-Time Floater Question">First-Time Floater Question</option>
+              <option value="Private Facility Buyout">Private Facility Buyout / Corporate Reset</option>
+              <option value="Membership & Immersion Packages">Membership & Immersion Packages</option>
+              <option value="Other">Other Concierge Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:22px;">
+            <label class="form-label" for="contactMessage">Message <span style="color:#ef4444;">*</span></label>
+            <textarea id="contactMessage" class="form-textarea" rows="4" placeholder="How can our sanctuary hosts assist your journey into stillness?" required></textarea>
+            <div id="contactMessageError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;" role="alert"></div>
+          </div>
+          <button type="submit" id="submitContactBtn" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px;">
+            Transmit Concierge Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalContactHeading">
+    <div class="modal-window">
+      <button onclick="closeBookingModal()" class="modal-close" aria-label="Close modal">&times;</button>
+      <span class="section-tag">Sanctuary Scheduling</span>
+      <h3 id="modalContactHeading" style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Reserve Float Session</h3>
+      <form onsubmit="handleBookingSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="modalService">Session Offering</label>
+          <select id="modalService" class="form-select">
+            <option value="60-Minute Signature Sensory Float">60-Minute Signature Sensory Float ($79)</option>
+            <option value="90-Minute Deep Journey Float">90-Minute Deep Journey Float ($105)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="modalDate">Date</label>
+          <input type="date" id="modalDate" class="form-input" value="2026-10-19" required>
+        </div>
+        <button type="submit" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px; margin-top:10px;">
+          Confirm Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer-main" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <!-- Exact Same Clickable Brand Logo as Header -->
+          <a href="index.html" class="brand-logo" style="margin-bottom:14px; text-decoration:none;" aria-label="Stillwater Float & Sensory Spa Home">
+            <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+            <div class="brand-logo-text">
+              <span class="brand-title">STILLWATER</span>
+              <span class="brand-subtitle">Float & Sensory Spa</span>
+            </div>
+          </a>
+          <p style="font-size:12px; line-height:1.7; max-width:280px; color:var(--text-secondary);">A sensory deprivation sanctuary engineered for nervous system recalibration, spinal decompression, and theta meditation.</p>
+          <p style="font-size:11px; font-family:monospace; color:var(--teal-primary); margin-top:12px;">Quiet Sanctuary Policy • Shoes Off At Threshold</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Sanctuary Nav</h4>
+          <p style="margin-bottom:8px;"><a href="index.html">Home 1: Sanctuary</a></p>
+          <p style="margin-bottom:8px;"><a href="home-2.html">Home 2: Float Suites</a></p>
+          <p style="margin-bottom:8px;"><a href="services.html">Services & Packages</a></p>
+          <p style="margin-bottom:8px;"><a href="first-time-guide.html">First-Time Guide</a></p>
+          <p style="margin-bottom:8px;"><a href="contact.html">Contact Us</a></p>
+          <p><a href="dashboard.html">Client Dashboard</a></p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Sanctuary Chambers</h4>
+          <p style="margin-bottom:8px;">Pod Alpha (Capsule)</p>
+          <p style="margin-bottom:8px;">Basin Beta (Open Suite)</p>
+          <p style="margin-bottom:8px;">Sanctuary Delta (Starlight)</p>
+          <p>Infrared & Ice Plunge</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Location & Social</h4>
+          <p style="margin-bottom:6px;">420 Stillwater Pavilion Blvd, Tranquil Grove, CA</p>
+          <p style="margin-bottom:6px;">Mon – Sun: 7:30 AM – 10:00 PM</p>
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit Facebook Login" title="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit Instagram Login" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/login" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit LinkedIn Login" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Stillwater Float & Sensory Sanctuary. All rights reserved.</span>
+        <span>Zero Gravity Recovery • 1,200 lbs USP Epsom Salt</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    function openBookingModal(serviceName) {
+      const modal = document.getElementById('bookingModal');
+      if (modal) modal.classList.add('active');
+    }
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      if (modal) modal.classList.remove('active');
+    }
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const svc = document.getElementById('modalService').value;
+      const dt = document.getElementById('modalDate').value;
+      bookFloatSlot(svc, 'Pod Alpha', dt, '11:00 AM – 12:30 PM', 'Total Darkness', 'Theta Waves');
+      closeBookingModal();
+    }
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      
+      const nameInput = document.getElementById('contactName');
+      const phoneInput = document.getElementById('contactPhone');
+      const emailInput = document.getElementById('contactEmail');
+      const messageInput = document.getElementById('contactMessage');
+      
+      const nameError = document.getElementById('contactNameError');
+      const phoneError = document.getElementById('contactPhoneError');
+      const emailError = document.getElementById('contactEmailError');
+      const messageError = document.getElementById('contactMessageError');
+      
+      let isValid = true;
+
+      // Name validation
+      const nameVal = nameInput.value.trim();
+      if (!nameVal) {
+        nameError.textContent = 'Please enter your name.';
+        nameError.style.display = 'block';
+        nameInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (/\d/.test(nameVal)) {
+        nameError.textContent = 'Numbers are not allowed in the name field.';
+        nameError.style.display = 'block';
+        nameInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        nameError.style.display = 'none';
+        nameInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Phone validation
+      const phoneVal = phoneInput.value.trim();
+      if (!phoneVal) {
+        phoneError.textContent = 'Please provide a contact telephone number.';
+        phoneError.style.display = 'block';
+        phoneInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (/[a-zA-Z]/.test(phoneVal)) {
+        phoneError.textContent = 'Letters are not allowed in the contact number field.';
+        phoneError.style.display = 'block';
+        phoneInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (!/^[\+]?[(]?[0-9]{1,4}[)]?[-\s\./0-9]{6,15}$/.test(phoneVal)) {
+        phoneError.textContent = 'Please provide a valid contact telephone number.';
+        phoneError.style.display = 'block';
+        phoneInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        phoneError.style.display = 'none';
+        phoneInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Email validation
+      const emailVal = emailInput.value.trim();
+      if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        emailError.textContent = 'Please enter a valid email address.';
+        emailError.style.display = 'block';
+        emailInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        emailError.style.display = 'none';
+        emailInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Message validation
+      const msgVal = messageInput.value.trim();
+      if (!msgVal) {
+        messageError.textContent = 'Please enter your message for the sanctuary hosts.';
+        messageError.style.display = 'block';
+        messageInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        messageError.style.display = 'none';
+        messageInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      if (!isValid) return;
+
+      showToast('Thank you! Your message has been received by our sanctuary hosts.');
+      e.target.reset();
+    }
+
+    // Live typing & paste validation for Contact form
+    document.addEventListener('DOMContentLoaded', () => {
+      const nameInput = document.getElementById('contactName');
+      const nameError = document.getElementById('contactNameError');
+      if (nameInput && nameError) {
+        const validateName = () => {
+          const val = nameInput.value;
+          if (/\d/.test(val)) {
+            nameError.textContent = 'Numbers are not allowed in the name field.';
+            nameError.style.display = 'block';
+            nameInput.style.borderColor = '#ef4444';
+          } else {
+            nameError.style.display = 'none';
+            nameInput.style.borderColor = 'var(--border-subtle)';
+          }
+        };
+        nameInput.addEventListener('input', validateName);
+        nameInput.addEventListener('paste', () => setTimeout(validateName, 10));
+      }
+
+      const phoneInput = document.getElementById('contactPhone');
+      const phoneError = document.getElementById('contactPhoneError');
+      if (phoneInput && phoneError) {
+        const validatePhone = () => {
+          const val = phoneInput.value;
+          if (/[a-zA-Z]/.test(val)) {
+            phoneError.textContent = 'Letters are not allowed in the contact number field.';
+            phoneError.style.display = 'block';
+            phoneInput.style.borderColor = '#ef4444';
+          } else {
+            phoneError.style.display = 'none';
+            phoneInput.style.borderColor = 'var(--border-subtle)';
+          }
+        };
+        phoneInput.addEventListener('input', validatePhone);
+        phoneInput.addEventListener('paste', () => setTimeout(validatePhone, 10));
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Our Sanctuary | Stillwater Float & Sensory Spa</title>
+  <meta name="description" content="Discover the story, mission, flotation science, and clinical craftsmanship behind Stillwater Float & Sensory Spa. Engineered for profound nervous system recovery.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Specific styling for expanded About page sections */
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 72px;
+    }
+    .about-story-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 72px;
+    }
+    .about-media-frame {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-highlight);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      background: var(--bg-card);
+    }
+    .about-media-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .about-media-frame:hover .about-media-img {
+      transform: scale(1.03);
+    }
+    .about-media-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 20px;
+      background: linear-gradient(to top, rgba(6, 11, 17, 0.9) 0%, rgba(6, 11, 17, 0.4) 70%, transparent 100%);
+      color: #f8fafc;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 72px;
+    }
+    .spec-table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 72px;
+    }
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .spec-item {
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(45, 212, 191, 0.04);
+      border: 1px solid rgba(45, 212, 191, 0.12);
+    }
+    .spec-num {
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--teal-primary);
+      margin-bottom: 4px;
+    }
+    .spec-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .spec-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .offering-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
+      margin-bottom: 72px;
+    }
+    .offering-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .offering-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--teal-primary);
+      box-shadow: 0 12px 30px var(--teal-glow);
+    }
+    .sanitation-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .sanitation-step {
+      padding: 22px;
+      border-radius: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+    .step-badge {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--teal-primary);
+      color: #060b11;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 28px;
+      margin-bottom: 72px;
+    }
+    .about-cta-banner {
+      background: radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.12) 0%, rgba(6, 11, 17, 0.8) 100%), var(--bg-card);
+      border: 1px solid var(--border-highlight);
+      border-radius: 24px;
+      padding: 56px 40px;
+      text-align: center;
+      box-shadow: 0 16px 48px -12px var(--teal-glow);
+    }
+    @media (max-width: 900px) {
+      .about-hero-grid,
+      .about-story-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .about-media-img {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar (Identical Sticky Header Across All Pages) -->
+  <header class="navbar-main" role="banner">
+    <div class="container nav-container">
+      <!-- Standardized Brand Logo & Wordmark Linking to index.html -->
+      <a href="index.html" class="brand-logo" aria-label="Stillwater Float & Sensory Spa Home">
+        <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">STILLWATER</span>
+          <span class="brand-subtitle">Float & Sensory Spa</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <!-- Home Dropdown -->
+          <li class="nav-item" id="homeNavDropdown">
+            <button class="nav-link dropdown-toggle" onclick="toggleHomeDropdown(event)" aria-expanded="false" aria-haspopup="true">
+              <span>Home</span>
+              <span class="dropdown-caret" aria-hidden="true">▼</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-item" role="none">
+                <a href="index.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">✦ Home 1 — Sanctuary & Science</span>
+                  <span class="dropdown-desc">Core sensory deprivation pods & clinical wellness</span>
+                </a>
+              </li>
+              <li class="dropdown-item" role="none">
+                <a href="home-2.html" class="dropdown-link" role="menuitem">
+                  <span class="dropdown-title">◈ Home 2 — Float Suites & Chambers</span>
+                  <span class="dropdown-desc">Architectural suites, contrast circuit & immersion</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="about.html" class="nav-link active">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Service</a>
+          </li>
+          <li class="nav-item">
+            <a href="first-time-guide.html" class="nav-link">First-Time Guide</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a href="dashboard.html" class="nav-link">Client Dashboard</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Direction, Theme, Booking & Member Login) -->
+      <div class="nav-actions">
+        <!-- RTL / LTR Direction Toggle (Icon-Only) -->
+        <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch layout direction (LTR / RTL)" title="Switch layout direction (LTR / RTL)">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+
+        <!-- Light / Dark Theme Toggle -->
+        <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+          <span>☀️</span>
+          <span class="btn-label-text">Light</span>
+        </button>
+
+        <!-- Member Login Portal Button (Icon-Only) -->
+        <a href="login.html" class="btn-control nav-login-btn icon-only" aria-label="Member Login Portal" title="Member Login Portal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+
+        <!-- CTA Booking Button -->
+        <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary">
+          <span>Book A Float</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button onclick="toggleMobileMenu()" class="mobile-toggle" aria-label="Open navigation menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="brand-logo" onclick="closeMobileMenu()" style="text-decoration:none;">
+          <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+          <div class="brand-logo-text">
+            <span class="brand-title">STILLWATER</span>
+            <span class="brand-subtitle">Float & Sensory Spa</span>
+          </div>
+        </a>
+        <button onclick="closeMobileMenu()" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+
+      <ul class="mobile-nav-list">
+        <li>
+          <div class="mobile-nav-link" onclick="toggleMobileHomeSubmenu(event)" style="cursor:pointer;">
+            <span>Home Variations</span>
+            <span id="mobileHomeCaret" style="font-size:11px; transition:transform 0.2s;">▼</span>
+          </div>
+          <ul id="mobileHomeSubmenu" class="mobile-submenu" style="display:none;">
+            <li>
+              <a href="index.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ✦ Home 1 — Sanctuary & Science
+              </a>
+            </li>
+            <li>
+              <a href="home-2.html" class="mobile-sub-link" onclick="closeMobileMenu()">
+                ◈ Home 2 — Float Suites & Chambers
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link active" onclick="closeMobileMenu()">About</a>
+        </li>
+        <li>
+          <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Service</a>
+        </li>
+        <li>
+          <a href="first-time-guide.html" class="mobile-nav-link" onclick="closeMobileMenu()">First-Time Guide</a>
+        </li>
+        <li>
+          <a href="blog.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+        </li>
+        <li>
+          <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
+        </li>
+        <li>
+          <a href="dashboard.html" class="mobile-nav-link" onclick="closeMobileMenu()">Client Dashboard</a>
+        </li>
+      </ul>
+
+      <div class="mobile-drawer-actions">
+        <div class="mobile-controls-row">
+          <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Toggle direction">
+          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
+        </button>
+          <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle theme">
+            <span>☀️ Light</span>
+          </button>
+          <a href="login.html" class="btn-control nav-login-btn icon-only" onclick="closeMobileMenu()" aria-label="Member Login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+        </div>
+        <button onclick="closeMobileMenu(); openBookingModal('60-Minute Signature Sensory Float');" class="btn-book-primary" style="justify-content:center; width:100%;">
+          Book A Float Session
+        </button>
+        <a href="login.html" class="btn-outline" style="justify-content:center; width:100%; text-align:center;" onclick="closeMobileMenu()">
+          Member Login / Portal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN EXPANDED CONTENT: 8+ SUBSTANTIAL SECTIONS -->
+  <main class="container" style="padding-top:48px; padding-bottom:80px;">
+
+    <!-- SECTION 1: ABOUT HERO -->
+    <section id="about-hero" class="about-hero-grid" aria-labelledby="aboutHeroTitle">
+      <div>
+        <span class="section-tag">Sanctuary Threshold • Est. 2021</span>
+        <h1 id="aboutHeroTitle" class="section-title" style="margin-top:12px; margin-bottom:20px; font-size:clamp(32px, 4vw, 48px); line-height:1.15;">
+          Engineered for Stillness: The Sensory Restoration Sanctuary
+        </h1>
+        <p class="section-desc" style="margin-bottom:24px; font-size:16px; line-height:1.8; color:var(--text-secondary);">
+          Born at the intersection of biophilic architecture and clinical sensory reduction, Stillwater was conceived to solve the defining crisis of modern life: relentless digital stimulation, spinal compression, and autonomic nervous system exhaustion.
+        </p>
+        <p style="font-size:15px; line-height:1.8; color:var(--text-secondary); margin-bottom:32px;">
+          Inside our acoustic isolation chambers, gravity releases its grip. Over 1,200 pounds of pharmaceutical-grade Epsom salt suspend your physical body in exact skin-temperature thermal equilibrium (94.0°F), allowing your brain to transition into the restorative theta state typically reserved for deep meditative monks.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:16px;">
+          <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary">
+            <span>Reserve A Sanctuary Session</span>
+          </button>
+          <a href="#our-story" class="btn-outline">
+            <span>Read Our Origin Story ↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="about-media-frame">
+        <img src="assets/about-sanctuary-threshold.jpg" alt="Stillwater Float Spa tranquil sanctuary threshold with atmospheric ambient lighting" class="about-media-img">
+        <div class="about-media-caption">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>The Threshold: Silence begins the moment you enter Tranquil Grove</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: OUR STORY & ORIGINS -->
+    <section id="our-story" class="about-story-grid" aria-labelledby="ourStoryTitle">
+      <div class="about-media-frame">
+        <img src="assets/about-water-science.jpg" alt="Stillwater float therapy pure magnesium water and acoustic stillness" class="about-media-img">
+        <div class="about-media-caption">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-primary)" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          <span>Magnesium Hydration Science: 1,200 lbs USP Epsom Salt Solution</span>
+        </div>
+      </div>
+
+      <div>
+        <span class="section-tag">Origins & Founding Vision</span>
+        <h2 id="ourStoryTitle" class="section-title" style="margin-top:12px; margin-bottom:20px; font-size:clamp(26px, 3.2vw, 38px);">
+          From Clinical Laboratory to Human Sanctuary
+        </h2>
+        <p style="font-size:15px; line-height:1.8; color:var(--text-secondary); margin-bottom:18px;">
+          In 2021, our founders—a multidisciplinary team consisting of an integrative neuroscientist, an acoustical engineer, and a restorative physical therapist—noticed a silent epidemic among urban professionals, athletes, and creative thinkers: profound cognitive burnout.
+        </p>
+        <p style="font-size:15px; line-height:1.8; color:var(--text-secondary); margin-bottom:18px;">
+          While conventional wellness focused on active stimulation (massage oils, ambient chatter, saunas with loud music), true neurological restoration required the exact opposite: <em>the deliberate subtraction of all sensory input</em>.
+        </p>
+        <p style="font-size:15px; line-height:1.8; color:var(--text-secondary);">
+          We spent two years testing custom fiberglass acoustics, magnetic silent ventilation baffles, and triple-filtered mineral saturations to engineer a space that feels like floating in deep cosmos. Today, Stillwater stands as the Pacific Northwest’s premier center for zero-gravity restorative therapy.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: OUR MISSION & VISION -->
+    <section id="mission-vision" style="margin-bottom:72px;" aria-labelledby="missionVisionTitle">
+      <div class="section-header" style="margin-bottom:36px; text-align:center;">
+        <span class="section-tag">Guiding Light</span>
+        <h2 id="missionVisionTitle" class="section-title">Our Mission & Future Vision</h2>
+        <p class="section-desc">Establishing a sanctuary where silence is recognized not as an absence, but as essential nourishment for the modern mind.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:32px;">
+        <!-- Mission Card -->
+        <div class="glass-panel-glow" style="padding:40px; position:relative; overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <div class="card-icon-badge" style="width:36px; height:36px; border-radius:50%; background:var(--teal-subtle); border:1px solid var(--border-highlight); display:flex; align-items:center; justify-content:center; color:var(--teal-primary); font-size:16px;">✦</div>
+            <h3 style="font-size:22px; font-weight:400; color:var(--text-primary); margin:0;">Our Mission</h3>
+          </div>
+          <p style="font-size:15px; line-height:1.8; color:var(--text-secondary); margin-bottom:20px;">
+            To provide an uncompromising sanctuary of zero-gravity weightlessness and acoustic serenity that allows every guest to decouple from cognitive overload, alleviate chronic physical strain, and rediscover internal homeostasis.
+          </p>
+          <ul style="list-style:none; padding:0; margin:0; font-size:14px; color:var(--text-secondary); line-height:2;">
+            <li>✓ Democratize sensory decompression therapy</li>
+            <li>✓ Maintain hospital-grade sanitization and water purity</li>
+            <li>✓ Cultivate respectful, quiet transitions for every guest</li>
+          </ul>
+        </div>
+
+        <!-- Vision Card -->
+        <div class="glass-panel" style="padding:40px; border-color:var(--border-highlight); position:relative; overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <div class="card-icon-badge" style="width:36px; height:36px; border-radius:50%; background:var(--teal-subtle); border:1px solid var(--border-highlight); display:flex; align-items:center; justify-content:center; color:var(--teal-primary); font-size:16px;">◈</div>
+            <h3 style="font-size:22px; font-weight:400; color:var(--text-primary); margin:0;">Our Vision</h3>
+          </div>
+          <p style="font-size:15px; line-height:1.8; color:var(--text-secondary); margin-bottom:20px;">
+            To lead the global paradigm shift toward preventative neurological hygiene—where scheduled periods of intentional silence and zero-gravity floatation are as foundational to health as restorative sleep and clean nutrition.
+          </p>
+          <ul style="list-style:none; padding:0; margin:0; font-size:14px; color:var(--text-secondary); line-height:2;">
+            <li>✓ Partner with neurological research centers on neuroplasticity</li>
+            <li>✓ Expand accessible quiet hours for community front-line workers</li>
+            <li>✓ Carbon-neutral, closed-loop zero-waste mineral recovery by 2028</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: OUR VALUES & CORE PHILOSOPHY -->
+    <section id="core-values" style="margin-bottom:72px;" aria-labelledby="valuesTitle">
+      <div class="section-header" style="margin-bottom:36px; text-align:center;">
+        <span class="section-tag">Sanctuary Ethos</span>
+        <h2 id="valuesTitle" class="section-title">Our Values & Philosophy</h2>
+        <p class="section-desc">Four non-negotiable principles that guide every aspect of the Stillwater guest experience.</p>
+      </div>
+
+      <div class="values-grid">
+        <div class="glass-panel" style="padding:32px;">
+          <div style="font-size:24px; color:var(--teal-primary); margin-bottom:14px;">Ⅰ.</div>
+          <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:10px;">Sensory Sovereignty</h3>
+          <p style="font-size:13.5px; line-height:1.7; color:var(--text-secondary);">
+            You possess complete control over your environment. Ambient lighting, music fading, door closure, and temperature can be customized in every pod to suit your personal threshold.
+          </p>
+        </div>
+
+        <div class="glass-panel" style="padding:32px;">
+          <div style="font-size:24px; color:var(--teal-primary); margin-bottom:14px;">Ⅱ.</div>
+          <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:10px;">Zero-Gravity Physics</h3>
+          <p style="font-size:13.5px; line-height:1.7; color:var(--text-secondary);">
+            By supersaturating 200 gallons of purified water with 1,200 pounds of magnesium sulfate, we create a 1.28 specific gravity medium that eliminates gravity's load on human joints and vertebrae.
+          </p>
+        </div>
+
+        <div class="glass-panel" style="padding:32px;">
+          <div style="font-size:24px; color:var(--teal-primary); margin-bottom:14px;">Ⅲ.</div>
+          <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:10px;">Medical-Grade Purity</h3>
+          <p style="font-size:13.5px; line-height:1.7; color:var(--text-secondary);">
+            Water is sacred. Between every guest session, 100% of the mineral solution undergoes 4 full cycles through 1-micron filtration, ozone injection, and germicidal UV-C treatment.
+          </p>
+        </div>
+
+        <div class="glass-panel" style="padding:32px;">
+          <div style="font-size:24px; color:var(--teal-primary); margin-bottom:14px;">Ⅳ.</div>
+          <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:10px;">Unrushed Transitions</h3>
+          <p style="font-size:13.5px; line-height:1.7; color:var(--text-secondary);">
+            We schedule generous 30-minute buffers between every booking. Guests are never rushed out of their private suite, and our post-float organic tea lounge welcomes leisurely integration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: OUR EXPERTISE & FLOTATION CRAFTSMANSHIP -->
+    <section id="craftsmanship-standards" class="spec-table-card" aria-labelledby="craftsmanshipTitle">
+      <div class="section-header" style="margin-bottom:20px;">
+        <span class="section-tag">Engineering Specifications</span>
+        <h2 id="craftsmanshipTitle" class="section-title">The Science & Craftsmanship of Stillwater</h2>
+        <p class="section-desc">Why our float chambers deliver unmatched depth, comfort, and restorative efficacy.</p>
+      </div>
+
+      <p style="font-size:15px; line-height:1.8; color:var(--text-secondary); max-width:860px;">
+        Flotation REST (Restricted Environmental Stimulation Technique) requires precise physical parameters to trigger parasympathetic activation. A variance of even 1.5°F can cause chills or perspiration, disrupting theta rhythm induction. Here are the exact engineering thresholds maintained across our sanctuary:
+      </p>
+
+      <div class="spec-grid">
+        <div class="spec-item">
+          <div class="spec-num">1,200 lbs</div>
+          <div class="spec-label">USP Epsom Salt</div>
+          <div class="spec-desc">Pharmaceutical grade magnesium sulfate per chamber produces natural effortless buoyancy.</div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-num">94.0°F</div>
+          <div class="spec-label">Thermal Equilibrium</div>
+          <div class="spec-desc">Exact skin-temperature calibration makes the physical boundary between skin and water dissolve.</div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-num">-38 dB</div>
+          <div class="spec-label">Acoustic Isolation</div>
+          <div class="spec-desc">Decoupled double-wall architectural enclosures block outside urban sound frequencies entirely.</div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-num">1-Micron</div>
+          <div class="spec-label">Particulate Filter</div>
+          <div class="spec-desc">Hospital surgical filtration removes particles 100x smaller than a human hair between every session.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: WHAT SETS US APART & SIGNATURE OFFERINGS -->
+    <section id="signature-offerings" style="margin-bottom:72px;" aria-labelledby="offeringsTitle">
+      <div class="section-header" style="margin-bottom:36px; text-align:center;">
+        <span class="section-tag">Sanctuary Chambers</span>
+        <h2 id="offeringsTitle" class="section-title">Our Signature Offerings & Suites</h2>
+        <p class="section-desc">Every client's sensory comfort is unique. We provide three distinct chamber architectures.</p>
+      </div>
+
+      <div class="offering-cards-grid">
+        <!-- Offering 1 -->
+        <div class="offering-card">
+          <div>
+            <span class="section-tag" style="margin-bottom:8px;">Flagship Capsule</span>
+            <h3 style="font-size:20px; color:var(--text-primary); margin-bottom:12px; font-weight:500;">Pod Alpha — Zero-Gravity Capsule</h3>
+            <p style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:16px;">
+              The quintessential sensory deprivation cocoon. Featuring hydraulic lid assist, interior audio controls, starlight roof chromotherapy, and total sound isolation.
+            </p>
+          </div>
+          <div>
+            <div style="font-size:12px; font-family:monospace; color:var(--teal-primary); margin-bottom:14px;">Ideal For: Deep Theta Meditation & Insomnia</div>
+            <a href="services.html" class="btn-outline" style="width:100%; text-align:center; display:block;">View Pod Alpha Details</a>
+          </div>
+        </div>
+
+        <!-- Offering 2 -->
+        <div class="offering-card">
+          <div>
+            <span class="section-tag" style="margin-bottom:8px;">Open Space Suite</span>
+            <h3 style="font-size:20px; color:var(--text-primary); margin-bottom:12px; font-weight:500;">Basin Beta — Open Ocean Suite</h3>
+            <p style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:16px;">
+              Engineered specifically for guests with claustrophobia or first-time floaters. An expansive open-air heated pool room with 9-foot ceilings and radiant underfloor warmth.
+            </p>
+          </div>
+          <div>
+            <div style="font-size:12px; font-family:monospace; color:var(--teal-primary); margin-bottom:14px;">Ideal For: First-Time Floaters & Open Comfort</div>
+            <a href="services.html" class="btn-outline" style="width:100%; text-align:center; display:block;">View Basin Beta Details</a>
+          </div>
+        </div>
+
+        <!-- Offering 3 -->
+        <div class="offering-card">
+          <div>
+            <span class="section-tag" style="margin-bottom:8px;">Contrast Recovery</span>
+            <h3 style="font-size:20px; color:var(--text-primary); margin-bottom:12px; font-weight:500;">Contrast Circuit — Sauna & Cold Plunge</h3>
+            <p style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:16px;">
+              Combine deep flotation with cedarwood infrared thermotherapy and a 48°F purified ice bath for unmatched vascular flushing, dopamine release, and muscle recovery.
+            </p>
+          </div>
+          <div>
+            <div style="font-size:12px; font-family:monospace; color:var(--teal-primary); margin-bottom:14px;">Ideal For: Athletic Recovery & System Reset</div>
+            <a href="home-2.html" class="btn-outline" style="width:100%; text-align:center; display:block;">Explore Contrast Circuit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: QUALITY, HYGIENE & CUSTOMER COMMITMENT -->
+    <section id="quality-commitment" class="glass-panel" style="padding:40px; margin-bottom:72px;" aria-labelledby="qualityTitle">
+      <div class="section-header" style="margin-bottom:24px;">
+        <span class="section-tag">Hygiene Protocols</span>
+        <h2 id="qualityTitle" class="section-title">Our Rigorous 4-Cycle Sanitization Protocol</h2>
+        <p class="section-desc">Float water at Stillwater is significantly purer than typical drinking water standards.</p>
+      </div>
+
+      <p style="font-size:15px; line-height:1.8; color:var(--text-secondary); max-width:880px;">
+        Because each chamber contains 1,200 pounds of pure Epsom salt, the water naturally creates a hyper-saline environment where bacteria cannot survive. In addition, our automated commercial filtration runs four complete turnovers between every single guest:
+      </p>
+
+      <div class="sanitation-steps-grid">
+        <div class="sanitation-step">
+          <div class="step-badge">1</div>
+          <h4 style="font-size:15px; color:var(--text-primary); margin-bottom:8px;">1-Micron Microfiltration</h4>
+          <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.6;">
+            Every droplet passes through dense surgical-grade polyester filters capturing all microscopic particles and organics.
+          </p>
+        </div>
+
+        <div class="sanitation-step">
+          <div class="step-badge">2</div>
+          <h4 style="font-size:15px; color:var(--text-primary); margin-bottom:8px;">Dual Germicidal UV-C</h4>
+          <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.6;">
+            High-output ultraviolet irradiators disrupt viral and microbial DNA, rendering pathogens completely neutral.
+          </p>
+        </div>
+
+        <div class="sanitation-step">
+          <div class="step-badge">3</div>
+          <h4 style="font-size:15px; color:var(--text-primary); margin-bottom:8px;">Advanced Ozone Oxidation</h4>
+          <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.6;">
+            Active O3 injection oxidizes organic matter 3,000 times faster than chlorine, dissolving cleanly into pure oxygen.
+          </p>
+        </div>
+
+        <div class="sanitation-step">
+          <div class="step-badge">4</div>
+          <h4 style="font-size:15px; color:var(--text-primary); margin-bottom:8px;">Digital Photometer Validation</h4>
+          <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.6;">
+            Sanctuary facilitators manually verify specific gravity (1.28) and pH balance before opening the suite for your session.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: OUR FUTURE & COMMUNITY IMPACT -->
+    <section id="future-community" style="margin-bottom:72px;" aria-labelledby="futureTitle">
+      <div class="section-header" style="margin-bottom:36px; text-align:center;">
+        <span class="section-tag">Community & Horizons</span>
+        <h2 id="futureTitle" class="section-title">Our Future & Community Commitments</h2>
+        <p class="section-desc">Investing in neurological health, clinical research, and sustainable stewardship.</p>
+      </div>
+
+      <div class="future-grid">
+        <div class="glass-panel" style="padding:32px;">
+          <h3 style="font-size:18px; color:var(--teal-primary); margin-bottom:12px;">Neuroscience Research Grants</h3>
+          <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+            We proudly allocate chamber hours to clinical researchers investigating the efficacy of REST therapy for chronic migraines, tension headaches, and athletic post-concussion recovery.
+          </p>
+        </div>
+
+        <div class="glass-panel" style="padding:32px;">
+          <h3 style="font-size:18px; color:var(--teal-primary); margin-bottom:12px;">First Responder Decompression</h3>
+          <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+            Our "Quiet Harbor" program provides subsidized float credits every Tuesday morning to ER nurses, paramedics, and firefighters facing occupational hypervigilance.
+          </p>
+        </div>
+
+        <div class="glass-panel" style="padding:32px;">
+          <h3 style="font-size:18px; color:var(--teal-primary); margin-bottom:12px;">Eco-Sustainable Magnesium Loop</h3>
+          <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">
+            Whenever mineral baths are renewed, all extracted magnesium is neutralized and donated to local organic agriculture farms for soil enrichment rather than sewage disposal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: ENGAGING SANCTUARY CALL TO ACTION -->
+    <section id="sanctuary-cta" class="about-cta-banner" aria-labelledby="ctaBannerTitle">
+      <span class="section-tag" style="margin-bottom:12px;">Step Inside The Silence</span>
+      <h2 id="ctaBannerTitle" style="font-size:clamp(26px, 3.5vw, 36px); font-weight:300; color:var(--text-primary); margin-bottom:16px;">
+        Ready to Experience Weightless Serenity?
+      </h2>
+      <p style="font-size:16px; color:var(--text-secondary); max-width:640px; margin:0 auto 32px; line-height:1.7;">
+        Your private rainfall shower, plush Egyptian cotton towels, organic ear protection, and calibrated float chamber await you at Stillwater.
+      </p>
+      <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:16px;">
+        <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary" style="padding:16px 36px; font-size:15px;">
+          <span>Reserve Your Float Session</span>
+        </button>
+        <a href="first-time-guide.html" class="btn-outline" style="padding:16px 30px; font-size:15px;">
+          <span>Read First-Time Floater Guide</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalAboutHeading">
+    <div class="modal-window">
+      <button onclick="closeBookingModal()" class="modal-close" aria-label="Close modal">&times;</button>
+      <span class="section-tag">Sanctuary Scheduling</span>
+      <h3 id="modalAboutHeading" style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Reserve Float Session</h3>
+      <form onsubmit="handleBookingSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="modalService">Session Offering</label>
+          <select id="modalService" class="form-select">
+            <option value="60-Minute Signature Sensory Float">60-Minute Signature Sensory Float ($79)</option>
+            <option value="90-Minute Deep Journey Float">90-Minute Deep Journey Float ($105)</option>
+            <option value="Contrast Sanctuary: Sauna + Plunge + Float">Contrast Sanctuary Trio ($145)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="modalPod">Chamber</label>
+          <select id="modalPod" class="form-select">
+            <option value="Pod Alpha — Zero-Gravity Capsule">Pod Alpha — Zero-Gravity Capsule</option>
+            <option value="Basin Beta — Open Ocean Suite">Basin Beta — Open Ocean Suite</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label" for="modalDate">Float Date</label>
+            <input type="date" id="modalDate" class="form-input" value="2026-10-19" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modalSlot">Time Slot</label>
+            <select id="modalSlot" class="form-select">
+              <option value="11:00 AM – 12:30 PM">11:00 AM – Midday Reset</option>
+              <option value="04:30 PM – 06:00 PM">04:30 PM – Twilight Decompression</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px; margin-top:10px;">
+          Confirm Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Standardized Footer (Exact Same Brand Identity as Header Across All Pages) -->
+  <footer class="footer-main" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <!-- Exact Same Clickable Brand Logo as Header -->
+          <a href="index.html" class="brand-logo" style="margin-bottom:14px; text-decoration:none;" aria-label="Stillwater Float & Sensory Spa Home">
+            <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img">
+            <div class="brand-logo-text">
+              <span class="brand-title">STILLWATER</span>
+              <span class="brand-subtitle">Float & Sensory Spa</span>
+            </div>
+          </a>
+          <p style="font-size:12px; line-height:1.7; max-width:280px; color:var(--text-secondary);">A sensory deprivation sanctuary engineered for nervous system recalibration, spinal decompression, and theta meditation.</p>
+          <p style="font-size:11px; font-family:monospace; color:var(--teal-primary); margin-top:12px;">Quiet Sanctuary Policy • Shoes Off At Threshold</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Sanctuary Nav</h4>
+          <p style="margin-bottom:8px;"><a href="index.html">Home 1: Sanctuary</a></p>
+          <p style="margin-bottom:8px;"><a href="home-2.html">Home 2: Float Suites</a></p>
+          <p style="margin-bottom:8px;"><a href="services.html">Services & Packages</a></p>
+          <p style="margin-bottom:8px;"><a href="first-time-guide.html">First-Time Guide</a></p>
+          <p style="margin-bottom:8px;"><a href="contact.html">Contact Us</a></p>
+          <p><a href="dashboard.html">Client Dashboard</a></p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Sanctuary Chambers</h4>
+          <p style="margin-bottom:8px;">Pod Alpha (Capsule)</p>
+          <p style="margin-bottom:8px;">Basin Beta (Open Suite)</p>
+          <p style="margin-bottom:8px;">Sanctuary Delta (Starlight)</p>
+          <p>Infrared & Ice Plunge</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Location & Social</h4>
+          <p style="margin-bottom:6px;">420 Stillwater Pavilion Blvd, Tranquil Grove, CA</p>
+          <p style="margin-bottom:6px;">Mon – Sun: 7:30 AM – 10:00 PM</p>
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit Facebook Login" title="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit Instagram Login" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/login" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Visit LinkedIn Login" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Stillwater Float & Sensory Sanctuary. All rights reserved.</span>
+        <span>Zero Gravity Recovery • 1,200 lbs USP Epsom Salt</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    function openBookingModal(serviceName) {
+      if (serviceName) {
+        const select = document.getElementById('modalService');
+        if (select) select.value = serviceName;
+      }
+      const modal = document.getElementById('bookingModal');
+      if (modal) modal.classList.add('active');
+    }
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      if (modal) modal.classList.remove('active');
+    }
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const svc = document.getElementById('modalService').value;
+      const pod = document.getElementById('modalPod').value;
+      const dt = document.getElementById('modalDate').value;
+      const slot = document.getElementById('modalSlot').value;
+      bookFloatSlot(svc, pod, dt, slot, 'Total Darkness', 'Theta Waves');
+      closeBookingModal();
+    }
+  </script>
+</body>
+</html>

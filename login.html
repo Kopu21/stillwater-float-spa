@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Login | Stillwater Float & Sensory Spa</title>
+  <meta name="description" content="Member portal login for Stillwater Float & Sensory Sanctuary. Frontend demonstration with Google and Apple sign-in.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page-body">
+
+  <!-- CENTRE OF VIEWPORT: Balanced, Prominent Login & Account Creation Form -->
+  <main class="auth-center-wrapper" id="mainContent">
+    <div class="auth-card card-lift">
+      <div class="auth-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border-divider, rgba(255,255,255,0.08));">
+        <!-- Brand Logo ONLY (no navigation on login page) -->
+        <div class="brand-logo" aria-label="STILLWATER Float &amp; Sensory Spa" title="STILLWATER Float &amp; Sensory Spa" style="cursor:default; display:inline-flex; align-items:center; user-select:none;">
+          <img src="assets/logo.svg" alt="STILLWATER Float &amp; Sensory Spa Brand Logo" class="brand-logo-img" style="width:42px; height:42px; display:block; pointer-events:none;">
+        </div>
+
+        <!-- Controls: Theme Toggle and RTL/LTR Toggle -->
+        <div class="auth-card-controls" style="display:flex; align-items:center; gap:10px;">
+          <button type="button" onclick="toggleTheme()" class="btn-control theme-toggle-btn icon-only" aria-label="Toggle light or dark theme" title="Toggle light or dark theme" style="width:38px; height:38px; min-width:38px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; cursor:pointer;">
+            <span>☀️</span>
+          </button>
+          <button type="button" onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch layout direction (LTR / RTL)" title="Switch layout direction (LTR / RTL)" style="width:38px; height:38px; min-width:38px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; cursor:pointer;">
+            <svg class="dir-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Auth Switcher Tabs (Sign In vs Create Account) -->
+      <div class="auth-tabs" role="tablist" aria-label="Sanctuary Portal Tabs">
+        <button type="button" id="tabLoginBtn" class="auth-tab-btn active" role="tab" aria-selected="true" aria-controls="loginPanel" onclick="switchAuthTab('login')">
+          Sign In
+        </button>
+        <button type="button" id="tabRegisterBtn" class="auth-tab-btn" role="tab" aria-selected="false" aria-controls="registerPanel" onclick="switchAuthTab('register')">
+          Create Account
+        </button>
+      </div>
+
+      <!-- Demo Submission Alert Message Box -->
+      <div id="demoSuccessAlert" class="auth-demo-alert" role="status" aria-live="polite">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <span style="font-size:20px; color:var(--teal-primary); line-height:1;">✓</span>
+          <div>
+            <strong id="demoAlertTitle" style="color:var(--teal-primary); font-size:14px; display:block; margin-bottom:4px;">Demo mode: Authentication is not enabled.</strong>
+            <p id="demoAlertMessage" style="margin:0; font-size:12px; color:var(--text-secondary);">
+              This is a standalone frontend demonstration without real backend authentication. You will remain safely on this page.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inline Notice for Forgot Password / Register Demo -->
+      <div id="demoNoticeBox" style="display:none; background:rgba(56, 189, 248, 0.1); border:1px solid var(--cyan-accent); border-radius:10px; padding:12px 14px; margin-bottom:20px; font-size:12px; color:var(--text-primary);">
+        <span id="demoNoticeText"></span>
+      </div>
+
+      <!-- LOGIN PANEL -->
+      <div id="loginPanel" role="tabpanel" aria-labelledby="tabLoginBtn">
+        <!-- Login Form -->
+        <form id="loginForm" onsubmit="handleLoginSubmit(event)" novalidate>
+          <!-- Email or Username Field -->
+          <div class="form-group" style="margin-bottom:20px;">
+            <label class="form-label" for="loginEmail">Email Address or Username <span style="color:#ef4444;">*</span></label>
+            <input 
+              type="email" 
+              id="loginEmail" 
+              class="form-input" 
+              placeholder="elena.vance@zenith.design" 
+              value="elena.vance@zenith.design"
+              autocomplete="username"
+              required
+              aria-describedby="emailError"
+            >
+            <div id="emailError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;">
+              Please enter a valid email address (e.g. member@stillwater.com).
+            </div>
+          </div>
+
+          <!-- Password Field with Show/Hide Toggle -->
+          <div class="form-group" style="margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <label class="form-label" for="loginPassword" style="margin-bottom:0;">Password <span style="color:#ef4444;">*</span></label>
+              <button type="button" onclick="showForgotPasswordDemo()" style="font-size:12px; color:var(--teal-primary); text-decoration:none; cursor:pointer;" aria-label="Forgot password help">
+                Forgot password?
+              </button>
+            </div>
+            
+            <div class="password-wrapper">
+              <input 
+                type="password" 
+                id="loginPassword" 
+                class="form-input" 
+                value="Stillwater@2026" 
+                autocomplete="current-password"
+                required
+                aria-describedby="passwordError"
+              >
+              <button 
+                type="button" 
+                id="togglePasswordBtn" 
+                class="password-toggle-btn" 
+                onclick="togglePasswordVisibility('loginPassword', 'eyeIcon')" 
+                aria-label="Show password"
+                title="Show or hide password"
+              >
+                <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+            <div id="passwordError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;">
+              Password is required to proceed.
+            </div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+            <label class="form-checkbox-label" for="rememberMeCheck">
+              <input type="checkbox" id="rememberMeCheck" checked>
+              <span>Remember me on this browser</span>
+            </label>
+          </div>
+
+          <!-- Submit Button with Spinner -->
+          <button type="submit" id="submitLoginBtn" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px; font-size:14px;">
+            <span id="btnSpinner" class="btn-spinner" style="display:none;"></span>
+            <span id="btnSubmitText">Log In to Sanctuary</span>
+          </button>
+        </form>
+
+        <!-- Visual Separator Labelled "OR" -->
+        <div class="auth-separator">
+          <span>OR</span>
+        </div>
+
+        <!-- Social OAuth Dummy Buttons with Official Google and Apple Logos -->
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <!-- Continue with Google Button -->
+          <button type="button" onclick="handleSocialLogin('Google')" class="btn-social-oauth" aria-label="Continue with Google">
+            <svg width="20" height="20" viewBox="0 0 24 24" style="flex-shrink:0;" aria-hidden="true">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3h3.86c2.26-2.09 3.685-5.17 3.685-9.09z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.37 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.37 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/>
+            </svg>
+            <span>Continue with Google</span>
+          </button>
+
+          <!-- Continue with Apple Button -->
+          <button type="button" onclick="handleSocialLogin('Apple')" class="btn-social-oauth" aria-label="Continue with Apple">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;" aria-hidden="true">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.98.6-2.61 1.34-.55.63-1.03 1.68-.9 2.7.99.08 2.01-.5 2.58-1.19z"/>
+            </svg>
+            <span>Continue with Apple</span>
+          </button>
+        </div>
+
+        <!-- Registration link inside Login Panel -->
+        <div style="text-align:center; margin-top:24px; padding-top:18px; border-top:1px solid var(--border-divider); font-size:13px; color:var(--text-secondary);">
+          <span>Don't have a member profile yet? </span>
+          <button type="button" onclick="switchAuthTab('register')" style="color:var(--teal-primary); font-weight:500; cursor:pointer;" aria-label="Create account registration form">
+            Create Account
+          </button>
+        </div>
+      </div>
+
+      <!-- CREATE ACCOUNT PANEL -->
+      <div id="registerPanel" role="tabpanel" aria-labelledby="tabRegisterBtn" style="display:none;">
+        <form id="registerForm" onsubmit="handleRegisterSubmit(event)" novalidate>
+          <!-- Full Name -->
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label" for="regFullName">Full Legal Name <span style="color:#ef4444;">*</span></label>
+            <input 
+              type="text" 
+              id="regFullName" 
+              class="form-input" 
+              placeholder="Elena Vance" 
+              autocomplete="name"
+              required
+            >
+            <div id="regNameError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;">
+              Please enter your full legal name.
+            </div>
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label" for="regEmail">Email Address <span style="color:#ef4444;">*</span></label>
+            <input 
+              type="email" 
+              id="regEmail" 
+              class="form-input" 
+              placeholder="elena@example.com" 
+              autocomplete="email"
+              required
+            >
+            <div id="regEmailError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;">
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label" for="regPhone">Contact Phone Number <span style="color:#ef4444;">*</span></label>
+            <input 
+              type="tel" 
+              id="regPhone" 
+              class="form-input" 
+              placeholder="(555) 349-8201" 
+              autocomplete="tel"
+              required
+            >
+            <div id="regPhoneError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;">
+              Please provide a valid contact telephone number.
+            </div>
+          </div>
+
+          <!-- Password with Show/Hide -->
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label" for="regPassword">Choose Password <span style="color:#ef4444;">*</span></label>
+            <div class="password-wrapper">
+              <input 
+                type="password" 
+                id="regPassword" 
+                class="form-input" 
+                placeholder="Minimum 8 characters"
+                autocomplete="new-password"
+                required
+              >
+              <button 
+                type="button" 
+                class="password-toggle-btn" 
+                onclick="togglePasswordVisibility('regPassword', 'regEyeIcon')" 
+                aria-label="Show password"
+              >
+                <svg id="regEyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+            <div id="regPassError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;">
+              Password must be at least 8 characters.
+            </div>
+          </div>
+
+          <!-- Confirm Password with Show/Hide -->
+          <div class="form-group" style="margin-bottom:20px;">
+            <label class="form-label" for="regConfirmPassword">Confirm Password <span style="color:#ef4444;">*</span></label>
+            <div class="password-wrapper">
+              <input 
+                type="password" 
+                id="regConfirmPassword" 
+                class="form-input" 
+                placeholder="Re-enter password"
+                autocomplete="new-password"
+                required
+              >
+              <button 
+                type="button" 
+                class="password-toggle-btn" 
+                onclick="togglePasswordVisibility('regConfirmPassword', 'regConfirmEyeIcon')" 
+                aria-label="Show password"
+              >
+                <svg id="regConfirmEyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+            <div id="regConfirmError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;">
+              Passwords do not match.
+            </div>
+          </div>
+
+          <!-- Sanctuary Waiver & Terms Checkbox -->
+          <div style="margin-bottom:24px;">
+            <label class="form-checkbox-label" for="regWaiverCheck" style="align-items:flex-start;">
+              <input type="checkbox" id="regWaiverCheck" required style="margin-top:3px;">
+              <span style="font-size:12.5px; line-height:1.5;">
+                I agree to the Sanctuary Health Protocol, flotation contraindication guidelines, and release terms.
+              </span>
+            </label>
+            <div id="regWaiverError" style="display:none; color:#f87171; font-size:12px; margin-top:6px;">
+              Please accept the Sanctuary protocol to create an account.
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="submitRegBtn" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px; font-size:14px;">
+            <span id="regSpinner" class="btn-spinner" style="display:none;"></span>
+            <span id="regSubmitText">Create Member Account</span>
+          </button>
+        </form>
+
+        <!-- Link back to Sign In -->
+        <div style="text-align:center; margin-top:24px; padding-top:18px; border-top:1px solid var(--border-divider); font-size:13px; color:var(--text-secondary);">
+          <span>Already have an account? </span>
+          <button type="button" onclick="switchAuthTab('login')" style="color:var(--teal-primary); font-weight:500; cursor:pointer;" aria-label="Sign in to existing account">
+            Sign In here
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer removed for minimal standalone login route -->
+
+  <script src="js/app.js"></script>
+  <script>
+    // Tab Switcher between Sign In and Create Account
+    function switchAuthTab(tab) {
+      const loginTabBtn = document.getElementById('tabLoginBtn');
+      const regTabBtn = document.getElementById('tabRegisterBtn');
+      const loginPanel = document.getElementById('loginPanel');
+      const registerPanel = document.getElementById('registerPanel');
+      const successAlert = document.getElementById('demoSuccessAlert');
+      const noticeBox = document.getElementById('demoNoticeBox');
+
+      if (successAlert) successAlert.style.display = 'none';
+      if (noticeBox) noticeBox.style.display = 'none';
+
+      if (tab === 'register') {
+        loginTabBtn.classList.remove('active');
+        loginTabBtn.setAttribute('aria-selected', 'false');
+        regTabBtn.classList.add('active');
+        regTabBtn.setAttribute('aria-selected', 'true');
+        loginPanel.style.display = 'none';
+        registerPanel.style.display = 'block';
+      } else {
+        regTabBtn.classList.remove('active');
+        regTabBtn.setAttribute('aria-selected', 'false');
+        loginTabBtn.classList.add('active');
+        loginTabBtn.setAttribute('aria-selected', 'true');
+        registerPanel.style.display = 'none';
+        loginPanel.style.display = 'block';
+      }
+    }
+
+    // Password Show/Hide Toggle (supports any field ID and icon ID)
+    function togglePasswordVisibility(inputId = 'loginPassword', iconId = 'eyeIcon') {
+      const passInput = document.getElementById(inputId);
+      const eyeIcon = document.getElementById(iconId);
+      if (!passInput) return;
+      
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        if (eyeIcon) {
+          eyeIcon.innerHTML = `
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          `;
+        }
+      } else {
+        passInput.type = 'password';
+        if (eyeIcon) {
+          eyeIcon.innerHTML = `
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          `;
+        }
+      }
+    }
+
+    // Forgot Password Demo Notification
+    function showForgotPasswordDemo() {
+      const noticeBox = document.getElementById('demoNoticeBox');
+      const noticeText = document.getElementById('demoNoticeText');
+      noticeText.innerHTML = '<strong>Password Recovery Demo:</strong> In production, a secure password reset token is dispatched to your registered email address. No real credentials were sent.';
+      noticeBox.style.display = 'block';
+    }
+
+    // Register Demo Notification
+    function showRegisterDemo() {
+      switchAuthTab('register');
+    }
+
+    // OAuth Social Login Handler (Google & Apple)
+    function handleSocialLogin(provider) {
+      const successAlert = document.getElementById('demoSuccessAlert');
+      const alertTitle = document.getElementById('demoAlertTitle');
+      const alertMsg = document.getElementById('demoAlertMessage');
+      const noticeBox = document.getElementById('demoNoticeBox');
+      
+      noticeBox.style.display = 'none';
+      alertTitle.textContent = 'Demo mode: Authentication is not enabled.';
+      alertMsg.textContent = `${provider} sign-in is a frontend demonstration. No external redirect or popup has occurred, and you remain on this page.`;
+      successAlert.style.display = 'block';
+      successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Standard Login Form Submission Handler
+    function handleLoginSubmit(event) {
+      event.preventDefault();
+      
+      const emailInput = document.getElementById('loginEmail');
+      const passInput = document.getElementById('loginPassword');
+      const emailError = document.getElementById('emailError');
+      const passError = document.getElementById('passwordError');
+      const successAlert = document.getElementById('demoSuccessAlert');
+      const alertTitle = document.getElementById('demoAlertTitle');
+      const alertMsg = document.getElementById('demoAlertMessage');
+      const submitBtn = document.getElementById('submitLoginBtn');
+      const spinner = document.getElementById('btnSpinner');
+      const submitText = document.getElementById('btnSubmitText');
+      const noticeBox = document.getElementById('demoNoticeBox');
+
+      let isValid = true;
+      noticeBox.style.display = 'none';
+
+      // Email / username validation
+      const emailVal = emailInput.value.trim();
+      if (!emailVal) {
+        emailError.textContent = 'Email or username is required.';
+        emailError.style.display = 'block';
+        emailInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (emailVal.includes('@') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        emailError.textContent = 'Please enter a valid email address (e.g. member@stillwater.com).';
+        emailError.style.display = 'block';
+        emailInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        emailError.style.display = 'none';
+        emailInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Password validation
+      if (!passInput.value) {
+        passError.style.display = 'block';
+        passInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        passError.style.display = 'none';
+        passInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      if (!isValid) return;
+
+      // Loading state simulation
+      submitBtn.classList.add('btn-loading');
+      spinner.style.display = 'inline-block';
+      submitText.textContent = 'Verifying credentials...';
+      successAlert.style.display = 'none';
+
+      setTimeout(() => {
+        submitBtn.classList.remove('btn-loading');
+        spinner.style.display = 'none';
+        submitText.textContent = 'Log In to Sanctuary';
+        
+        // Show prominent demo submission message without redirecting or creating fake auth
+        alertTitle.textContent = 'Demo mode: Authentication is not enabled.';
+        alertMsg.textContent = 'Demo login submitted successfully. This is a standalone frontend demonstration without real backend authentication. You will remain safely on this page.';
+        successAlert.style.display = 'block';
+        successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 500);
+    }
+
+    // Register Form Submission Handler (Demo Mode)
+    function handleRegisterSubmit(event) {
+      event.preventDefault();
+
+      const fullNameInput = document.getElementById('regFullName');
+      const emailInput = document.getElementById('regEmail');
+      const phoneInput = document.getElementById('regPhone');
+      const passInput = document.getElementById('regPassword');
+      const confirmInput = document.getElementById('regConfirmPassword');
+      const waiverCheck = document.getElementById('regWaiverCheck');
+
+      const nameError = document.getElementById('regNameError');
+      const emailError = document.getElementById('regEmailError');
+      const phoneError = document.getElementById('regPhoneError');
+      const passError = document.getElementById('regPassError');
+      const confirmError = document.getElementById('regConfirmError');
+      const waiverError = document.getElementById('regWaiverError');
+
+      const successAlert = document.getElementById('demoSuccessAlert');
+      const alertTitle = document.getElementById('demoAlertTitle');
+      const alertMsg = document.getElementById('demoAlertMessage');
+      const submitBtn = document.getElementById('submitRegBtn');
+      const spinner = document.getElementById('regSpinner');
+      const submitText = document.getElementById('regSubmitText');
+      const noticeBox = document.getElementById('demoNoticeBox');
+
+      let isValid = true;
+      if (noticeBox) noticeBox.style.display = 'none';
+
+      // Name validation
+      if (!fullNameInput.value.trim()) {
+        nameError.textContent = 'Please enter your full legal name.';
+        nameError.style.display = 'block';
+        fullNameInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (/\d/.test(fullNameInput.value)) {
+        nameError.textContent = 'Numbers are not allowed in the name field.';
+        nameError.style.display = 'block';
+        fullNameInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        nameError.style.display = 'none';
+        fullNameInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Email validation
+      const emailVal = emailInput.value.trim();
+      if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        emailError.style.display = 'block';
+        emailInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        emailError.style.display = 'none';
+        emailInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Phone validation
+      if (!phoneInput.value.trim()) {
+        phoneError.textContent = 'Please provide a valid contact telephone number.';
+        phoneError.style.display = 'block';
+        phoneInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (/[a-zA-Z]/.test(phoneInput.value)) {
+        phoneError.textContent = 'Letters are not allowed in the contact number field.';
+        phoneError.style.display = 'block';
+        phoneInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (!/^[\+]?[(]?[0-9]{1,4}[)]?[-\s\./0-9]{6,15}$/.test(phoneInput.value.trim())) {
+        phoneError.textContent = 'Please provide a valid contact telephone number.';
+        phoneError.style.display = 'block';
+        phoneInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        phoneError.style.display = 'none';
+        phoneInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Password length validation
+      if (!passInput.value || passInput.value.length < 8) {
+        passError.style.display = 'block';
+        passInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        passError.style.display = 'none';
+        passInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Confirm password matching
+      if (passInput.value !== confirmInput.value) {
+        confirmError.style.display = 'block';
+        confirmInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else {
+        confirmError.style.display = 'none';
+        confirmInput.style.borderColor = 'var(--border-subtle)';
+      }
+
+      // Waiver check
+      if (!waiverCheck.checked) {
+        waiverError.style.display = 'block';
+        isValid = false;
+      } else {
+        waiverError.style.display = 'none';
+      }
+
+      if (!isValid) return;
+
+      submitBtn.classList.add('btn-loading');
+      spinner.style.display = 'inline-block';
+      submitText.textContent = 'Creating member profile...';
+      successAlert.style.display = 'none';
+
+      setTimeout(() => {
+        submitBtn.classList.remove('btn-loading');
+        spinner.style.display = 'none';
+        submitText.textContent = 'Create Member Account';
+
+        alertTitle.textContent = 'Demo registration submitted successfully.';
+        alertMsg.textContent = 'Demo mode: Authentication is not enabled. Your Sanctuary Member Profile has been initialized for demonstration. No real account was saved to any backend.';
+        successAlert.style.display = 'block';
+        successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 500);
+    }
+
+    // Live validation for Name and Phone fields (typing & paste)
+    document.addEventListener('DOMContentLoaded', () => {
+      const regFullNameEl = document.getElementById('regFullName');
+      const regNameErrorEl = document.getElementById('regNameError');
+      if (regFullNameEl && regNameErrorEl) {
+        const validateName = () => {
+          const val = regFullNameEl.value;
+          if (/\d/.test(val)) {
+            regNameErrorEl.textContent = 'Numbers are not allowed in the name field.';
+            regNameErrorEl.style.display = 'block';
+            regFullNameEl.style.borderColor = '#ef4444';
+          } else {
+            regNameErrorEl.style.display = 'none';
+            regFullNameEl.style.borderColor = 'var(--border-subtle)';
+          }
+        };
+        regFullNameEl.addEventListener('input', validateName);
+        regFullNameEl.addEventListener('paste', () => setTimeout(validateName, 10));
+      }
+
+      const regPhoneEl = document.getElementById('regPhone');
+      const regPhoneErrorEl = document.getElementById('regPhoneError');
+      if (regPhoneEl && regPhoneErrorEl) {
+        const validatePhone = () => {
+          const val = regPhoneEl.value;
+          if (/[a-zA-Z]/.test(val)) {
+            regPhoneErrorEl.textContent = 'Letters are not allowed in the contact number field.';
+            regPhoneErrorEl.style.display = 'block';
+            regPhoneEl.style.borderColor = '#ef4444';
+          } else {
+            regPhoneErrorEl.style.display = 'none';
+            regPhoneEl.style.borderColor = 'var(--border-subtle)';
+          }
+        };
+        regPhoneEl.addEventListener('input', validatePhone);
+        regPhoneEl.addEventListener('paste', () => setTimeout(validatePhone, 10));
+      }
+    });
+  </script>
+</body>
+</html>
