@@ -1832,7 +1832,8 @@ html, body {
   .nav-login-btn .btn-label-text {
     display: none !important;
   }
-  .btn-control {
+  .nav-actions .btn-control,
+  .mobile-controls-row .btn-control {
     width: 34px !important;
     min-width: 34px !important;
     height: 34px !important;
@@ -1887,7 +1888,8 @@ html, body {
   .nav-actions {
     gap: 4px;
   }
-  .btn-control {
+  .nav-actions .btn-control,
+  .mobile-controls-row .btn-control {
     width: 32px !important;
     min-width: 32px !important;
     height: 32px !important;
@@ -1950,7 +1952,8 @@ html, body {
   .nav-actions {
     gap: 6px;
   }
-  .btn-control {
+  .nav-actions .btn-control,
+  .mobile-controls-row .btn-control {
     width: 34px !important;
     min-width: 34px !important;
     height: 34px !important;
@@ -1969,11 +1972,34 @@ html, body {
   }
 }
 
-/* 768px Tablet Adjustments */
+/* 768px Tablet Adjustments and Responsive Header at <= 768px */
 @media (max-width: 768px) {
   .container {
     padding-inline-start: 18px;
     padding-inline-end: 18px;
+  }
+  /* Responsive Header: Left = brand logo & name only; Right = hamburger toggle only */
+  .navbar-main .nav-links {
+    display: none !important;
+  }
+  .navbar-main .nav-actions .dir-toggle-btn,
+  .navbar-main .nav-actions .theme-toggle-btn,
+  .navbar-main .nav-actions .nav-login-btn,
+  .navbar-main .nav-actions .btn-book-primary {
+    display: none !important;
+  }
+  .navbar-main .nav-actions .mobile-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .navbar-main .nav-actions {
+    gap: 0 !important;
+  }
+  .navbar-main .brand-logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    max-width: none !important;
   }
   .section-pad {
     padding: 60px 0;
@@ -2002,7 +2028,8 @@ html, body {
   .nav-actions {
     gap: 5px;
   }
-  .btn-control {
+  .nav-actions .btn-control,
+  .mobile-controls-row .btn-control {
     width: 32px !important;
     min-width: 32px !important;
     height: 32px !important;
@@ -2062,7 +2089,6 @@ html, body {
   .brand-logo {
     gap: 6px;
     min-width: 0;
-    max-width: 150px;
   }
   .brand-crest {
     width: 28px;
@@ -2085,7 +2111,8 @@ html, body {
   .nav-actions {
     gap: 3px;
   }
-  .btn-control {
+  .nav-actions .btn-control,
+  .mobile-controls-row .btn-control {
     width: 30px !important;
     min-width: 30px !important;
     height: 30px !important;
@@ -2127,7 +2154,7 @@ html, body {
   }
   .brand-logo {
     gap: 4px;
-    max-width: 125px;
+    min-width: 0;
   }
   .brand-logo-img {
     height: 24px;
@@ -2144,7 +2171,8 @@ html, body {
   .nav-actions {
     gap: 2px;
   }
-  .btn-control {
+  .nav-actions .btn-control,
+  .mobile-controls-row .btn-control {
     width: 28px !important;
     min-width: 28px !important;
     height: 28px !important;
@@ -2161,47 +2189,63 @@ html, body {
    Blog Editorial, Category Filter, and Article Detail Page Styles
    ========================================================================== */
 .blog-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 24px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px 14px !important;
+  margin-top: 24px !important;
+  margin-bottom: 8px !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 8px !important;
+  box-sizing: border-box !important;
 }
 
 .blog-filter-btn {
-  padding: 8px 18px;
-  border-radius: 9999px;
-  font-size: 13px;
-  font-weight: 500;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-card);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: max-content !important;
+  height: 38px !important;
+  padding: 8px 20px !important;
+  border-radius: 9999px !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  border: 1px solid var(--border-subtle) !important;
+  background: var(--bg-card) !important;
+  color: var(--text-secondary) !important;
+  transition: all 0.2s ease !important;
 }
 
 .blog-filter-btn:hover {
-  color: var(--teal-primary);
-  border-color: var(--border-highlight);
-  background: var(--teal-subtle);
+  color: var(--teal-primary) !important;
+  border-color: var(--border-highlight) !important;
+  background: var(--teal-subtle) !important;
+  transform: translateY(-1px) !important;
 }
 
 .blog-filter-btn.active {
-  background: var(--teal-subtle);
-  color: var(--teal-primary);
-  border-color: var(--teal-primary);
-  font-weight: 600;
-  box-shadow: 0 0 16px var(--teal-glow);
+  background: var(--teal-subtle) !important;
+  color: var(--teal-primary) !important;
+  border-color: var(--teal-primary) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 0 16px var(--teal-glow) !important;
 }
 
 [data-theme="light"] .blog-filter-btn {
   background: #ffffff !important;
   color: #334155 !important;
   border: 1px solid rgba(13, 148, 136, 0.3) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
 }
 
 [data-theme="light"] .blog-filter-btn:hover {
@@ -2218,28 +2262,173 @@ html, body {
   box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3) !important;
 }
 
+@media (max-width: 480px) {
+  .blog-filter-bar {
+    gap: 8px 10px !important;
+  }
+  .blog-filter-btn {
+    padding: 7px 14px !important;
+    font-size: 12px !important;
+    height: 34px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .blog-filter-bar {
+    gap: 6px 8px !important;
+  }
+  .blog-filter-btn {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    height: 30px !important;
+  }
+}
+
 [data-theme="light"] #blogCountBadge {
   color: #0f766e !important;
   font-weight: 600 !important;
 }
 
+/* Blog Article Cards & Grid Layout */
 .blog-article-card {
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  padding: 28px !important;
+  border-radius: 20px !important;
+  box-sizing: border-box !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease !important;
 }
 
 .blog-article-card.featured-article-card {
-  display: block;
+  display: block !important;
 }
 
-.reading-time-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--text-muted);
-  user-select: none;
+.article-card-meta {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 8px 12px !important;
+  margin-bottom: 12px !important;
+  min-height: 28px !important;
+  width: 100% !important;
+}
+
+.article-card-meta .article-category-badge {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--teal-primary) !important;
+  background: var(--teal-subtle) !important;
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  border: 1px solid var(--border-highlight) !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+.article-card-meta .reading-time-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-size: 12px !important;
+  color: var(--text-muted) !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  margin-inline-start: auto !important;
+  line-height: 1 !important;
+  user-select: none !important;
+}
+
+.article-card-meta .reading-time-pill svg {
+  flex-shrink: 0 !important;
+  width: 13px !important;
+  height: 13px !important;
+}
+
+.article-card-title {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 12px !important;
+  line-height: 1.4 !important;
+  min-height: 50px !important;
+}
+
+.article-card-title a {
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.article-card-title a:hover {
+  color: var(--teal-primary) !important;
+}
+
+.article-card-desc {
+  font-size: 13.5px !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.65 !important;
+  margin-bottom: 20px !important;
+  flex-grow: 1 !important;
+}
+
+.article-card-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-top: auto !important;
+  padding-top: 14px !important;
+  border-top: 1px solid var(--border-divider) !important;
+  font-size: 12px !important;
+  width: 100% !important;
+  min-height: 40px !important;
+  box-sizing: border-box !important;
+}
+
+.article-card-footer .article-subtopic {
+  color: var(--text-muted) !important;
+  font-size: 12px !important;
+  flex-shrink: 1 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.article-card-footer .article-read-link {
+  margin-inline-start: auto !important;
+  white-space: nowrap !important;
+  color: var(--teal-primary) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-shrink: 0 !important;
+  font-size: 12.5px !important;
+  transition: gap 0.2s ease, transform 0.2s ease !important;
+}
+
+.article-card-footer .article-read-link:hover {
+  gap: 10px !important;
+}
+
+/* Direction Mirroring */
+[dir="rtl"] .article-card-meta .reading-time-pill {
+  margin-inline-start: auto !important;
+  margin-inline-end: 0 !important;
+}
+
+[dir="rtl"] .article-card-footer .article-read-link {
+  margin-inline-start: auto !important;
+  margin-inline-end: 0 !important;
+}
+
+[dir="rtl"] .article-card-footer .article-read-link .read-arrow {
+  display: inline-block;
+  transform: rotate(180deg);
 }
 
 .article-card-link {

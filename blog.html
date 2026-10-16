@@ -207,13 +207,13 @@
         </p>
 
         <!-- Topic Filter Badges -->
-        <div class="blog-filter-bar" style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:20px;">
-          <button class="btn-control blog-filter-btn active" data-category="all" onclick="filterBlogCategory('all', this)">All Articles</button>
-          <button class="btn-control blog-filter-btn" data-category="neurobiology" onclick="filterBlogCategory('neurobiology', this)">Neurobiology</button>
-          <button class="btn-control blog-filter-btn" data-category="float-rest" onclick="filterBlogCategory('float-rest', this)">Float REST Science</button>
-          <button class="btn-control blog-filter-btn" data-category="athletic-recovery" onclick="filterBlogCategory('athletic-recovery', this)">Athletic Recovery</button>
-          <button class="btn-control blog-filter-btn" data-category="magnesium-therapy" onclick="filterBlogCategory('magnesium-therapy', this)">Magnesium Therapy</button>
-          <button class="btn-control blog-filter-btn" data-category="mindfulness-protocols" onclick="filterBlogCategory('mindfulness-protocols', this)">Mindfulness Protocols</button>
+        <div class="blog-filter-bar">
+          <button type="button" class="blog-filter-btn active" data-category="all" onclick="filterBlogCategory('all', this)">All Articles</button>
+          <button type="button" class="blog-filter-btn" data-category="neurobiology" onclick="filterBlogCategory('neurobiology', this)">Neurobiology</button>
+          <button type="button" class="blog-filter-btn" data-category="float-rest" onclick="filterBlogCategory('float-rest', this)">Float REST Science</button>
+          <button type="button" class="blog-filter-btn" data-category="athletic-recovery" onclick="filterBlogCategory('athletic-recovery', this)">Athletic Recovery</button>
+          <button type="button" class="blog-filter-btn" data-category="magnesium-therapy" onclick="filterBlogCategory('magnesium-therapy', this)">Magnesium Therapy</button>
+          <button type="button" class="blog-filter-btn" data-category="mindfulness-protocols" onclick="filterBlogCategory('mindfulness-protocols', this)">Mindfulness Protocols</button>
         </div>
         <div id="blogCountBadge" style="margin-top:16px; font-size:13.5px; color:var(--teal-primary); font-weight:500;">
           Showing all 7 peer-reviewed research articles
@@ -270,146 +270,146 @@
 
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap:28px;">
           <!-- Article 1: Float REST Science -->
-          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="float-rest" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="float-rest">
             <a href="article-epsom-salt-hydrodynamics.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
               <img src="assets/blog-float-rest-epsom.jpg" alt="Dense Epsom salt hydrotherapy solution providing zero-gravity buoyancy in sensory float chamber" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
             </a>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-              <span class="article-category-badge" style="font-size:11px;">Float REST Science</span>
+            <div class="article-card-meta">
+              <span class="article-category-badge">Float REST Science</span>
               <span class="reading-time-pill">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 6 min read
               </span>
             </div>
-            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
-              <a href="article-epsom-salt-hydrodynamics.html" style="color:inherit; text-decoration:none;">Why 1,200 Pounds of Medical-Grade Epsom Salt Resets the Autonomic Nervous System</a>
+            <h3 class="article-card-title">
+              <a href="article-epsom-salt-hydrodynamics.html">Why 1,200 Pounds of Medical-Grade Epsom Salt Resets the Autonomic Nervous System</a>
             </h3>
-            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+            <p class="article-card-desc">
               By elevating specific gravity to 1.28, your spine, discs, and muscular framework experience effortless zero-gravity floating, instantly relieving musculoskeletal strain and halting sympathetic adrenaline cascades.
             </p>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
-              <span style="color:var(--text-muted);">Biophysics &amp; Density</span>
-              <a href="article-epsom-salt-hydrodynamics.html" class="article-read-link">Read Article &rarr;</a>
+            <div class="article-card-footer">
+              <span class="article-subtopic">Biophysics &amp; Density</span>
+              <a href="article-epsom-salt-hydrodynamics.html" class="article-read-link"><span>Read Article</span> <span class="read-arrow">&rarr;</span></a>
             </div>
           </article>
 
           <!-- Article 2: Mindfulness Protocols -->
-          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="mindfulness-protocols" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="mindfulness-protocols">
             <a href="article-sensory-deprivation-meditation.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
               <img src="assets/blog-mindfulness-meditation.jpg" alt="Mindfulness meditation and sensory deprivation acoustic quiet in float chamber" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
             </a>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-              <span class="article-category-badge" style="font-size:11px;">Mindfulness Protocols</span>
+            <div class="article-card-meta">
+              <span class="article-category-badge">Mindfulness Protocols</span>
               <span class="reading-time-pill">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 5 min read
               </span>
             </div>
-            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
-              <a href="article-sensory-deprivation-meditation.html" style="color:inherit; text-decoration:none;">Sensory Deprivation vs. Meditation: Why Flotation Accelerates Deep Rest</a>
+            <h3 class="article-card-title">
+              <a href="article-sensory-deprivation-meditation.html">Sensory Deprivation vs. Meditation: Why Flotation Accelerates Deep Rest</a>
             </h3>
-            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+            <p class="article-card-desc">
               Sitting meditation requires continuous postural discipline and internal vigilance. In a light-free, sound-insulated float chamber, external inputs are filtered mechanically, inducing rapid parasympathetic recovery.
             </p>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
-              <span style="color:var(--text-muted);">Somatic Quietude</span>
-              <a href="article-sensory-deprivation-meditation.html" class="article-read-link">Read Article &rarr;</a>
+            <div class="article-card-footer">
+              <span class="article-subtopic">Somatic Quietude</span>
+              <a href="article-sensory-deprivation-meditation.html" class="article-read-link"><span>Read Article</span> <span class="read-arrow">&rarr;</span></a>
             </div>
           </article>
 
           <!-- Article 3: Athletic Recovery -->
-          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="athletic-recovery" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="athletic-recovery">
             <a href="article-athletic-recovery-cortisol.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
               <img src="assets/blog-athletic-recovery.jpg" alt="Athletic muscular recovery and spinal decompression in Epsom saltwater float chamber" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
             </a>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-              <span class="article-category-badge" style="font-size:11px;">Athletic Recovery</span>
+            <div class="article-card-meta">
+              <span class="article-category-badge">Athletic Recovery</span>
               <span class="reading-time-pill">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 7 min read
               </span>
             </div>
-            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
-              <a href="article-athletic-recovery-cortisol.html" style="color:inherit; text-decoration:none;">Cortisol Clearance &amp; Rapid Muscle Repair: The Athlete's Recovery Protocol</a>
+            <h3 class="article-card-title">
+              <a href="article-athletic-recovery-cortisol.html">Cortisol Clearance &amp; Rapid Muscle Repair: The Athlete's Recovery Protocol</a>
             </h3>
-            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+            <p class="article-card-desc">
               Elite marathoners, triathletes, and weightlifters utilize post-exertion sensory floatation to rapidly clear blood lactate, lower resting heart rate, and enhance cellular repair through magnesium immersion.
             </p>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
-              <span style="color:var(--text-muted);">Lactate &amp; Spine Relief</span>
-              <a href="article-athletic-recovery-cortisol.html" class="article-read-link">Read Article &rarr;</a>
+            <div class="article-card-footer">
+              <span class="article-subtopic">Lactate &amp; Spine Relief</span>
+              <a href="article-athletic-recovery-cortisol.html" class="article-read-link"><span>Read Article</span> <span class="read-arrow">&rarr;</span></a>
             </div>
           </article>
 
           <!-- Article 4: Neurobiology -->
-          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="neurobiology" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="neurobiology">
             <a href="article-digital-fatigue-silence.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
               <img src="assets/blog-digital-detox.jpg" alt="Mindful digital detox and cognitive relief in dark sensory isolation pod" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
             </a>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-              <span class="article-category-badge" style="font-size:11px;">Neurobiology</span>
+            <div class="article-card-meta">
+              <span class="article-category-badge">Neurobiology</span>
               <span class="reading-time-pill">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 6 min read
               </span>
             </div>
-            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
-              <a href="article-digital-fatigue-silence.html" style="color:inherit; text-decoration:none;">Digital Fatigue in 2026: The Neurological Case for Intentional Sensory Silence</a>
+            <h3 class="article-card-title">
+              <a href="article-digital-fatigue-silence.html">Digital Fatigue in 2026: The Neurological Case for Intentional Sensory Silence</a>
             </h3>
-            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+            <p class="article-card-desc">
               Modern humans process over 34 gigabytes of high-frequency information daily. Scheduled sensory deprivation acts as an intentional circuit-breaker for dopamine exhaustion and cognitive overload.
             </p>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
-              <span style="color:var(--text-muted);">Cognitive Neuroprotection</span>
-              <a href="article-digital-fatigue-silence.html" class="article-read-link">Read Article &rarr;</a>
+            <div class="article-card-footer">
+              <span class="article-subtopic">Cognitive Neuroprotection</span>
+              <a href="article-digital-fatigue-silence.html" class="article-read-link"><span>Read Article</span> <span class="read-arrow">&rarr;</span></a>
             </div>
           </article>
 
           <!-- Article 5: Magnesium Therapy -->
-          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="magnesium-therapy" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="magnesium-therapy">
             <a href="article-magnesium-sleep-architecture.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
               <img src="assets/blog-magnesium-sleep.jpg" alt="Pharmaceutical-grade Epsom magnesium sulfate salt crystals and mineral hydrotherapy water" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
             </a>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-              <span class="article-category-badge" style="font-size:11px;">Magnesium Therapy</span>
+            <div class="article-card-meta">
+              <span class="article-category-badge">Magnesium Therapy</span>
               <span class="reading-time-pill">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 5 min read
               </span>
             </div>
-            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
-              <a href="article-magnesium-sleep-architecture.html" style="color:inherit; text-decoration:none;">Magnesium Sulfate Bio-Availability: Deep Sleep Architecture &amp; Muscle Balance</a>
+            <h3 class="article-card-title">
+              <a href="article-magnesium-sleep-architecture.html">Magnesium Sulfate Bio-Availability: Deep Sleep Architecture &amp; Muscle Balance</a>
             </h3>
-            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+            <p class="article-card-desc">
               Magnesium is an essential cofactor in over 300 enzymatic reactions. Transdermal diffusion during a 60-minute float bypasses the GI tract to directly relax vascular smooth muscle and stimulate GABA synthesis.
             </p>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
-              <span style="color:var(--text-muted);">Transdermal Bioavailability</span>
-              <a href="article-magnesium-sleep-architecture.html" class="article-read-link">Read Article &rarr;</a>
+            <div class="article-card-footer">
+              <span class="article-subtopic">Transdermal Bioavailability</span>
+              <a href="article-magnesium-sleep-architecture.html" class="article-read-link"><span>Read Article</span> <span class="read-arrow">&rarr;</span></a>
             </div>
           </article>
 
           <!-- Article 6: Float REST Science -->
-          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="float-rest" style="padding:28px; border-radius:20px; display:flex; flex-direction:column;">
+          <article class="card-glass card-lift reveal fade-in-up blog-article-card" data-category="float-rest">
             <a href="article-time-dilation-stillness.html" class="img-zoom-wrap" style="border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/9; display:block;">
               <img src="assets/blog-time-dilation.jpg" alt="Atmospheric sensory float suite interior representing acoustic stillness and time dilation" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
             </a>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
-              <span class="article-category-badge" style="font-size:11px;">Float REST Science</span>
+            <div class="article-card-meta">
+              <span class="article-category-badge">Float REST Science</span>
               <span class="reading-time-pill">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 6 min read
               </span>
             </div>
-            <h3 style="font-size:18px; font-weight:500; color:var(--text-primary); margin-bottom:12px; line-height:1.4;">
-              <a href="article-time-dilation-stillness.html" style="color:inherit; text-decoration:none;">Time Dilation and Acoustic Stillness: What Happens Inside an Isolation Capsule</a>
+            <h3 class="article-card-title">
+              <a href="article-time-dilation-stillness.html">Time Dilation and Acoustic Stillness: What Happens Inside an Isolation Capsule</a>
             </h3>
-            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.65; flex-grow:1; margin-bottom:20px;">
+            <p class="article-card-desc">
               Without light markers, gravity anchors, or acoustic cues, the brain's internal clock decelerates. 60 minutes inside the float chamber regularly feels like a restorative 20-minute daydream or a 4-hour slumber.
             </p>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-divider); font-size:12px;">
-              <span style="color:var(--text-muted);">Perception &amp; Chronobiology</span>
-              <a href="article-time-dilation-stillness.html" class="article-read-link">Read Article &rarr;</a>
+            <div class="article-card-footer">
+              <span class="article-subtopic">Perception &amp; Chronobiology</span>
+              <a href="article-time-dilation-stillness.html" class="article-read-link"><span>Read Article</span> <span class="read-arrow">&rarr;</span></a>
             </div>
           </article>
         </div>
