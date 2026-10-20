@@ -153,6 +153,9 @@
         <li>
           <a href="dashboard.html" class="mobile-nav-link" onclick="closeMobileMenu()">Client Dashboard</a>
         </li>
+              <li>
+          <a href="login.html" class="mobile-nav-link" onclick="closeMobileMenu()">Member Login</a>
+        </li>
       </ul>
 
       <div class="mobile-drawer-actions">
@@ -163,19 +166,10 @@
           <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle theme">
             <span>☀️ Light</span>
           </button>
-          <a href="login.html" class="btn-control nav-login-btn icon-only" onclick="closeMobileMenu()" aria-label="Member Login">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </a>
         </div>
         <button onclick="closeMobileMenu(); openBookingModal('60-Minute Signature Sensory Float');" class="btn-book-primary" style="justify-content:center; width:100%;">
           Book A Float Session
         </button>
-        <a href="login.html" class="btn-outline" style="justify-content:center; width:100%; text-align:center;" onclick="closeMobileMenu()">
-          Member Login / Portal
-        </a>
       </div>
     </div>
   </div>
@@ -198,11 +192,11 @@
           Float effortlessly in 1,200 pounds of medical-grade Epsom salt dissolved in skin-receptor neutral 93.5°F water. Free of light, sound, and gravitational load, your nervous system experiences the most profound reset on Earth.
         </p>
 
-        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
-          <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary" style="padding:14px 32px; font-size:13px;">
+        <div class="hero-cta-group">
+          <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary hero-cta-btn">
             <span>Schedule A Float Session</span>
           </button>
-          <a href="first-time-guide.html" class="btn-outline" style="padding:13px 28px; font-size:13px;">
+          <a href="first-time-guide.html" class="btn-outline hero-cta-btn">
             <span>First-Timer Guide</span>
           </a>
         </div>
