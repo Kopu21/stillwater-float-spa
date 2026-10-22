@@ -3134,3 +3134,301 @@ html, body {
     margin-bottom: 6px !important;
   }
 }
+
+/* ==========================================================================
+   REQUIREMENT FIXES: LABELS CONTRAST, BLOG 2x3 GRID, DASHBOARD & CALENDAR
+   ========================================================================== */
+
+/* 1. Date Input and High-Contrast Calendar Picker Indicator (Requirement 8) */
+input[type="date"] {
+  position: relative;
+  color-scheme: dark;
+}
+
+[data-theme="light"] input[type="date"] {
+  color-scheme: light;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.95;
+  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(130deg); /* Vibrant teal in Dark Mode */
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.15s ease;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.2) sepia(1) saturate(4) hue-rotate(130deg) brightness(0.5); /* High-contrast dark teal in Light Mode */
+  opacity: 0.95;
+}
+
+[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  filter: invert(0.15) sepia(1) saturate(5) hue-rotate(130deg) brightness(0.35);
+}
+
+/* 2. All Pages - High Contrast Form & UI Labels (Requirement 2) */
+[data-theme="light"] label,
+[data-theme="light"] .form-label,
+[data-theme="light"] .metric-label,
+[data-theme="light"] .dash-metric-label,
+[data-theme="light"] .dash-label,
+[data-theme="light"] .form-checkbox-label {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .float-spec-pill {
+  background: rgba(13, 148, 136, 0.12) !important;
+  color: #0f766e !important;
+  font-weight: 600 !important;
+  border-color: rgba(13, 148, 136, 0.3) !important;
+}
+
+[data-theme="light"] .section-tag {
+  color: #0d9488 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="dark"] label,
+[data-theme="dark"] .form-label,
+[data-theme="dark"] .metric-label,
+[data-theme="dark"] .dash-metric-label,
+[data-theme="dark"] .dash-label,
+[data-theme="dark"] .form-checkbox-label,
+:root label,
+:root .form-label {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+/* 3. Blog 6-Article Grid: Exactly 2 Rows × 3 Columns on Desktop (Requirement 3) */
+.blog-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .blog-articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-articles-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.blog-articles-grid .blog-article-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+  box-sizing: border-box !important;
+}
+
+.blog-articles-grid .blog-article-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: var(--teal-primary) !important;
+  box-shadow: 0 14px 32px var(--teal-glow) !important;
+}
+
+.blog-articles-grid .blog-article-card .img-zoom-wrap {
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  min-height: 190px !important;
+  max-height: 240px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  display: block !important;
+  background: var(--bg-secondary) !important;
+}
+
+.blog-articles-grid .blog-article-card .img-zoom-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  transition: transform 0.35s ease !important;
+}
+
+.blog-articles-grid .blog-article-card:hover .img-zoom-wrap img {
+  transform: scale(1.05) !important;
+}
+
+.blog-articles-grid .blog-card-body {
+  padding: 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  justify-content: space-between !important;
+}
+
+.blog-articles-grid .article-card-meta {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-bottom: 12px !important;
+}
+
+.blog-articles-grid .article-category-badge {
+  font-size: 11px !important;
+  font-family: monospace !important;
+  color: var(--teal-primary) !important;
+  background: var(--teal-subtle) !important;
+  border: 1px solid var(--border-highlight) !important;
+  padding: 3px 10px !important;
+  border-radius: 9999px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  white-space: nowrap !important;
+}
+
+.blog-articles-grid .reading-time-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-size: 11.5px !important;
+  font-family: monospace !important;
+  color: var(--text-muted) !important;
+  white-space: nowrap !important;
+}
+
+[data-theme="light"] .blog-articles-grid .reading-time-pill {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+.blog-articles-grid .article-card-title {
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.35 !important;
+  margin-bottom: 10px !important;
+  min-height: 48px !important;
+}
+
+.blog-articles-grid .article-card-title a {
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.blog-articles-grid .article-card-title a:hover {
+  color: var(--teal-primary) !important;
+}
+
+.blog-articles-grid .article-card-desc {
+  font-size: 13px !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 18px !important;
+  min-height: 62px !important;
+}
+
+.blog-articles-grid .article-card-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-top: 14px !important;
+  border-top: 1px solid var(--border-divider) !important;
+  margin-top: auto !important;
+}
+
+.blog-articles-grid .article-subtopic {
+  font-size: 11px !important;
+  font-family: monospace !important;
+  color: var(--teal-primary) !important;
+}
+
+.blog-articles-grid .article-read-link {
+  font-size: 13px !important;
+  color: var(--teal-primary) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-weight: 500 !important;
+  transition: gap 0.2s ease !important;
+}
+
+.blog-articles-grid .article-read-link:hover {
+  gap: 8px !important;
+}
+
+/* 4. Dashboard Light Theme High Contrast (Requirement 5) */
+[data-theme="light"] .dash-welcome-card {
+  background: #ffffff !important;
+  border-color: rgba(13, 148, 136, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .dash-welcome-card #userGreeting {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .dash-tab-btn {
+  color: #334155 !important;
+  background: #f1f5f9 !important;
+  border: 1px solid rgba(13, 148, 136, 0.2) !important;
+}
+
+[data-theme="light"] .dash-tab-btn.active {
+  color: #ffffff !important;
+  background: #0d9488 !important;
+}
+
+[data-theme="light"] .dial-svg circle:first-child {
+  stroke: rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .dial-remain-count {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .dial-remain-label {
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .dash-stat-box,
+[data-theme="light"] .dash-info-box,
+[data-theme="light"] .dash-session-item {
+  background: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+[data-theme="light"] .dash-stat-box p,
+[data-theme="light"] .dash-info-box span,
+[data-theme="light"] .dash-session-item h4 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .dash-internal-header {
+  background: #ffffff !important;
+  border-color: rgba(13, 148, 136, 0.2) !important;
+}
+
+[data-theme="light"] .dash-internal-footer {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+}

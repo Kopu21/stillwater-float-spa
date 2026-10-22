@@ -526,6 +526,16 @@ function filterBlogCategory(cat, btn) {
     }
   });
 
+  // Hide or show featured section according to category
+  const featuredSection = document.querySelector('.featured-article-card')?.closest('section');
+  if (featuredSection) {
+    if (targetCategory === 'all' || targetCategory === 'neurobiology') {
+      featuredSection.style.display = 'block';
+    } else {
+      featuredSection.style.display = 'none';
+    }
+  }
+
   let visibleCount = 0;
   allCards.forEach(card => {
     const cardCat = (card.getAttribute('data-category') || '').toLowerCase().trim();
@@ -577,7 +587,6 @@ function filterBlogCategory(cat, btn) {
     // Graceful fallback for non-http protocols
   }
 }
-
 function initBlogFilters() {
   const filterContainer = document.querySelector('.blog-filter-bar');
   if (!filterContainer) return;

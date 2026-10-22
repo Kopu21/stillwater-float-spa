@@ -431,10 +431,20 @@
         phoneInput.style.borderColor = 'var(--border-subtle)';
       }
 
-      // Email validation
-      const emailVal = emailInput.value.trim();
-      if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
-        emailError.textContent = 'Please enter a valid email address.';
+      // Email validation: strictly reject uppercase characters
+      const emailRaw = emailInput.value.trim();
+      if (!emailRaw) {
+        emailError.textContent = 'Please enter your email address.';
+        emailError.style.display = 'block';
+        emailInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (/[A-Z]/.test(emailRaw)) {
+        emailError.textContent = 'Email must contain lowercase letters only.';
+        emailError.style.display = 'block';
+        emailInput.style.borderColor = '#ef4444';
+        isValid = false;
+      } else if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(emailRaw)) {
+        emailError.textContent = 'Please enter a valid lowercase email address.';
         emailError.style.display = 'block';
         emailInput.style.borderColor = '#ef4444';
         isValid = false;
@@ -497,6 +507,25 @@
         };
         phoneInput.addEventListener('input', validatePhone);
         phoneInput.addEventListener('paste', () => setTimeout(validatePhone, 10));
+      }
+
+      const emailInput = document.getElementById('contactEmail');
+      const emailError = document.getElementById('contactEmailError');
+      if (emailInput && emailError) {
+        const validateEmail = () => {
+          const val = emailInput.value;
+          if (/[A-Z]/.test(val)) {
+            emailError.textContent = 'Email must contain lowercase letters only.';
+            emailError.style.display = 'block';
+            emailInput.style.borderColor = '#ef4444';
+          } else {
+            emailError.style.display = 'none';
+            emailInput.style.borderColor = 'var(--border-subtle)';
+          }
+        };
+        emailInput.addEventListener('input', validateEmail);
+        emailInput.addEventListener('paste', () => setTimeout(validateEmail, 10));
+        emailInput.addEventListener('blur', validateEmail);
       }
     });
   </script>

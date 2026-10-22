@@ -14,10 +14,14 @@
   <main class="auth-center-wrapper" id="mainContent">
     <div class="auth-card card-lift">
       <div class="auth-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border-divider, rgba(255,255,255,0.08));">
-        <!-- Brand Logo ONLY (no navigation on login page) -->
-        <div class="brand-logo" aria-label="STILLWATER Float &amp; Sensory Spa" title="STILLWATER Float &amp; Sensory Spa" style="cursor:default; display:inline-flex; align-items:center; user-select:none;">
-          <img src="assets/logo.svg" alt="STILLWATER Float &amp; Sensory Spa Brand Logo" class="brand-logo-img" style="width:42px; height:42px; display:block; pointer-events:none;">
-        </div>
+        <!-- Brand Logo with Brand Name beside Logo on the same horizontal line -->
+        <a href="index.html" class="brand-logo" aria-label="STILLWATER Float &amp; Sensory Spa Home" title="STILLWATER Float &amp; Sensory Spa" style="text-decoration:none; display:inline-flex; align-items:center; gap:12px;">
+          <img src="assets/logo.svg" alt="STILLWATER Float &amp; Sensory Spa Brand Logo" class="brand-logo-img" style="width:40px; height:40px; display:block; flex-shrink:0;">
+          <div class="brand-logo-text" style="display:flex; flex-direction:column; justify-content:center;">
+            <span class="brand-title" style="font-size:16px; font-weight:700; letter-spacing:0.14em; color:var(--text-primary); line-height:1.15; display:block;">STILLWATER</span>
+            <span class="brand-subtitle" style="font-size:10px; letter-spacing:0.08em; color:var(--teal-primary); text-transform:uppercase; display:block; margin-top:2px;">Float &amp; Sensory Spa</span>
+          </div>
+        </a>
 
         <!-- Controls: Theme Toggle and RTL/LTR Toggle -->
         <div class="auth-card-controls" style="display:flex; align-items:center; gap:10px;">
