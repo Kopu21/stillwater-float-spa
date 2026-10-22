@@ -539,10 +539,13 @@ function filterBlogCategory(cat, btn) {
   let visibleCount = 0;
   allCards.forEach(card => {
     const cardCat = (card.getAttribute('data-category') || '').toLowerCase().trim();
-    if (targetCategory === 'all' || cardCat === targetCategory) {
+    const matches = targetCategory === 'all' || cardCat === targetCategory;
+    if (matches) {
+      card.classList.remove('is-hidden');
       card.style.display = card.classList.contains('featured-article-card') ? 'block' : 'flex';
       visibleCount++;
     } else {
+      card.classList.add('is-hidden');
       card.style.display = 'none';
     }
   });
@@ -583,9 +586,7 @@ function filterBlogCategory(cat, btn) {
       url.searchParams.set('category', targetCategory);
     }
     window.history.replaceState({}, '', url);
-  } catch (e) {
-    // Graceful fallback for non-http protocols
-  }
+  } catch (e) {}
 }
 function initBlogFilters() {
   const filterContainer = document.querySelector('.blog-filter-bar');

@@ -53,39 +53,9 @@
 </head>
 <body>
 
-  <!-- Internal Dedicated Dashboard Header (Replaces shared website header) -->
-  <header class="dash-internal-header" role="banner" style="background:var(--bg-secondary); border-bottom:1px solid var(--border-subtle); padding:16px 0; margin-bottom:10px;">
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-      <div style="display:flex; align-items:center; gap:14px;">
-        <a href="index.html" class="brand-logo" style="text-decoration:none;" aria-label="Stillwater Float & Sensory Spa Home" title="Stillwater Float & Sensory Spa">
-          <img src="assets/logo.svg" alt="Stillwater Float & Sensory Spa Brand Logo" class="brand-logo-img" style="width:38px; height:38px;">
-          <div class="brand-logo-text">
-            <span class="brand-title" style="font-size:15px; font-weight:700; letter-spacing:0.14em; color:var(--text-primary); line-height:1.1;">STILLWATER</span>
-            <span class="brand-subtitle" style="font-size:9.5px; letter-spacing:0.08em; color:var(--teal-primary); text-transform:uppercase;">Float &amp; Sensory Spa • Portal</span>
-          </div>
-        </a>
-        <span class="dash-badge-portal" style="font-size:11px; font-family:monospace; color:var(--teal-primary); background:var(--teal-subtle); border:1px solid var(--border-highlight); padding:3px 10px; border-radius:9999px;">Client Telemetry Portal</span>
-      </div>
+  
 
-      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-        <a href="index.html" class="btn-outline" style="font-size:12px; padding:6px 14px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-          <span>&larr; Back to Sanctuary</span>
-        </a>
-        <button onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch layout direction (LTR / RTL)" title="Switch layout direction">
-          <svg class="dir-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/></svg>
-        </button>
-        <button onclick="toggleTheme()" class="btn-control theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
-          <span>☀️</span>
-          <span class="btn-label-text">Light</span>
-        </button>
-        <button onclick="logoutUser()" class="btn-outline" style="font-size:12px; padding:6px 14px; border-color:rgba(244,63,94,0.4); color:#fb7185;">
-          Sign Out
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main class="container" style="padding-top:40px; padding-bottom:80px;">
+  <main class="container" style="padding-top:24px; padding-bottom:36px;">
     <!-- Welcome Header Banner -->
     <div class="glass-panel-glow dash-welcome-card" style="padding:32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; margin-bottom:36px;">
       <div style="display:flex; align-items:center; gap:20px;">
@@ -101,7 +71,10 @@
         </div>
       </div>
 
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <a href="index.html" class="btn-outline" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <span>&larr; Sanctuary Home</span>
+        </a>
         <button onclick="openBookingModal()" class="btn-book-primary">
           <span>+ Book Float Slot</span>
         </button>
@@ -408,18 +381,7 @@
     </div>
   </div>
 
-  <!-- Internal Dedicated Dashboard Footer (Replaces shared website footer) -->
-  <footer class="dash-internal-footer" role="contentinfo" style="padding:28px 0; border-top:1px solid var(--border-divider); margin-top:50px; font-size:12px; color:var(--text-muted); background:var(--bg-secondary);">
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <img src="assets/logo.svg" alt="Stillwater Logo" style="width:20px; height:20px; opacity:0.8;">
-        <span>Stillwater Sanctuary Client Dashboard • Encrypted Telemetry Active</span>
-      </div>
-      <div>
-        <span>© 2026 Stillwater Float &amp; Sensory Sanctuary. All rights reserved.</span>
-      </div>
-    </div>
-  </footer>
+  
 
   <script src="js/app.js"></script>
   <script>
