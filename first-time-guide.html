@@ -431,7 +431,83 @@
   </main>
 
   <!-- Shared Standardized Footer -->
-  <footer class="footer-main" role="contentinfo">
+    <!-- Booking Modal -->
+  <div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+    <div class="modal-window">
+      <button onclick="closeBookingModal()" class="modal-close" aria-label="Close modal">&times;</button>
+      <span class="section-tag">Private Sanctuary Scheduling</span>
+      <h3 id="modalHeading" style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Reserve Float Session Slot</h3>
+
+      <form onsubmit="handleBookingSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="modalPod">Chamber Architecture</label>
+          <select id="modalPod" class="form-select">
+            <option value="Pod Alpha — Zero-Gravity Capsule">Pod Alpha — Zero-Gravity Capsule</option>
+            <option value="Basin Beta — Open Ocean Suite">Basin Beta — Open Ocean Suite</option>
+            <option value="Sanctuary Delta — Starlight Oasis">Sanctuary Delta — Starlight Oasis</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalService">Session Offering</label>
+          <select id="modalService" class="form-select">
+            <option value="60-Minute Signature Sensory Float">60-Minute Signature Sensory Float ($79)</option>
+            <option value="90-Minute Deep Journey Float">90-Minute Deep Journey Float ($105)</option>
+            <option value="Contrast Sanctuary: Sauna + Plunge + Float">Contrast Sanctuary Trio ($145)</option>
+            <option value="Couple’s Synchrony Float">Couple’s Synchrony Float ($150)</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label" for="modalDate">Float Date</label>
+            <input type="date" id="modalDate" class="form-input" value="2026-10-24" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modalSlot">Time Slot</label>
+            <select id="modalSlot" class="form-select">
+              <option value="09:00 AM – 10:30 AM">09:00 AM – Morning Stillness</option>
+              <option value="11:00 AM – 12:30 PM">11:00 AM – Midday Reset</option>
+              <option value="02:00 PM – 03:30 PM">02:00 PM – Afternoon Silence</option>
+              <option value="04:30 PM – 06:00 PM">04:30 PM – Twilight Decompression</option>
+              <option value="07:00 PM – 08:30 PM">07:00 PM – Deep Evening Rest</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalLight">Lighting Preference</label>
+          <select id="modalLight" class="form-select">
+            <option value="Total Darkness (Sensory Void)">Total Darkness (Sensory Void)</option>
+            <option value="Constellation Starlight Ceiling">Constellation Starlight Ceiling</option>
+            <option value="Oceanic Cyan Chromotherapy">Oceanic Cyan Chromotherapy</option>
+            <option value="Warm Amber Sunset">Warm Amber Sunset</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalAudio">Acoustic Audio Setting</label>
+          <select id="modalAudio" class="form-select">
+            <option value="Theta Waves 432Hz (First 10 min)">Theta Waves 432Hz (First 10 min, then silence)</option>
+            <option value="Pure Silence Throughout">Pure Silence Throughout</option>
+            <option value="Ocean Rain Swell">Ocean Rain Swell</option>
+            <option value="Tibetan Singing Bowls">Tibetan Singing Bowls</option>
+          </select>
+        </div>
+
+        <div style="padding:14px; background:var(--teal-subtle); border-radius:12px; margin-bottom:20px; font-size:12px; color:var(--text-secondary); display:flex; justify-content:space-between;">
+          <span>Session Package Balance:</span>
+          <span style="color:var(--teal-primary); font-family:monospace; font-weight:600;">1 Credit Will Be Deducted</span>
+        </div>
+
+        <button type="submit" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px;">
+          Confirm Sanctuary Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+<footer class="footer-main" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
         <div>

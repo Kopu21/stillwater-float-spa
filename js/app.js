@@ -615,3 +615,181 @@ document.addEventListener('DOMContentLoaded', () => {
   initBlogFilters();
 });
 
+
+
+// ==========================================
+// GLOBAL BOOKING MODAL CONTROLLER
+// ==========================================
+function ensureBookingModalDOM() {
+  let modal = document.getElementById('bookingModal');
+  if (modal) {
+    // Ensure background click closes modal
+    if (!modal._hasBgClick) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeBookingModal();
+      });
+      modal._hasBgClick = true;
+    }
+    return modal;
+  }
+
+  const modalHTML = `
+  <div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+    <div class="modal-window">
+      <button onclick="closeBookingModal()" class="modal-close" aria-label="Close modal">&times;</button>
+      <span class="section-tag">Private Sanctuary Scheduling</span>
+      <h3 id="modalHeading" style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Reserve Float Session Slot</h3>
+
+      <form onsubmit="handleBookingSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="modalPod">Chamber Architecture</label>
+          <select id="modalPod" class="form-select">
+            <option value="Pod Alpha — Zero-Gravity Capsule">Pod Alpha — Zero-Gravity Capsule</option>
+            <option value="Basin Beta — Open Ocean Suite">Basin Beta — Open Ocean Suite</option>
+            <option value="Sanctuary Delta — Starlight Oasis">Sanctuary Delta — Starlight Oasis</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalService">Session Offering</label>
+          <select id="modalService" class="form-select">
+            <option value="60-Minute Signature Sensory Float">60-Minute Signature Sensory Float ($79)</option>
+            <option value="90-Minute Deep Journey Float">90-Minute Deep Journey Float ($105)</option>
+            <option value="Contrast Sanctuary: Sauna + Plunge + Float">Contrast Sanctuary Trio ($145)</option>
+            <option value="Couple’s Synchrony Float">Couple’s Synchrony Float ($150)</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label" for="modalDate">Float Date</label>
+            <input type="date" id="modalDate" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modalSlot">Time Slot</label>
+            <select id="modalSlot" class="form-select">
+              <option value="09:00 AM – 10:30 AM">09:00 AM – Morning Stillness</option>
+              <option value="11:00 AM – 12:30 PM">11:00 AM – Midday Reset</option>
+              <option value="02:00 PM – 03:30 PM">02:00 PM – Afternoon Silence</option>
+              <option value="04:30 PM – 06:00 PM">04:30 PM – Twilight Decompression</option>
+              <option value="07:00 PM – 08:30 PM">07:00 PM – Deep Evening Rest</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalLight">Lighting Preference</label>
+          <select id="modalLight" class="form-select">
+            <option value="Total Darkness (Sensory Void)">Total Darkness (Sensory Void)</option>
+            <option value="Constellation Starlight Ceiling">Constellation Starlight Ceiling</option>
+            <option value="Oceanic Cyan Chromotherapy">Oceanic Cyan Chromotherapy</option>
+            <option value="Warm Amber Sunset">Warm Amber Sunset</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalAudio">Acoustic Audio Setting</label>
+          <select id="modalAudio" class="form-select">
+            <option value="Theta Waves 432Hz (First 10 min)">Theta Waves 432Hz (First 10 min, then silence)</option>
+            <option value="Pure Silence Throughout">Pure Silence Throughout</option>
+            <option value="Ocean Rain Swell">Ocean Rain Swell</option>
+            <option value="Tibetan Singing Bowls">Tibetan Singing Bowls</option>
+          </select>
+        </div>
+
+        <div style="padding:14px; background:var(--teal-subtle); border-radius:12px; margin-bottom:20px; font-size:12px; color:var(--text-secondary); display:flex; justify-content:space-between;">
+          <span>Session Package Balance:</span>
+          <span style="color:var(--teal-primary); font-family:monospace; font-weight:600;">1 Credit Will Be Deducted</span>
+        </div>
+
+        <button type="submit" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px;">
+          Confirm Sanctuary Booking
+        </button>
+      </form>
+    </div>
+  </div>`;
+
+  const temp = document.createElement('div');
+  temp.innerHTML = modalHTML.trim();
+  modal = temp.firstElementChild;
+  document.body.appendChild(modal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeBookingModal();
+  });
+  modal._hasBgClick = true;
+
+  const dateInput = modal.querySelector('#modalDate');
+  if (dateInput) {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.value = tomorrow.toISOString().split('T')[0];
+    dateInput.min = today.toISOString().split('T')[0];
+  }
+
+  return modal;
+}
+
+function openBookingModal(serviceName) {
+  const modal = ensureBookingModalDOM();
+  if (serviceName) {
+    const select = document.getElementById('modalService');
+    if (select) {
+      let matched = false;
+      for (let i = 0; i < select.options.length; i++) {
+        const optVal = select.options[i].value.toLowerCase();
+        const search = serviceName.toLowerCase();
+        if (optVal.includes(search) || search.includes(optVal)) {
+          select.selectedIndex = i;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) select.value = serviceName;
+    }
+  }
+  const dateInput = document.getElementById('modalDate');
+  if (dateInput && !dateInput.value) {
+    const today = new Date();
+    dateInput.value = today.toISOString().split('T')[0];
+  }
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBookingModal() {
+  const modal = document.getElementById('bookingModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function handleBookingSubmit(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const pod = document.getElementById('modalPod')?.value || 'Pod Alpha — Zero-Gravity Capsule';
+  const svc = document.getElementById('modalService')?.value || '60-Minute Signature Sensory Float';
+  const dt = document.getElementById('modalDate')?.value || new Date().toISOString().split('T')[0];
+  const slot = document.getElementById('modalSlot')?.value || '10:00 AM – 11:30 AM';
+  const light = document.getElementById('modalLight')?.value || 'Total Darkness (Sensory Void)';
+  const audio = document.getElementById('modalAudio')?.value || 'Theta Waves 432Hz (First 10 min)';
+
+  if (typeof bookFloatSlot === 'function') {
+    bookFloatSlot(svc, pod, dt, slot, light, audio);
+  } else {
+    showToast(`Float session confirmed for ${svc} on ${dt} at ${slot}!`);
+  }
+  closeBookingModal();
+}
+
+// Global Escape listener to close modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeBookingModal();
+});
+
+// Expose globally
+window.openBookingModal = openBookingModal;
+window.closeBookingModal = closeBookingModal;
+window.handleBookingSubmit = handleBookingSubmit;
+window.ensureBookingModalDOM = ensureBookingModalDOM;
