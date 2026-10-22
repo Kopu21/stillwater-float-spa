@@ -176,7 +176,7 @@
 
   <main>
     <!-- Home 2 Architectural Hero Section -->
-    <section class="hero-section" style="padding-bottom:20px; overflow:hidden; max-width:100%;">
+    <section class="hero-section hero-home2-bg" data-hero-bg="assets/hero-home2-bg.jpg" style="padding-bottom:20px; overflow:hidden; max-width:100%;">
       <div class="hero-glow" style="width:750px; max-width:100%; background:radial-gradient(circle, var(--teal-glow) 0%, rgba(56,189,248,0.06) 60%, transparent 80%);"></div>
       <div class="container" style="position:relative; z-index:10;">
         <div class="hero-pill">
@@ -209,11 +209,11 @@
           </div>
         </div>
 
-        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
-          <button onclick="openBookingModal('Basin Beta — Open Ocean Suite')" class="btn-book-primary" style="padding:14px 20px; font-size:13px; max-width:100%;">
+        <div class="hero-cta-group" style="margin-top:8px;">
+          <button onclick="openBookingModal('Basin Beta — Open Ocean Suite')" class="btn-book-primary hero-cta-btn">
             <span>Reserve Open Basin Suite</span>
           </button>
-          <a href="services.html" class="btn-outline" style="padding:13px 20px; font-size:13px; max-width:100%;">
+          <a href="services.html" class="btn-outline hero-cta-btn">
             <span>Explore All 3 Chamber Types</span>
           </a>
         </div>
@@ -233,23 +233,27 @@
           <!-- Pod Alpha -->
           <div class="glass-panel" style="padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <span class="section-tag" style="margin-bottom:8px;">Chamber 01</span>
-              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin-bottom:10px;">Pod Alpha — Zero-Gravity Capsule</h3>
-              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+              <div class="chamber-badge-row" style="display:flex; align-items:center; justify-content:space-between; min-height:26px; margin-bottom:12px;">
+                <span class="section-tag" style="margin:0;">Chamber 01</span>
+              </div>
+              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin-bottom:12px; min-height:52px; line-height:1.3; display:flex; align-items:flex-start;">
+                Pod Alpha — Zero-Gravity Capsule
+              </h3>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px; min-height:68px;">
                 The quintessential sensory deprivation pod. Sleek organic curvature with an interior hydraulic gas-strut lid. Keep it wide open, cracked, or completely sealed in silence.
               </p>
-              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:20px;">
+              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:24px;">
                 <li>✓ Full acoustic & photonic blackout</li>
                 <li>✓ In-pod tactile audio transducer buttons</li>
                 <li>✓ Internal spray bottle & halo support</li>
                 <li>✓ Best for: Deep Theta meditation & seasoned floaters</li>
               </ul>
             </div>
-            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;">
-              <button type="button" onclick="openChamberDetailModal('pod-alpha')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;" aria-label="Explore Pod Alpha Zero-Gravity Capsule details">
+            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:auto; flex-wrap:wrap;">
+              <button type="button" onclick="openChamberDetailModal('pod-alpha')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; height:42px; justify-content:center; padding:0 12px; font-size:12px; min-width:0; box-sizing:border-box;" aria-label="Explore Pod Alpha Zero-Gravity Capsule details">
                 <span>Explore Chamber</span>
               </button>
-              <button type="button" onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;">
+              <button type="button" onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary" style="flex:1 1 110px; height:42px; justify-content:center; padding:0 12px; font-size:12px; min-width:0; box-sizing:border-box;">
                 <span>Book Capsule</span>
               </button>
             </div>
@@ -258,23 +262,28 @@
           <!-- Basin Beta -->
           <div class="glass-panel-glow" style="padding:32px; display:flex; flex-direction:column; justify-content:space-between; border-color:var(--border-highlight);">
             <div>
-              <span style="font-size:10px; font-family:monospace; background:var(--teal-primary); color:var(--text-on-accent); padding:3px 10px; border-radius:9999px; font-weight:700;">POPULAR FOR BEGINNERS</span>
-              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin:12px 0 10px;">Basin Beta — Open Ocean Suite</h3>
-              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
-                A room-scale 8ft × 5ft heated basin set within a private tiled oasis with high ceilings. Zero sensation of confinement or enclosed doors.
+              <div class="chamber-badge-row" style="display:flex; align-items:center; justify-content:space-between; min-height:26px; margin-bottom:12px;">
+                <span class="section-tag" style="margin:0;">Chamber 02</span>
+                <span style="font-size:10px; font-family:monospace; background:var(--teal-primary); color:var(--text-on-accent); padding:3px 10px; border-radius:9999px; font-weight:700;">POPULAR FOR BEGINNERS</span>
+              </div>
+              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin-bottom:12px; min-height:52px; line-height:1.3; display:flex; align-items:flex-start;">
+                Basin Beta — Open Ocean Suite
+              </h3>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px; min-height:68px;">
+                A room-scale 8ft × 5ft heated basin set within a private tiled oasis with 9-foot vaulted ceilings. Zero sensation of confinement or enclosed doors.
               </p>
-              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:20px;">
+              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:24px;">
                 <li>✓ 100% open-air floating with zero lids</li>
                 <li>✓ Gentle indirect ambient perimeter illumination</li>
                 <li>✓ Heated limestone surrounding floor</li>
                 <li>✓ Best for: Claustrophobia concerns & first-timers</li>
               </ul>
             </div>
-            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;">
-              <button type="button" onclick="openChamberDetailModal('basin-beta')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;" aria-label="Explore Basin Beta Open Ocean Suite details">
+            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:auto; flex-wrap:wrap;">
+              <button type="button" onclick="openChamberDetailModal('basin-beta')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; height:42px; justify-content:center; padding:0 12px; font-size:12px; min-width:0; box-sizing:border-box;" aria-label="Explore Basin Beta Open Ocean Suite details">
                 <span>Explore Chamber</span>
               </button>
-              <button type="button" onclick="openBookingModal('Basin Beta — Open Ocean Suite')" class="btn-book-primary" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;">
+              <button type="button" onclick="openBookingModal('Basin Beta — Open Ocean Suite')" class="btn-book-primary" style="flex:1 1 110px; height:42px; justify-content:center; padding:0 12px; font-size:12px; min-width:0; box-sizing:border-box;">
                 <span>Book Open Basin</span>
               </button>
             </div>
@@ -283,23 +292,27 @@
           <!-- Sanctuary Delta -->
           <div class="glass-panel" style="padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <span class="section-tag" style="margin-bottom:8px;">Chamber 03</span>
-              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin-bottom:10px;">Sanctuary Delta — Starlight Oasis</h3>
-              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+              <div class="chamber-badge-row" style="display:flex; align-items:center; justify-content:space-between; min-height:26px; margin-bottom:12px;">
+                <span class="section-tag" style="margin:0;">Chamber 03</span>
+              </div>
+              <h3 style="font-size:20px; font-weight:500; color:var(--text-primary); margin-bottom:12px; min-height:52px; line-height:1.3; display:flex; align-items:flex-start;">
+                Sanctuary Delta — Starlight Oasis
+              </h3>
+              <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px; min-height:68px;">
                 Our ultra-luxury duo suite featuring 1,500 miniature fiber-optic constellation points across an arched barrel ceiling. Ideal for solo contemplation or couple floats.
               </p>
-              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:20px;">
+              <ul style="list-style:none; font-size:12px; color:var(--text-secondary); line-height:2; margin-bottom:24px;">
                 <li>✓ Fiber-optic night sky constellation simulation</li>
                 <li>✓ Oversized dimension supports dual floating</li>
                 <li>✓ Private chromotherapy rainfall washroom</li>
                 <li>✓ Best for: Couples & sensory aesthetic reset</li>
               </ul>
             </div>
-            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;">
-              <button type="button" onclick="openChamberDetailModal('sanctuary-delta')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;" aria-label="Explore Sanctuary Delta Starlight Oasis details">
+            <div class="chamber-card-actions" style="display:flex; gap:10px; margin-top:auto; flex-wrap:wrap;">
+              <button type="button" onclick="openChamberDetailModal('sanctuary-delta')" class="btn-outline chamber-explore-btn" style="flex:1 1 110px; height:42px; justify-content:center; padding:0 12px; font-size:12px; min-width:0; box-sizing:border-box;" aria-label="Explore Sanctuary Delta Starlight Oasis details">
                 <span>Explore Chamber</span>
               </button>
-              <button type="button" onclick="openBookingModal('Couple’s Synchrony Float')" class="btn-book-primary" style="flex:1 1 110px; justify-content:center; padding:10px 10px; font-size:12px; min-width:0;">
+              <button type="button" onclick="openBookingModal('Couple’s Synchrony Float')" class="btn-book-primary" style="flex:1 1 110px; height:42px; justify-content:center; padding:0 12px; font-size:12px; min-width:0; box-sizing:border-box;">
                 <span>Book Starlight</span>
               </button>
             </div>
