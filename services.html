@@ -198,102 +198,86 @@
 
       <div class="services-single-grid">
         <!-- 60 min -->
-        <div class="glass-panel" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-              <div>
-                <span style="font-size:10px; font-family:monospace; color:var(--teal-primary); text-transform:uppercase;">Float Therapy</span>
-                <h4 style="font-size:19px; color:var(--text-primary); margin-top:2px; min-height:52px; line-height:1.3;">60-Minute Signature Sensory Float</h4>
-              </div>
-              <span style="font-size:24px; font-family:monospace; color:var(--text-primary);">$79</span>
-            </div>
-            <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:16px; min-height:64px;">
-              The golden standard for nervous system reset. 60 minutes of zero-gravity quiet to decompress the spine and absorb transdermal magnesium.
-            </p>
-            <ul style="font-size:12px; color:var(--text-secondary); list-style:none; line-height:2; margin-bottom:20px; min-height:140px;">
-              <li>✓ Private suite with Pod Alpha or Basin Beta</li>
-              <li>✓ Custom soundscape or pure silence</li>
-              <li>✓ Organic botanical shampoo & hair care</li>
-              <li>✓ Post-float herbal elixir lounge access</li>
-            </ul>
+        <div class="glass-panel service-card">
+          <div class="service-card-header">
+            <span class="service-card-tag" style="color:var(--teal-primary);">Float Therapy</span>
+            <span class="service-card-price">$79</span>
           </div>
-          <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-outline" style="width:100%; justify-content:center;">
+          <h4 class="service-card-title">60-Minute Signature Sensory Float</h4>
+          <p class="service-card-desc">
+            The golden standard for nervous system reset. 60 minutes of zero-gravity quiet to decompress the spine and absorb transdermal magnesium.
+          </p>
+          <ul class="service-card-features">
+            <li>✓ Private suite with Pod Alpha or Basin Beta</li>
+            <li>✓ Custom soundscape or pure silence</li>
+            <li>✓ Organic botanical shampoo &amp; hair care</li>
+            <li>✓ Post-float herbal elixir lounge access</li>
+          </ul>
+          <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-outline service-card-btn">
             Reserve Time Slot
           </button>
         </div>
 
         <!-- 90 min -->
-        <div class="glass-panel-glow" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between; position:relative;">
-          <span style="position:absolute; top:-10px; right:20px; font-size:10px; font-family:monospace; background:var(--teal-primary); color:#060b11; font-weight:700; padding:3px 10px; border-radius:9999px;">MOST RECOMMENDED</span>
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-              <div>
-                <span style="font-size:10px; font-family:monospace; color:var(--teal-primary); text-transform:uppercase;">Deep Exploration</span>
-                <h4 style="font-size:19px; color:var(--text-primary); margin-top:2px; min-height:52px; line-height:1.3;">90-Minute Deep Journey Float</h4>
-              </div>
-              <span style="font-size:24px; font-family:monospace; color:var(--text-primary);">$105</span>
-            </div>
-            <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:16px; min-height:64px;">
-              Allows the brain ample time to settle past Alpha waves directly into deep Theta (4-8Hz) lucid dreaming and profound neuromuscular relaxation.
-            </p>
-            <ul style="font-size:12px; color:var(--text-secondary); list-style:none; line-height:2; margin-bottom:20px; min-height:140px;">
-              <li>✓ Extended 90-minute immersion window</li>
-              <li>✓ Theta frequency binaural acoustic mapping</li>
-              <li>✓ Organic silicone earplugs & soft neck halo</li>
-              <li>✓ Extended decompression reflection</li>
-            </ul>
+        <div class="glass-panel-glow service-card" style="position:relative;">
+          <span class="service-badge-recommended">MOST RECOMMENDED</span>
+          <div class="service-card-header">
+            <span class="service-card-tag" style="color:var(--teal-primary);">Deep Exploration</span>
+            <span class="service-card-price">$105</span>
           </div>
-          <button onclick="openBookingModal('90-Minute Deep Journey Float')" class="btn-book-primary" style="width:100%; justify-content:center;">
+          <h4 class="service-card-title">90-Minute Deep Journey Float</h4>
+          <p class="service-card-desc">
+            Allows the brain ample time to settle past Alpha waves directly into deep Theta (4-8Hz) lucid dreaming and profound neuromuscular relaxation.
+          </p>
+          <ul class="service-card-features">
+            <li>✓ Extended 90-minute immersion window</li>
+            <li>✓ Theta frequency binaural acoustic mapping</li>
+            <li>✓ Organic silicone earplugs &amp; soft neck halo</li>
+            <li>✓ Extended decompression reflection</li>
+          </ul>
+          <button onclick="openBookingModal('90-Minute Deep Journey Float')" class="btn-book-primary service-card-btn">
             Reserve Time Slot
           </button>
         </div>
 
         <!-- Contrast Trio -->
-        <div class="glass-panel" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-              <div>
-                <span style="font-size:10px; font-family:monospace; color:var(--cyan-accent); text-transform:uppercase;">Therapy Circuit</span>
-                <h4 style="font-size:19px; color:var(--text-primary); margin-top:2px; min-height:52px; line-height:1.3;">Contrast Sanctuary: Sauna + Plunge + Float</h4>
-              </div>
-              <span style="font-size:24px; font-family:monospace; color:var(--text-primary);">$145</span>
-            </div>
-            <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:16px; min-height:64px;">
-              30 minutes infrared sauna, 10 minutes cold plunge (48°F) for vascular flush, concluded by 75 minutes of weightless float recovery.
-            </p>
-            <ul style="font-size:12px; color:var(--text-secondary); list-style:none; line-height:2; margin-bottom:20px; min-height:140px;">
-              <li>✓ Private full-spectrum infrared sauna</li>
-              <li>✓ Filtered cold plunge tub immersion</li>
-              <li>✓ 75-minute sensory deprivation float</li>
-              <li>✓ Electrolyte recovery hydration flight</li>
-            </ul>
+        <div class="glass-panel service-card">
+          <div class="service-card-header">
+            <span class="service-card-tag" style="color:var(--cyan-accent);">Therapy Circuit</span>
+            <span class="service-card-price">$145</span>
           </div>
-          <button onclick="openBookingModal('Contrast Sanctuary: Sauna + Plunge + Float')" class="btn-outline" style="width:100%; justify-content:center;">
+          <h4 class="service-card-title">Contrast Sanctuary: Sauna + Plunge + Float</h4>
+          <p class="service-card-desc">
+            30 minutes infrared sauna, 10 minutes cold plunge (48°F) for vascular flush, concluded by 75 minutes of weightless float recovery.
+          </p>
+          <ul class="service-card-features">
+            <li>✓ Private full-spectrum infrared sauna</li>
+            <li>✓ Filtered cold plunge tub immersion</li>
+            <li>✓ 75-minute sensory deprivation float</li>
+            <li>✓ Electrolyte recovery hydration flight</li>
+          </ul>
+          <button onclick="openBookingModal('Contrast Sanctuary: Sauna + Plunge + Float')" class="btn-outline service-card-btn">
             Reserve Time Slot
           </button>
         </div>
 
         <!-- Couples -->
-        <div class="glass-panel" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-              <div>
-                <span style="font-size:10px; font-family:monospace; color:var(--indigo-accent); text-transform:uppercase;">Shared Stillness</span>
-                <h4 style="font-size:19px; color:var(--text-primary); margin-top:2px; min-height:52px; line-height:1.3;">Couple’s Synchrony Float</h4>
-              </div>
-              <span style="font-size:24px; font-family:monospace; color:var(--text-primary);">$150</span>
-            </div>
-            <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:16px; min-height:64px;">
-              Float together in our expansive Sanctuary Delta suite under a fiber-optic starlight ceiling with underwater acoustic sound.
-            </p>
-            <ul style="font-size:12px; color:var(--text-secondary); list-style:none; line-height:2; margin-bottom:20px; min-height:140px;">
-              <li>✓ Sanctuary Delta dual suite</li>
-              <li>✓ Dual rainfall showers & private vanity</li>
-              <li>✓ Starlight galaxy ceiling projection</li>
-              <li>✓ Complimentary herbal tea pairing</li>
-            </ul>
+        <div class="glass-panel service-card">
+          <div class="service-card-header">
+            <span class="service-card-tag" style="color:var(--indigo-accent);">Shared Stillness</span>
+            <span class="service-card-price">$150</span>
           </div>
-          <button onclick="openBookingModal('Couple’s Synchrony Float')" class="btn-outline" style="width:100%; justify-content:center;">
+          <h4 class="service-card-title">Couple’s Synchrony Float</h4>
+          <p class="service-card-desc">
+            Float together in our expansive Sanctuary Delta suite under a fiber-optic starlight ceiling with underwater acoustic sound.
+          </p>
+          <ul class="service-card-features">
+            <li>✓ Sanctuary Delta dual suite</li>
+            <li>✓ Dual rainfall showers &amp; private vanity</li>
+            <li>✓ Starlight galaxy ceiling projection</li>
+            <li>✓ Complimentary herbal tea pairing</li>
+          </ul>
+          <button onclick="openBookingModal('Couple’s Synchrony Float')" class="btn-outline service-card-btn">
             Reserve Time Slot
           </button>
         </div>
