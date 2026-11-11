@@ -10,29 +10,36 @@
 </head>
 <body class="login-page-body">
 
+  <!-- TOP-RIGHT CORNER OF PAGE: Theme & RTL Toggles -->
+  <header class="auth-top-header" aria-label="Display Preferences">
+    <div class="auth-top-controls">
+      <button type="button" onclick="toggleTheme()" class="btn-control theme-toggle-btn icon-only" aria-label="Toggle light or dark theme" title="Toggle light or dark theme">
+        <span>☀️</span>
+      </button>
+      <button type="button" onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch layout direction (LTR / RTL)" title="Switch layout direction (LTR / RTL)">
+        <svg class="dir-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
   <!-- CENTRE OF VIEWPORT: Balanced, Prominent Login & Account Creation Form -->
   <main class="auth-center-wrapper" id="mainContent">
     <div class="auth-card card-lift">
-      <div class="auth-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border-divider, rgba(255,255,255,0.08));">
-        <!-- Brand Logo with Brand Name beside Logo on the same horizontal line -->
-        <a href="index.html" class="brand-logo" aria-label="STILLWATER Float &amp; Sensory Spa Home" title="STILLWATER Float &amp; Sensory Spa" style="text-decoration:none; display:inline-flex; align-items:center; gap:12px;">
-          <img src="assets/logo.svg" alt="STILLWATER Float &amp; Sensory Spa Brand Logo" class="brand-logo-img" style="width:40px; height:40px; display:block; flex-shrink:0;">
-          <div class="brand-logo-text" style="display:flex; flex-direction:column; justify-content:center;">
-            <span class="brand-title" style="font-size:16px; font-weight:700; letter-spacing:0.14em; color:var(--text-primary); line-height:1.15; display:block;">STILLWATER</span>
-            <span class="brand-subtitle" style="font-size:10px; letter-spacing:0.08em; color:var(--teal-primary); text-transform:uppercase; display:block; margin-top:2px;">Float &amp; Sensory Spa</span>
+      <!-- Centered Header: Brand Logo + Center-Aligned Heading & Subheading -->
+      <div class="auth-header">
+        <a href="index.html" class="brand-logo" aria-label="STILLWATER Float &amp; Sensory Spa Home" title="STILLWATER Float &amp; Sensory Spa">
+          <img src="assets/logo.svg" alt="STILLWATER Float &amp; Sensory Spa Brand Logo" class="brand-logo-img">
+          <div class="brand-logo-text">
+            <span class="brand-title">STILLWATER</span>
+            <span class="brand-subtitle">Float &amp; Sensory Spa</span>
           </div>
         </a>
 
-        <!-- Controls: Theme Toggle and RTL/LTR Toggle -->
-        <div class="auth-card-controls" style="display:flex; align-items:center; gap:10px;">
-          <button type="button" onclick="toggleTheme()" class="btn-control theme-toggle-btn icon-only" aria-label="Toggle light or dark theme" title="Toggle light or dark theme" style="width:38px; height:38px; min-width:38px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; cursor:pointer;">
-            <span>☀️</span>
-          </button>
-          <button type="button" onclick="toggleDirection()" class="btn-control dir-toggle-btn icon-only" aria-label="Switch layout direction (LTR / RTL)" title="Switch layout direction (LTR / RTL)" style="width:38px; height:38px; min-width:38px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; cursor:pointer;">
-            <svg class="dir-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M9 15h12M17 19l4-4-4-4M15 9H3M7 5l-4 4 4 4"/>
-            </svg>
-          </button>
+        <div class="auth-heading-block">
+          <h1 id="authHeading" class="auth-heading">Member Sanctuary Sign In</h1>
+          <p id="authSubheading" class="auth-subheading">Sign in to manage your float sessions, sensory preferences, and wellness log.</p>
         </div>
       </div>
 
@@ -87,14 +94,8 @@
           </div>
 
           <!-- Password Field with Show/Hide Toggle -->
-          <div class="form-group" style="margin-bottom:20px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <label class="form-label" for="loginPassword" style="margin-bottom:0;">Password <span style="color:#ef4444;">*</span></label>
-              <button type="button" onclick="showForgotPasswordDemo()" style="font-size:12px; color:var(--teal-primary); text-decoration:none; cursor:pointer;" aria-label="Forgot password help">
-                Forgot password?
-              </button>
-            </div>
-            
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label" for="loginPassword">Password <span style="color:#ef4444;">*</span></label>
             <div class="password-wrapper">
               <input 
                 type="password" 
@@ -124,16 +125,19 @@
             </div>
           </div>
 
-          <!-- Remember Me Checkbox -->
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+          <!-- Remember Me Checkbox & Forgot Password Row -->
+          <div class="auth-options-row">
             <label class="form-checkbox-label" for="rememberMeCheck">
               <input type="checkbox" id="rememberMeCheck" checked>
               <span>Remember me on this browser</span>
             </label>
+            <button type="button" onclick="showForgotPasswordDemo()" class="auth-forgot-link" aria-label="Forgot password help">
+              Forgot password?
+            </button>
           </div>
 
           <!-- Submit Button with Spinner -->
-          <button type="submit" id="submitLoginBtn" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px; font-size:14px;">
+          <button type="submit" id="submitLoginBtn" class="btn-book-primary auth-submit-btn">
             <span id="btnSpinner" class="btn-spinner" style="display:none;"></span>
             <span id="btnSubmitText">Log In to Sanctuary</span>
           </button>
@@ -298,7 +302,7 @@
           </div>
 
           <!-- Submit Button -->
-          <button type="submit" id="submitRegBtn" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px; font-size:14px;">
+          <button type="submit" id="submitRegBtn" class="btn-book-primary auth-submit-btn">
             <span id="regSpinner" class="btn-spinner" style="display:none;"></span>
             <span id="regSubmitText">Create Member Account</span>
           </button>
@@ -327,6 +331,8 @@
       const registerPanel = document.getElementById('registerPanel');
       const successAlert = document.getElementById('demoSuccessAlert');
       const noticeBox = document.getElementById('demoNoticeBox');
+      const heading = document.getElementById('authHeading');
+      const subheading = document.getElementById('authSubheading');
 
       if (successAlert) successAlert.style.display = 'none';
       if (noticeBox) noticeBox.style.display = 'none';
@@ -338,6 +344,8 @@
         regTabBtn.setAttribute('aria-selected', 'true');
         loginPanel.style.display = 'none';
         registerPanel.style.display = 'block';
+        if (heading) heading.textContent = 'Join Member Sanctuary';
+        if (subheading) subheading.textContent = 'Create your profile to reserve zero-gravity float sessions and track sensory progress.';
       } else {
         regTabBtn.classList.remove('active');
         regTabBtn.setAttribute('aria-selected', 'false');
@@ -345,6 +353,8 @@
         loginTabBtn.setAttribute('aria-selected', 'true');
         registerPanel.style.display = 'none';
         loginPanel.style.display = 'block';
+        if (heading) heading.textContent = 'Member Sanctuary Sign In';
+        if (subheading) subheading.textContent = 'Sign in to manage your float sessions, sensory preferences, and wellness log.';
       }
     }
 

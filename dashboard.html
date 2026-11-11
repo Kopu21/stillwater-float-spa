@@ -6,235 +6,331 @@
   <title>Client Sanctuary Dashboard | Stillwater Float & Sensory Spa</title>
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .dash-tab-btn {
-      padding-bottom: 12px;
-      font-size: 13px;
-      font-family: monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      border-bottom: 2px solid transparent;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .dash-tab-btn.active {
-      color: var(--teal-primary);
-      border-bottom-color: var(--teal-primary);
-      font-weight: 600;
-    }
-    .dash-tabs-bar {
-      display: flex;
-      gap: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 32px;
-      overflow-x: auto;
-      max-width: 100%;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .dash-tabs-bar::-webkit-scrollbar {
-      display: none;
-    }
-    @media (max-width: 900px) {
-      #dashGrid {
-        grid-template-columns: 1fr !important;
-      }
-      .dash-welcome-card {
-        padding: 20px 16px !important;
-      }
-      #userGreeting {
-        font-size: 20px !important;
-        word-break: break-word;
-      }
-    }
-  </style>
 </head>
 <body>
 
-  
+  <div id="dashShell" class="dash-shell">
+    <!-- Mobile Drawer Backdrop -->
+    <div id="dashSidebarBackdrop" class="dash-sidebar-backdrop" onclick="closeDashSidebarMobile()" aria-hidden="true"></div>
 
-  <main class="container" style="padding-top:24px; padding-bottom:36px;">
-    <!-- Welcome Header Banner -->
-    <div class="glass-panel-glow dash-welcome-card" style="padding:32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; margin-bottom:36px;">
-      <div style="display:flex; align-items:center; gap:20px;">
-        <div style="width:68px; height:68px; border-radius:50%; background:radial-gradient(circle, #2dd4bf 0%, #060b11 80%); border:2px solid var(--teal-primary); display:flex; align-items:center; justify-content:center; font-size:24px; color:var(--text-primary); box-shadow:0 0 20px var(--teal-glow);">
-          EV
-        </div>
-        <div>
-          <span class="section-tag" style="margin-bottom:2px;">Member Sanctuary Status</span>
-          <h1 id="userGreeting" style="font-size:28px; font-weight:300; color:var(--text-primary);">Welcome to Stillness, Elena Vance</h1>
-          <p id="userTier" style="font-size:12px; color:var(--teal-primary); font-family:monospace; margin-top:2px;">
-            Sanctuary Explorer • Member ID: #elena-vance
-          </p>
-        </div>
-      </div>
-
-      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-        <a href="index.html" class="btn-outline" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-          <span>&larr; Sanctuary Home</span>
-        </a>
-        <button onclick="openBookingModal()" class="btn-book-primary">
-          <span>+ Book Float Slot</span>
-        </button>
-        <button onclick="openNoteModal()" class="btn-outline">
-          <span>+ Log Wellness Note</span>
-        </button>
-        <button onclick="openTopupModal()" class="btn-outline">
-          <span>Top Up Credits</span>
-        </button>
-        <button onclick="logoutUser()" class="btn-outline" style="border-color:rgba(244,63,94,0.4); color:#fb7185;">
-          <span>Sign Out</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Sub Navigation Tabs -->
-    <div class="dash-tabs-bar">
-      <button onclick="switchDashTab('all')" id="tabAll" class="dash-tab-btn active">Dashboard Overview</button>
-      <button onclick="switchDashTab('package')" id="tabPack" class="dash-tab-btn">Session Package Usage</button>
-      <button onclick="switchDashTab('notes')" id="tabNotes" class="dash-tab-btn">Post-Float Wellness Diary</button>
-    </div>
-
-    <!-- MAIN DASHBOARD CONTENT -->
-    <div id="dashGrid" style="display:grid; grid-template-columns:1fr 2fr; gap:28px;">
-      
-      <!-- LEFT COLUMN: SESSION PACKAGE USAGE TRACKER -->
-      <div class="glass-panel" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="section-tag" style="margin-bottom:0;">Package Usage</span>
-            <span style="font-size:10px; font-family:monospace; background:rgba(45,212,191,0.15); color:var(--teal-primary); padding:2px 8px; border-radius:9999px;">Active</span>
-          </div>
-
-          <h3 id="dashPackageName" style="font-size:20px; color:var(--text-primary); font-weight:400; margin-bottom:4px;">5-Session Deep Immersion Pack</h3>
-          <p style="font-size:12px; color:var(--text-secondary);">Valid across Pod Alpha, Basin Beta, & Sanctuary Delta.</p>
-
-          <!-- Visual Progress Dial -->
-          <div class="dial-container">
-            <svg class="dial-svg" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.08)" stroke-width="8" fill="transparent"/>
-              <circle id="dialCircle" cx="50" cy="50" r="40" stroke="var(--teal-primary)" stroke-width="8" stroke-dasharray="251" stroke-dashoffset="100" stroke-linecap="round" fill="transparent" style="transition:stroke-dashoffset 1s ease;"/>
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside id="dashSidebar" class="dash-sidebar" aria-label="Client Sanctuary Navigation">
+      <div>
+        <div class="dash-sidebar-header">
+          <a href="index.html" class="dash-brand-link" title="Return to Stillwater Home">
+            <img src="assets/logo.svg" alt="Stillwater emblem" class="dash-brand-img">
+            <div class="dash-brand-text">
+              <span class="dash-brand-title">STILLWATER</span>
+              <span class="dash-brand-sub">Member Portal</span>
+            </div>
+          </a>
+          <button type="button" id="dashSidebarCollapseBtn" class="dash-sidebar-collapse-btn" onclick="toggleDashSidebar()" aria-label="Collapse or expand navigation sidebar" title="Toggle sidebar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
-            <div class="dial-center-text">
-              <div id="dialCount" class="dial-remain-count">2</div>
-              <div class="dial-remain-label">Floats Left</div>
-            </div>
-          </div>
-
-          <!-- Stats Breakdown -->
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; text-align:center;">
-            <div class="dash-stat-box" style="padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
-              <span style="font-size:10px; text-transform:uppercase; color:var(--text-muted); font-family:monospace;">Completed</span>
-              <p id="dashUsed" style="font-size:16px; font-family:monospace; color:var(--text-primary); font-weight:600;">3 Sessions</p>
-            </div>
-            <div class="dash-stat-box" style="padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
-              <span style="font-size:10px; text-transform:uppercase; color:var(--text-muted); font-family:monospace;">Total Value</span>
-              <p id="dashTotal" style="font-size:16px; font-family:monospace; color:var(--teal-primary); font-weight:600;">5 Sessions</p>
-            </div>
-          </div>
-
-          <div class="dash-info-box" style="font-size:12px; color:var(--text-secondary); line-height:1.8; padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
-            <div style="display:flex; justify-content:space-between;">
-              <span>Package Expiry:</span>
-              <span id="dashExpiry" style="color:#fbbf24; font-family:monospace;">Nov 30, 2026 (Active)</span>
-            </div>
-            <div style="display:flex; justify-content:space-between;">
-              <span>Per-Float Credit:</span>
-              <span style="color:var(--text-primary); font-family:monospace;">$59.00 / session</span>
-            </div>
-          </div>
+          </button>
+          <button type="button" id="dashSidebarCloseBtn" class="dash-sidebar-close-btn" onclick="closeDashSidebarMobile()" aria-label="Close navigation menu" title="Close menu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
 
-        <button onclick="openTopupModal()" class="btn-outline" style="width:100%; justify-content:center; margin-top:20px;">
-          + Add More Float Sessions
-        </button>
-      </div>
+        <nav class="dash-sidebar-nav-wrap" aria-label="Dashboard Sections">
+          <div class="dash-nav-group">
+            <span class="dash-nav-label">Sanctuary Views</span>
+            <button type="button" id="tabAll" class="dash-nav-item active" onclick="switchDashTab('all'); closeDashSidebarMobile();" title="Dashboard Overview">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+              </svg>
+              <span class="dash-nav-text">Dashboard Overview</span>
+            </button>
 
-      <!-- RIGHT COLUMN: UPCOMING APPOINTMENTS & COMPLETED SESSIONS -->
-      <div style="display:flex; flex-direction:column; gap:28px;">
-        <!-- Member Chamber Suite Preview Card -->
-        <div class="glass-panel reveal fade-in-up" style="overflow:hidden; border-radius:18px;">
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:0;">
-            <div class="img-zoom-wrap" style="position:relative; min-height:220px;">
-              <img src="assets/dashboard-member-suite.jpg" alt="Private VIP Member Float Suite with modern sensory deprivation pod capsule and ambient turquoise glow" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
-              <div class="float-img-badge">
-                <span>●</span>
-                <span>Private VIP Float Suite</span>
-              </div>
-            </div>
-            <div style="padding:24px; display:flex; flex-direction:column; justify-content:center;">
-              <span class="section-tag" style="margin-bottom:4px;">Chamber Reservation Preview</span>
-              <h4 style="font-size:18px; color:var(--text-primary); font-weight:400; margin-bottom:8px;">Sanctuary Pod Alpha &amp; Private Suite</h4>
-              <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.6; margin-bottom:14px;">
-                Your reserved chamber suite features medical-grade acoustic isolation, custom circadian LED stars, private rainfall shower, and plush organic spa robes.
-              </p>
-              <div style="display:flex; gap:8px; font-size:11px; color:var(--teal-primary); font-family:monospace;">
-                <span>✓ Private Suite Ready</span>
-                <span>•</span>
-                <span>✓ 93.5°F Skin Neutral</span>
-              </div>
-            </div>
-          </div>
-        </div>
+            <button type="button" id="tabPack" class="dash-nav-item" onclick="switchDashTab('package'); closeDashSidebarMobile();" title="Session Package Usage">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 3"></path>
+              </svg>
+              <span class="dash-nav-text">Package &amp; Credits</span>
+              <span id="sideCreditsBadge" class="dash-nav-badge">2</span>
+            </button>
 
-        <!-- Upcoming Sessions -->
-        <div class="glass-panel reveal fade-in-up" style="padding:28px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-            <div>
-              <h3 style="font-size:18px; color:var(--text-primary); font-weight:400;">Upcoming Booked Float Sessions</h3>
-              <p style="font-size:12px; color:var(--text-secondary);">Your reserved zero-gravity sanctuary slots.</p>
-            </div>
-            <button onclick="openBookingModal()" class="btn-outline" style="font-size:11px; padding:6px 14px;">
-              + Book Another
+            <button type="button" id="tabBookings" class="dash-nav-item" onclick="switchDashTab('bookings'); closeDashSidebarMobile();" title="Upcoming Bookings &amp; Suite">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span class="dash-nav-text">Booked Floats</span>
+              <span id="sideUpcomingBadge" class="dash-nav-badge">1</span>
+            </button>
+
+            <button type="button" id="tabNotes" class="dash-nav-item" onclick="switchDashTab('notes'); closeDashSidebarMobile();" title="Post-Float Wellness Diary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+              <span class="dash-nav-text">Wellness Diary</span>
+              <span id="sideNotesBadge" class="dash-nav-badge">3</span>
             </button>
           </div>
 
-          <div id="upcomingList">
-            <!-- Dynamically populated via JS -->
-          </div>
-        </div>
+          <div class="dash-nav-group">
+            <span class="dash-nav-label">Quick Actions</span>
+            <button type="button" class="dash-nav-item is-action" onclick="openBookingModal(); closeDashSidebarMobile();" title="Book Float Slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span class="dash-nav-text">Book Float Slot</span>
+            </button>
 
-        <!-- Completed Sessions Log -->
-        <div class="glass-panel" style="padding:28px;">
-          <h3 style="font-size:18px; color:var(--text-primary); font-weight:400; margin-bottom:14px;">Completed Session History</h3>
-          <div id="pastList">
-            <!-- Dynamically populated via JS -->
+            <button type="button" class="dash-nav-item" onclick="openNoteModal(); closeDashSidebarMobile();" title="Log Wellness Note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+              <span class="dash-nav-text">Log Wellness Note</span>
+            </button>
+
+            <button type="button" class="dash-nav-item" onclick="openTopupModal(); closeDashSidebarMobile();" title="Top Up Credits">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+              <span class="dash-nav-text">Top Up Credits</span>
+            </button>
           </div>
-        </div>
+        </nav>
       </div>
-    </div>
 
-    <!-- FULL-WIDTH SECTION: POST-FLOAT WELLNESS DIARY & NOTES -->
-    <div id="wellnessSection" style="margin-top:48px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:14px;">
-        <div>
-          <span class="section-tag" style="margin-bottom:2px;">Post-Float Telemetry</span>
-          <h2 style="font-size:24px; color:var(--text-primary); font-weight:300;">Post-Float Wellness Diary & Notes</h2>
-          <p style="font-size:13px; color:var(--text-secondary);">Tracking nervous system recovery, stress drop deltas, and muscular release.</p>
-        </div>
-        <button onclick="openNoteModal()" class="btn-book-primary">
-          <span>+ Log Post-Float Reflection</span>
+      <div class="dash-sidebar-footer">
+        <a href="index.html" class="dash-nav-item" title="Back to Sanctuary Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="dash-nav-text">Sanctuary Home</span>
+        </a>
+        <button type="button" class="dash-nav-item is-danger" onclick="logoutUser()" title="Sign Out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span class="dash-nav-text">Sign Out</span>
         </button>
       </div>
+    </aside>
 
-      <div id="wellnessNotesList" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:24px;">
-        <!-- Populated via JS -->
-      </div>
+    <!-- MAIN DASHBOARD WORKSPACE -->
+    <div class="dash-workspace">
+      <!-- Sticky Top Dashboard Header -->
+      <header class="dash-topbar">
+        <div class="dash-topbar-left">
+          <button type="button" id="dashSidebarToggle" class="dash-topbar-toggle" onclick="toggleDashSidebar()" aria-label="Toggle dashboard navigation sidebar" aria-controls="dashSidebar" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="dash-page-title-wrap">
+            <h1 id="dashPageTitle" class="dash-page-title">Client Sanctuary Dashboard</h1>
+            <p id="dashViewSubtitle" class="dash-page-subtitle">Sanctuary Overview &amp; Active Float Telemetry</p>
+          </div>
+        </div>
+
+        <div class="dash-topbar-right">
+          <button type="button" onclick="openBookingModal()" class="btn-book-primary dash-topbar-cta">
+            <span>+ Book Float Slot</span>
+          </button>
+          <button type="button" class="btn-control icon-only theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">
+            <span>☀️</span>
+          </button>
+          <div class="dash-user-pill" aria-label="Member Profile">
+            <div id="userInitials" class="dash-avatar" aria-hidden="true">EV</div>
+            <div class="dash-user-meta">
+              <span id="userGreeting" class="dash-greeting">Welcome to Stillness, Elena Vance</span>
+              <span id="userTier" class="dash-tier">Sanctuary Explorer • #elena-vance</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="dash-content">
+        <!-- Summary KPI Strip -->
+        <section id="dashKpiStrip" class="dash-kpi-strip" aria-label="Sanctuary Summary Statistics">
+          <div class="dash-kpi-card">
+            <span class="dash-kpi-label">Remaining Credits</span>
+            <div id="kpiRemaining" class="dash-kpi-value">2</div>
+            <span class="dash-kpi-sub">Ready to reserve</span>
+          </div>
+          <div class="dash-kpi-card">
+            <span class="dash-kpi-label">Completed Floats</span>
+            <div id="kpiCompleted" class="dash-kpi-value">3</div>
+            <span class="dash-kpi-sub">Zero-gravity hours logged</span>
+          </div>
+          <div class="dash-kpi-card">
+            <span class="dash-kpi-label">Upcoming Bookings</span>
+            <div id="kpiUpcoming" class="dash-kpi-value">1</div>
+            <span class="dash-kpi-sub">Confirmed suite slot</span>
+          </div>
+          <div class="dash-kpi-card">
+            <span class="dash-kpi-label">Avg Stress Drop</span>
+            <div id="kpiAvgDrop" class="dash-kpi-value">-5.0</div>
+            <span class="dash-kpi-sub">Post-float delta score</span>
+          </div>
+        </section>
+
+        <!-- PRIMARY WORKSPACE GRID: PACKAGE TRACKER + SUITE PREVIEW & UPCOMING SESSIONS -->
+        <div id="dashGrid" class="dash-main-grid">
+          <!-- Left Card: Package Usage -->
+          <section id="packageCard" class="glass-panel dash-card dash-package-card" aria-labelledby="dashPackageName">
+            <div>
+              <div class="dash-card-header-row">
+                <span class="section-tag" style="margin-bottom:0;">Package Usage</span>
+                <span class="dash-status-pill">Active</span>
+              </div>
+              <h2 id="dashPackageName" class="dash-section-heading">5-Session Deep Immersion Pack</h2>
+              <p class="dash-section-sub">Valid across Pod Alpha, Basin Beta, &amp; Sanctuary Delta.</p>
+            </div>
+
+            <!-- Centered Circular Progress Dial -->
+            <div class="dial-container">
+              <svg class="dial-svg" viewBox="0 0 100 100" aria-hidden="true">
+                <circle class="dial-track-circle" cx="50" cy="50" r="40" stroke-width="8" fill="transparent"/>
+                <circle id="dialCircle" cx="50" cy="50" r="40" stroke="var(--teal-primary)" stroke-width="8" stroke-dasharray="251" stroke-dashoffset="100" stroke-linecap="round" fill="transparent" style="transition:stroke-dashoffset 0.8s ease;"/>
+              </svg>
+              <div class="dial-center-text">
+                <div id="dialCount" class="dial-remain-count">2</div>
+                <div class="dial-remain-label">Floats Left</div>
+              </div>
+            </div>
+
+            <div>
+              <!-- Stats Breakdown -->
+              <div class="dash-stats-pair">
+                <div class="dash-stat-box">
+                  <span class="dash-stat-label">Completed</span>
+                  <p id="dashUsed" class="dash-stat-value">3 Sessions</p>
+                </div>
+                <div class="dash-stat-box">
+                  <span class="dash-stat-label">Total Value</span>
+                  <p id="dashTotal" class="dash-stat-value is-accent">5 Sessions</p>
+                </div>
+              </div>
+
+              <div class="dash-info-box">
+                <div class="dash-info-row">
+                  <span>Package Expiry:</span>
+                  <span id="dashExpiry" class="dash-expiry-val">Nov 30, 2026 (Active)</span>
+                </div>
+                <div class="dash-info-row">
+                  <span>Per-Float Credit:</span>
+                  <span id="dashPerSession" class="dash-credit-val">$59.00 / session</span>
+                </div>
+              </div>
+
+              <button type="button" onclick="openTopupModal()" class="btn-outline" style="width:100%; justify-content:center; margin-top:14px;">
+                + Add More Float Sessions
+              </button>
+            </div>
+          </section>
+
+          <!-- Right Column: Reserved Suite Preview + Upcoming Sessions -->
+          <div id="rightColStack" class="dash-col-stack">
+            <section class="glass-panel dash-suite-preview reveal fade-in-up" aria-labelledby="suitePreviewHeading">
+              <div class="dash-suite-grid">
+                <div class="img-zoom-wrap dash-suite-media">
+                  <img src="assets/dashboard-member-suite.jpg" alt="Private VIP Member Float Suite with modern sensory deprivation pod capsule and ambient turquoise glow" loading="lazy">
+                  <div class="float-img-badge">
+                    <span>●</span>
+                    <span>Private VIP Float Suite</span>
+                  </div>
+                </div>
+                <div class="dash-suite-body">
+                  <span class="section-tag" style="margin-bottom:6px;">Chamber Reservation Preview</span>
+                  <h2 id="suitePreviewHeading" class="dash-section-heading" style="margin-bottom:8px;">Sanctuary Pod Alpha &amp; Private Suite</h2>
+                  <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin-bottom:12px;">
+                    Your reserved chamber suite features medical-grade acoustic isolation, custom circadian LED stars, private rainfall shower, and plush organic spa robes.
+                  </p>
+                  <div class="dash-suite-pills">
+                    <span>✓ Private Suite Ready</span>
+                    <span>•</span>
+                    <span>✓ 93.5°F Skin Neutral</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="glass-panel dash-card dash-upcoming-card reveal fade-in-up" aria-labelledby="upcomingHeading">
+              <div class="dash-card-header-row">
+                <div>
+                  <h2 id="upcomingHeading" class="dash-section-heading">Upcoming Booked Float Sessions</h2>
+                  <p class="dash-section-sub">Your reserved zero-gravity sanctuary slots.</p>
+                </div>
+                <button type="button" onclick="openBookingModal()" class="btn-outline" style="font-size:12px; padding:7px 14px;">
+                  + Book Another
+                </button>
+              </div>
+
+              <div id="upcomingList">
+                <!-- Dynamically populated via JS -->
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- FULL-WIDTH ROW: COMPLETED SESSION HISTORY -->
+        <section id="historySection" class="glass-panel dash-card" aria-labelledby="completedHeading">
+          <div class="dash-card-header-row">
+            <div>
+              <h2 id="completedHeading" class="dash-section-heading">Completed Session History</h2>
+              <p class="dash-section-sub">Recent sensory restoration logs across Stillwater suites.</p>
+            </div>
+            <span id="pastCountBadge" class="dash-status-pill">3 Logged</span>
+          </div>
+          <div id="pastList" class="dash-history-grid">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+
+        <!-- FULL-WIDTH SECTION: POST-FLOAT WELLNESS DIARY & NOTES -->
+        <section id="wellnessSection" class="dash-wellness-section" aria-labelledby="wellnessHeading">
+          <div class="dash-wellness-header">
+            <div>
+              <span class="section-tag" style="margin-bottom:4px;">Post-Float Telemetry</span>
+              <h2 id="wellnessHeading" class="section-title" style="font-size:clamp(20px, 2.4vw, 26px); margin-bottom:4px;">Post-Float Wellness Diary &amp; Notes</h2>
+              <p class="section-desc" style="margin:0;">Tracking nervous system recovery, stress drop deltas, and muscular release.</p>
+            </div>
+            <button type="button" onclick="openNoteModal()" class="btn-book-primary">
+              <span>+ Log Post-Float Reflection</span>
+            </button>
+          </div>
+
+          <div id="wellnessNotesList" class="dash-notes-grid">
+            <!-- Populated via JS -->
+          </div>
+        </section>
+      </main>
     </div>
-  </main>
+  </div>
 
   <!-- 1. BOOKING MODAL -->
-  <div id="bookingModal" class="modal-overlay">
+  <div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="dashBookingModalTitle">
     <div class="modal-window">
-      <button onclick="closeBookingModal()" class="modal-close">&times;</button>
+      <button type="button" onclick="closeBookingModal()" class="modal-close" aria-label="Close modal">&times;</button>
       <span class="section-tag">Private Sanctuary Scheduling</span>
-      <h3 style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Reserve Float Session Slot</h3>
+      <h3 id="dashBookingModalTitle" style="font-size:24px; font-weight:400; color:var(--text-primary); margin-bottom:18px;">Reserve Float Session Slot</h3>
 
       <form onsubmit="handleBookingSubmit(event)">
         <div class="form-group">
-          <label class="form-label">Chamber Architecture</label>
+          <label class="form-label" for="modalPod">Chamber Architecture</label>
           <select id="modalPod" class="form-select">
             <option value="Pod Alpha — Zero-Gravity Capsule">Pod Alpha — Zero-Gravity Capsule</option>
             <option value="Basin Beta — Open Ocean Suite">Basin Beta — Open Ocean Suite</option>
@@ -243,7 +339,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label">Session Offering</label>
+          <label class="form-label" for="modalService">Session Offering</label>
           <select id="modalService" class="form-select">
             <option value="60-Minute Signature Sensory Float">60-Minute Signature Sensory Float</option>
             <option value="90-Minute Deep Journey Float" selected>90-Minute Deep Journey Float</option>
@@ -252,13 +348,13 @@
           </select>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="dash-form-row-2">
           <div class="form-group">
-            <label class="form-label">Float Date</label>
+            <label class="form-label" for="modalDate">Float Date</label>
             <input type="date" id="modalDate" class="form-input" value="2026-10-19" required>
           </div>
           <div class="form-group">
-            <label class="form-label">Time Slot</label>
+            <label class="form-label" for="modalSlot">Time Slot</label>
             <select id="modalSlot" class="form-select">
               <option value="09:00 AM – 10:30 AM">09:00 AM – Morning Stillness</option>
               <option value="11:00 AM – 12:30 PM">11:00 AM – Midday Reset</option>
@@ -270,7 +366,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label">Lighting Preference</label>
+          <label class="form-label" for="modalLight">Lighting Preference</label>
           <select id="modalLight" class="form-select">
             <option value="Total Darkness (Sensory Void)">Total Darkness (Sensory Void)</option>
             <option value="Constellation Starlight Ceiling">Constellation Starlight Ceiling</option>
@@ -280,7 +376,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label">Acoustic Audio Setting</label>
+          <label class="form-label" for="modalAudio">Acoustic Audio Setting</label>
           <select id="modalAudio" class="form-select">
             <option value="Theta Waves 432Hz (First 10 min)">Theta Waves 432Hz (First 10 min, then silence)</option>
             <option value="Pure Silence Throughout">Pure Silence Throughout</option>
@@ -289,9 +385,11 @@
           </select>
         </div>
 
-        <div style="padding:14px; background:rgba(45,212,191,0.08); border-radius:12px; margin-bottom:20px; font-size:12px; color:var(--text-secondary); display:flex; justify-content:space-between;">
-          <span>Package Credit Deduction:</span>
-          <span style="color:var(--teal-primary); font-family:monospace; font-weight:600;">1 Float Deducted From Package</span>
+        <div class="dash-info-box" style="margin-bottom:20px;">
+          <div class="dash-info-row">
+            <span>Package Credit Deduction:</span>
+            <span style="color:var(--teal-primary); font-family:monospace; font-weight:600;">1 Float Deducted From Package</span>
+          </div>
         </div>
 
         <button type="submit" class="btn-book-primary" style="width:100%; justify-content:center; padding:14px;">
@@ -302,30 +400,30 @@
   </div>
 
   <!-- 2. LOG POST-FLOAT WELLNESS NOTE MODAL -->
-  <div id="noteModal" class="modal-overlay">
+  <div id="noteModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="dashNoteModalTitle">
     <div class="modal-window">
-      <button onclick="closeNoteModal()" class="modal-close">&times;</button>
+      <button type="button" onclick="closeNoteModal()" class="modal-close" aria-label="Close modal">&times;</button>
       <span class="section-tag">Nervous System Telemetry</span>
-      <h3 style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Log Post-Float Wellness Note</h3>
+      <h3 id="dashNoteModalTitle" style="font-size:24px; font-weight:400; color:var(--text-primary); margin-bottom:18px;">Log Post-Float Wellness Note</h3>
 
       <form onsubmit="handleNoteSubmit(event)">
         <div class="form-group">
-          <label class="form-label">Chamber / Experience Title</label>
+          <label class="form-label" for="noteTitle">Chamber / Experience Title</label>
           <input type="text" id="noteTitle" class="form-input" value="Pod Alpha — 90-Minute Immersion" required>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="dash-form-row-2">
           <div class="form-group">
             <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-              <label class="form-label" style="margin-bottom:0;">Pre-Float Stress (1-10)</label>
-              <span id="preVal" style="color:#fb7185; font-family:monospace; font-weight:600;">8 / 10</span>
+              <label class="form-label" for="notePre" style="margin-bottom:0;">Pre-Float Stress (1-10)</label>
+              <span id="preVal" style="color:var(--danger-text); font-family:monospace; font-weight:600;">8 / 10</span>
             </div>
             <input type="range" id="notePre" min="1" max="10" value="8" class="slider-range" oninput="document.getElementById('preVal').textContent = this.value + ' / 10'">
           </div>
 
           <div class="form-group">
             <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-              <label class="form-label" style="margin-bottom:0;">Post-Float Stress (1-10)</label>
+              <label class="form-label" for="notePost" style="margin-bottom:0;">Post-Float Stress (1-10)</label>
               <span id="postVal" style="color:var(--teal-primary); font-family:monospace; font-weight:600;">2 / 10</span>
             </div>
             <input type="range" id="notePost" min="1" max="10" value="2" class="slider-range" oninput="document.getElementById('postVal').textContent = this.value + ' / 10'">
@@ -333,17 +431,17 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label">Physical Tension Relief Areas (Comma Separated)</label>
+          <label class="form-label" for="noteTension">Physical Tension Relief Areas (Comma Separated)</label>
           <input type="text" id="noteTension" class="form-input" value="Cervical Neck, Lumbar Spine, Jaw Clenching">
         </div>
 
         <div class="form-group">
-          <label class="form-label">Mental Reflections & Mindstate</label>
+          <label class="form-label" for="noteReflection">Mental Reflections &amp; Mindstate</label>
           <textarea id="noteReflection" rows="3" class="form-textarea" placeholder="Describe how your thoughts quieted down, mental imagery, or creative thoughts...">Felt my thoughts quiet completely around minute 20. The sense of where skin ended and water began dissolved.</textarea>
         </div>
 
         <div class="form-group">
-          <label class="form-label">Sanctuary Guide Advice / Observation</label>
+          <label class="form-label" for="noteGuide">Sanctuary Guide Advice / Observation</label>
           <input type="text" id="noteGuide" class="form-input" value="Client reported complete loosening of upper traps. Advised hydration with magnesium water.">
         </div>
 
@@ -355,42 +453,77 @@
   </div>
 
   <!-- 3. TOP-UP MODAL -->
-  <div id="topupModal" class="modal-overlay">
+  <div id="topupModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="dashTopupModalTitle">
     <div class="modal-window">
-      <button onclick="closeTopupModal()" class="modal-close">&times;</button>
+      <button type="button" onclick="closeTopupModal()" class="modal-close" aria-label="Close modal">&times;</button>
       <span class="section-tag">Sanctuary Recharge</span>
-      <h3 style="font-size:24px; font-weight:300; color:var(--text-primary); margin-bottom:18px;">Add Float Package Credits</h3>
+      <h3 id="dashTopupModalTitle" style="font-size:24px; font-weight:400; color:var(--text-primary); margin-bottom:18px;">Add Float Package Credits</h3>
 
       <div style="display:grid; gap:14px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:18px; border-radius:14px; background:rgba(6,11,17,0.7); border:1px solid rgba(255,255,255,0.08);">
+        <div class="dash-topup-option">
           <div>
-            <h4 style="font-size:16px; color:var(--text-primary);">3-Session Discovery Pack</h4>
-            <p style="font-size:12px; color:var(--teal-primary); font-family:monospace;">$195 ($65/session)</p>
+            <h4 style="font-size:16px; color:var(--text-primary); margin-bottom:4px;">3-Session Discovery Pack</h4>
+            <p style="font-size:13px; color:var(--teal-primary); font-family:monospace; font-weight:600;">$195 ($65/session)</p>
           </div>
-          <button onclick="topUp(3, 195, '3-Session Discovery Pack')" class="btn-outline">Add 3 Floats</button>
+          <button type="button" onclick="topUp(3, 195, '3-Session Discovery Pack')" class="btn-outline">Add 3 Floats</button>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:18px; border-radius:14px; background:rgba(45,212,191,0.08); border:1px solid var(--border-highlight);">
+        <div class="dash-topup-option is-featured">
           <div>
-            <h4 style="font-size:16px; color:var(--text-primary);">5-Session Deep Immersion Pack</h4>
-            <p style="font-size:12px; color:var(--teal-primary); font-family:monospace;">$295 ($59/session • $100 Savings)</p>
+            <h4 style="font-size:16px; color:var(--text-primary); margin-bottom:4px;">5-Session Deep Immersion Pack</h4>
+            <p style="font-size:13px; color:var(--teal-primary); font-family:monospace; font-weight:600;">$295 ($59/session • $100 Savings)</p>
           </div>
-          <button onclick="topUp(5, 295, '5-Session Deep Immersion Pack')" class="btn-book-primary">Add 5 Floats</button>
+          <button type="button" onclick="topUp(5, 295, '5-Session Deep Immersion Pack')" class="btn-book-primary">Add 5 Floats</button>
         </div>
       </div>
     </div>
   </div>
 
-  
-
   <script src="js/app.js"></script>
   <script>
+    function syncSidebarAria() {
+      const shell = document.getElementById('dashShell');
+      const toggleBtn = document.getElementById('dashSidebarToggle');
+      if (!shell || !toggleBtn) return;
+      const w = window.innerWidth;
+      const expanded = w <= 640
+        ? shell.classList.contains('drawer-open')
+        : w <= 1024
+          ? shell.classList.contains('tablet-expanded')
+          : !shell.classList.contains('is-collapsed');
+      toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+
+    function toggleDashSidebar() {
+      const shell = document.getElementById('dashShell');
+      if (!shell) return;
+      const w = window.innerWidth;
+      if (w <= 640) {
+        shell.classList.toggle('drawer-open');
+      } else if (w <= 1024) {
+        shell.classList.toggle('tablet-expanded');
+      } else {
+        shell.classList.toggle('is-collapsed');
+      }
+      syncSidebarAria();
+    }
+
+    function closeDashSidebarMobile() {
+      const shell = document.getElementById('dashShell');
+      if (shell) shell.classList.remove('drawer-open');
+      syncSidebarAria();
+    }
+
     function renderDashboard() {
       const user = getUser();
+      const initialsEl = document.getElementById('userInitials');
+      if (initialsEl && user.name) {
+        initialsEl.textContent = user.name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+      }
       document.getElementById('userGreeting').textContent = `Welcome to Stillness, ${user.name}`;
       document.getElementById('userTier').textContent = `${user.tier} • Member ID: #${user.id.replace('usr-','')}`;
 
-      // Package tracker
+      // Package tracker, sidebar badges & KPI summary
       if (user.activePackage) {
         document.getElementById('dashPackageName').textContent = user.activePackage.name;
         document.getElementById('dialCount').textContent = user.activePackage.remainingSessions;
@@ -398,47 +531,84 @@
         document.getElementById('dashTotal').textContent = `${user.activePackage.totalSessions} Sessions`;
         document.getElementById('dashExpiry').textContent = `${user.activePackage.expiryDate} (Active)`;
 
+        const perFloatEl = document.getElementById('dashPerSession');
+        if (perFloatEl && user.activePackage.packagePrice && user.activePackage.totalSessions) {
+          const perFloat = (user.activePackage.packagePrice / user.activePackage.totalSessions).toFixed(2);
+          perFloatEl.textContent = `$${perFloat} / session`;
+        }
+
+        const kpiRemaining = document.getElementById('kpiRemaining');
+        if (kpiRemaining) kpiRemaining.textContent = user.activePackage.remainingSessions;
+
+        const sideCreditsBadge = document.getElementById('sideCreditsBadge');
+        if (sideCreditsBadge) sideCreditsBadge.textContent = user.activePackage.remainingSessions;
+
         // SVG progress stroke
         const total = user.activePackage.totalSessions || 1;
         const used = user.activePackage.usedSessions || 0;
         const offset = 251 - (251 * used / total);
         document.getElementById('dialCircle').style.strokeDashoffset = offset;
       }
+
+      const kpiCompleted = document.getElementById('kpiCompleted');
+      if (kpiCompleted) kpiCompleted.textContent = (user.pastBookings ? user.pastBookings.length : 0);
+
+      const upcomingLen = user.upcomingBookings ? user.upcomingBookings.length : 0;
+      const kpiUpcoming = document.getElementById('kpiUpcoming');
+      if (kpiUpcoming) kpiUpcoming.textContent = upcomingLen;
+      const sideUpcomingBadge = document.getElementById('sideUpcomingBadge');
+      if (sideUpcomingBadge) sideUpcomingBadge.textContent = upcomingLen;
+
+      const notesLen = user.wellnessNotes ? user.wellnessNotes.length : 0;
+      const sideNotesBadge = document.getElementById('sideNotesBadge');
+      if (sideNotesBadge) sideNotesBadge.textContent = notesLen;
+
+      const kpiAvgDrop = document.getElementById('kpiAvgDrop');
+      if (kpiAvgDrop && user.wellnessNotes && user.wellnessNotes.length > 0) {
+        const avg = user.wellnessNotes.reduce((acc, n) => acc + (n.preStressScore - n.postStressScore), 0) / user.wellnessNotes.length;
+        kpiAvgDrop.textContent = `-${avg.toFixed(1)}`;
+      }
+
       updateNavBadge();
 
       // Upcoming bookings
       const upList = document.getElementById('upcomingList');
       if (user.upcomingBookings && user.upcomingBookings.length > 0) {
         upList.innerHTML = user.upcomingBookings.map(b => `
-          <div style="padding:18px; border-radius:16px; background:rgba(6,11,17,0.7); border:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:12px;">
+          <div class="dash-booking-card">
             <div>
-              <span style="font-size:10px; font-family:monospace; background:rgba(45,212,191,0.2); color:var(--teal-primary); padding:2px 8px; border-radius:9999px;">${b.status}</span>
-              <h4 style="font-size:16px; color:var(--text-primary); margin:6px 0 2px;">${b.podName}</h4>
-              <p style="font-size:12px; color:var(--teal-primary); font-family:monospace;">${b.date} • ${b.timeSlot}</p>
-              <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">Setting: ${b.lightingPreference} | ${b.room || 'Suite 03'}</p>
+              <span class="dash-status-pill">${b.status}</span>
+              <h4 class="dash-booking-title">${b.podName}</h4>
+              <p class="dash-booking-time">${b.date} • ${b.timeSlot}</p>
+              <p class="dash-booking-meta">Setting: ${b.lightingPreference} | ${b.room || 'Suite 03'}</p>
             </div>
-            <div style="display:flex; gap:8px;">
-              <button onclick="exportCalendar('${b.id}')" class="btn-outline" style="font-size:11px; padding:6px 12px;">Export .ICS</button>
-              <button onclick="cancelSlot('${b.id}')" class="btn-outline" style="font-size:11px; padding:6px 12px; color:#fb7185; border-color:rgba(251,113,133,0.3);">Cancel</button>
+            <div class="dash-booking-actions">
+              <button type="button" onclick="exportCalendar('${b.id}')" class="btn-outline" style="font-size:12px; padding:6px 14px;">Export .ICS</button>
+              <button type="button" onclick="cancelSlot('${b.id}')" class="btn-outline dash-cancel-btn">Cancel</button>
             </div>
           </div>
         `).join('');
       } else {
-        upList.innerHTML = '<p style="font-size:13px; color:var(--text-muted); padding:16px; text-align:center;">No upcoming bookings. Click "Book A Float" to schedule your next slot.</p>';
+        upList.innerHTML = '<p style="font-size:14px; color:var(--text-muted); padding:20px; text-align:center;">No upcoming bookings. Click "+ Book Float Slot" to schedule your next session.</p>';
       }
 
       // Past sessions
       const pastList = document.getElementById('pastList');
+      const pastBadge = document.getElementById('pastCountBadge');
       if (user.pastBookings && user.pastBookings.length > 0) {
+        if (pastBadge) pastBadge.textContent = `${user.pastBookings.length} Logged`;
         pastList.innerHTML = user.pastBookings.map(pb => `
-          <div style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; font-size:12px;">
+          <div class="dash-history-row">
             <div>
-              <span style="color:var(--text-primary); font-weight:500;">${pb.podName}</span>
-              <span style="color:var(--text-muted); margin-left:8px; font-family:monospace;">${pb.date} • ${pb.timeSlot}</span>
+              <span class="dash-history-title">${pb.podName}</span>
+              <span class="dash-history-time">${pb.date} • ${pb.timeSlot}</span>
             </div>
-            <span style="color:var(--teal-primary); font-family:monospace;">Completed</span>
+            <span class="dash-status-pill">Completed</span>
           </div>
         `).join('');
+      } else {
+        if (pastBadge) pastBadge.textContent = '0 Logged';
+        pastList.innerHTML = '<p style="font-size:13.5px; color:var(--text-muted); padding:12px 0;">No completed sessions recorded yet.</p>';
       }
 
       // Wellness notes
@@ -447,46 +617,46 @@
         notesList.innerHTML = user.wellnessNotes.map(n => {
           const delta = n.preStressScore - n.postStressScore;
           return `
-            <div class="glass-panel" style="padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+            <article class="glass-panel dash-note-card">
               <div>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                  <span style="font-size:11px; font-family:monospace; color:var(--teal-primary);">${n.date}</span>
-                  <span style="font-size:10px; font-family:monospace; background:rgba(45,212,191,0.2); color:var(--teal-primary); padding:2px 8px; border-radius:9999px;">-${delta} Stress Drop</span>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px;">
+                  <span style="font-size:12px; font-family:monospace; color:var(--teal-primary); font-weight:600;">${n.date}</span>
+                  <span class="dash-status-pill">-${delta} Stress Drop</span>
                 </div>
-                <h4 style="font-size:16px; color:var(--text-primary); margin-bottom:12px;">${n.sessionName}</h4>
+                <h4 style="font-size:17px; color:var(--text-primary); font-weight:500; margin-bottom:14px; line-height:1.35;">${n.sessionName}</h4>
 
                 <!-- Comparison bar -->
-                <div style="background:rgba(6,11,17,0.7); padding:12px; border-radius:12px; margin-bottom:14px; font-size:11px;">
-                  <div style="display:flex; justify-content:space-between; color:#fb7185; margin-bottom:4px;">
+                <div class="dash-stress-panel">
+                  <div class="dash-stress-row dash-stress-pre">
                     <span>Pre-Float Stress:</span>
                     <span style="font-weight:600; font-family:monospace;">${n.preStressScore} / 10</span>
                   </div>
-                  <div style="display:flex; justify-content:space-between; color:var(--teal-primary); margin-bottom:8px;">
+                  <div class="dash-stress-row dash-stress-post">
                     <span>Post-Float Stress:</span>
                     <span style="font-weight:600; font-family:monospace;">${n.postStressScore} / 10</span>
                   </div>
-                  <div class="stress-meter-track">
-                    <div style="width:${n.postStressScore * 10}%; background:#fb7185;"></div>
-                    <div style="width:${delta * 10}%; background:var(--teal-primary);"></div>
+                  <div class="stress-meter-track" aria-label="Stress reduction progress bar">
+                    <div class="stress-meter-rem" style="width:${n.postStressScore * 10}%;"></div>
+                    <div class="stress-meter-drop" style="width:${Math.max(0, delta * 10)}%;"></div>
                   </div>
                 </div>
 
-                <div style="margin-bottom:12px;">
-                  <p style="font-size:10px; text-transform:uppercase; font-family:monospace; color:var(--text-muted); margin-bottom:6px;">Tension Released:</p>
+                <div style="margin-bottom:14px;">
+                  <p style="font-size:11.5px; text-transform:uppercase; font-family:monospace; color:var(--text-muted); font-weight:600; margin-bottom:8px;">Tension Released:</p>
                   <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                    ${n.physicalTensionRelief.map(t => `<span style="font-size:10px; font-family:monospace; background:rgba(45,212,191,0.1); color:var(--teal-primary); padding:2px 8px; border-radius:6px;">✓ ${t}</span>`).join('')}
+                    ${n.physicalTensionRelief.map(t => `<span class="dash-tension-tag">✓ ${t}</span>`).join('')}
                   </div>
                 </div>
 
-                <p style="font-size:12px; color:var(--text-secondary); line-height:1.6; font-style:italic; background:rgba(6,11,17,0.4); padding:10px; border-radius:10px;">
+                <p class="dash-reflection-quote">
                   "${n.mentalState}"
                 </p>
               </div>
 
-              <div style="margin-top:14px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); font-size:11px; font-family:monospace; color:var(--text-muted);">
+              <div class="dash-guide-note">
                 Guide: ${n.therapistReflection}
               </div>
-            </div>
+            </article>
           `;
         }).join('');
       }
@@ -538,19 +708,62 @@
     }
 
     function switchDashTab(tab) {
-      document.getElementById('tabAll').classList.toggle('active', tab === 'all');
-      document.getElementById('tabPack').classList.toggle('active', tab === 'package');
-      document.getElementById('tabNotes').classList.toggle('active', tab === 'notes');
+      const btnAll = document.getElementById('tabAll');
+      const btnPack = document.getElementById('tabPack');
+      const btnBook = document.getElementById('tabBookings');
+      const btnNotes = document.getElementById('tabNotes');
+      if (btnAll) btnAll.classList.toggle('active', tab === 'all');
+      if (btnPack) btnPack.classList.toggle('active', tab === 'package');
+      if (btnBook) btnBook.classList.toggle('active', tab === 'bookings');
+      if (btnNotes) btnNotes.classList.toggle('active', tab === 'notes');
+
+      const kpiStrip = document.getElementById('dashKpiStrip');
+      const dashGrid = document.getElementById('dashGrid');
+      const packageCard = document.getElementById('packageCard');
+      const rightCol = document.getElementById('rightColStack');
+      const historySec = document.getElementById('historySection');
+      const wellnessSec = document.getElementById('wellnessSection');
+      const subEl = document.getElementById('dashViewSubtitle');
 
       if (tab === 'package') {
-        document.getElementById('dashGrid').style.display = 'grid';
-        document.getElementById('wellnessSection').style.display = 'none';
+        if (kpiStrip) kpiStrip.style.display = 'none';
+        if (dashGrid) {
+          dashGrid.style.display = 'grid';
+          dashGrid.style.gridTemplateColumns = 'minmax(0, 560px)';
+        }
+        if (packageCard) packageCard.style.display = 'flex';
+        if (rightCol) rightCol.style.display = 'none';
+        if (historySec) historySec.style.display = 'block';
+        if (wellnessSec) wellnessSec.style.display = 'none';
+        if (subEl) subEl.textContent = 'Session Package Credits & Historical Float Log';
+      } else if (tab === 'bookings') {
+        if (kpiStrip) kpiStrip.style.display = 'none';
+        if (dashGrid) {
+          dashGrid.style.display = 'grid';
+          dashGrid.style.gridTemplateColumns = '1fr';
+        }
+        if (packageCard) packageCard.style.display = 'none';
+        if (rightCol) rightCol.style.display = 'flex';
+        if (historySec) historySec.style.display = 'block';
+        if (wellnessSec) wellnessSec.style.display = 'none';
+        if (subEl) subEl.textContent = 'Reserved Sanctuary Suite & Upcoming Slots';
       } else if (tab === 'notes') {
-        document.getElementById('dashGrid').style.display = 'none';
-        document.getElementById('wellnessSection').style.display = 'block';
+        if (kpiStrip) kpiStrip.style.display = 'none';
+        if (dashGrid) dashGrid.style.display = 'none';
+        if (historySec) historySec.style.display = 'none';
+        if (wellnessSec) wellnessSec.style.display = 'block';
+        if (subEl) subEl.textContent = 'Post-Float Wellness Diary & Stress Delta Telemetry';
       } else {
-        document.getElementById('dashGrid').style.display = 'grid';
-        document.getElementById('wellnessSection').style.display = 'block';
+        if (kpiStrip) kpiStrip.style.display = 'grid';
+        if (dashGrid) {
+          dashGrid.style.display = 'grid';
+          dashGrid.style.gridTemplateColumns = '';
+        }
+        if (packageCard) packageCard.style.display = 'flex';
+        if (rightCol) rightCol.style.display = 'flex';
+        if (historySec) historySec.style.display = 'block';
+        if (wellnessSec) wellnessSec.style.display = 'block';
+        if (subEl) subEl.textContent = 'Sanctuary Overview & Active Float Telemetry';
       }
     }
 
@@ -559,10 +772,16 @@
       window.location.href = 'login.html';
     }
 
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDashSidebarMobile();
+    });
+
+    window.addEventListener('resize', syncSidebarAria);
+
     document.addEventListener('DOMContentLoaded', () => {
       renderDashboard();
+      syncSidebarAria();
     });
   </script>
 </body>
 </html>
-
