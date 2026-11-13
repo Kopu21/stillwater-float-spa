@@ -508,38 +508,98 @@ button {
   transform: scaleX(-1);
 }
 
-/* Nav Login Button (Directly near Theme Toggle) */
+/* Nav Login Button - Primary Call-to-Action (CTA) */
 .nav-login-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  height: 36px;
-  padding: 0 12px;
-  border-radius: 9999px;
-  background: var(--btn-outline-bg);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  box-sizing: border-box;
-  flex-shrink: 0;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(135deg, var(--teal-primary), var(--cyan-accent)) !important;
+  color: var(--text-on-accent) !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: 0 0 16px var(--teal-glow) !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 5 !important;
 }
 
-.nav-login-btn:hover,
-.nav-login-btn.active {
-  border-color: var(--teal-primary);
-  color: var(--teal-primary);
-  background: var(--teal-subtle);
-  box-shadow: 0 0 12px var(--teal-glow);
+[data-theme="light"] .nav-login-btn {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, var(--teal-primary), var(--cyan-accent)) !important;
+  box-shadow: 0 0 16px var(--teal-glow) !important;
+}
+
+.nav-login-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 25px var(--teal-glow) !important;
+  filter: brightness(1.1) !important;
+  color: #ffffff !important;
+}
+
+.nav-login-btn:active {
+  transform: translateY(0) !important;
 }
 
 .nav-login-btn svg {
-  flex-shrink: 0;
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+.nav-login-btn .btn-label-text {
+  display: inline-block !important;
+  font-weight: 600 !important;
+}
+
+/* Secondary Book A Float in Navbar to maintain Login as prominent Primary CTA */
+.nav-actions .btn-book-primary {
+  background: var(--btn-outline-bg) !important;
+  border: 1px solid var(--border-highlight) !important;
+  color: var(--teal-primary) !important;
+  box-shadow: none !important;
+}
+
+.nav-actions .btn-book-primary:hover {
+  background: var(--teal-subtle) !important;
+  border-color: var(--teal-primary) !important;
+  color: var(--teal-primary) !important;
+  box-shadow: 0 0 10px var(--teal-glow) !important;
+}
+
+[data-theme="light"] .nav-actions .btn-book-primary {
+  background: #ffffff !important;
+  color: var(--teal-primary) !important;
+  border-color: var(--border-highlight) !important;
+}
+
+.mobile-drawer-login-btn {
+  width: 100% !important;
+  height: 44px !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  margin-bottom: 10px !important;
+  font-size: 13px !important;
+  letter-spacing: 0.05em !important;
+  box-shadow: 0 0 16px var(--teal-glow) !important;
+}
+
+.mobile-drawer-actions .btn-outline {
+  width: 100% !important;
+  height: 42px !important;
+  justify-content: center !important;
+  font-size: 12.5px !important;
 }
 
 /* Buttons */
@@ -1126,12 +1186,10 @@ button {
   opacity: 0.15 !important;
 }
 
-/* Header Icon-Only Direction, Theme and Member Login Buttons */
+/* Header Icon-Only Direction and Theme Buttons */
 .nav-actions .dir-toggle-btn,
 .nav-actions .theme-toggle-btn,
-.nav-actions .nav-login-btn,
-.btn-control.icon-only,
-.nav-login-btn.icon-only {
+.btn-control.icon-only {
   width: 36px !important;
   height: 36px !important;
   min-width: 36px !important;
@@ -1145,10 +1203,8 @@ button {
 
 .nav-actions .dir-toggle-btn .dir-text-indicator,
 .nav-actions .theme-toggle-btn .btn-label-text,
-.nav-actions .nav-login-btn .btn-label-text,
 .dir-toggle-btn.icon-only .dir-text-indicator,
-.theme-toggle-btn.icon-only .btn-label-text,
-.nav-login-btn.icon-only .btn-label-text {
+.theme-toggle-btn.icon-only .btn-label-text {
   display: none !important;
 }
 
@@ -1579,41 +1635,25 @@ body.login-page-body {
 }
 
 .auth-top-header {
-  width: 100%;
-  padding: 20px 32px 4px;
+  display: none !important;
+}
+
+/* Login Card Topbar (Logo on Top-Left, Theme & RTL on Top-Right) */
+.auth-card-topbar {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  direction: ltr;
-  background: transparent;
-  position: relative;
-  z-index: 100;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-divider);
+  width: 100%;
   box-sizing: border-box;
 }
 
-.auth-top-controls {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.auth-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 22px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--border-divider);
-}
-
-.auth-header .brand-logo {
+.auth-card-topbar .brand-logo {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
   text-decoration: none;
   color: inherit;
@@ -1621,14 +1661,14 @@ body.login-page-body {
   direction: ltr;
 }
 
-.auth-header .brand-logo-img {
+.auth-card-topbar .brand-logo-img {
   width: 38px;
   height: 38px;
   display: block;
   flex-shrink: 0;
 }
 
-.auth-header .brand-logo-text {
+.auth-card-topbar .brand-logo-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1636,17 +1676,17 @@ body.login-page-body {
   min-width: 0;
 }
 
-.auth-header .brand-title {
-  font-size: 16px;
+.auth-card-topbar .brand-title {
+  font-size: 15.5px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--text-primary);
   line-height: 1.15;
   display: block;
   white-space: nowrap;
 }
 
-.auth-header .brand-subtitle {
+.auth-card-topbar .brand-subtitle {
   font-size: 9.5px;
   letter-spacing: 0.08em;
   color: var(--teal-primary);
@@ -1656,12 +1696,21 @@ body.login-page-body {
   white-space: nowrap;
 }
 
+.auth-card-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
 .auth-top-controls .btn-control.icon-only,
 .auth-card-controls .btn-control.icon-only,
 .btn-control.icon-only {
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
   padding: 0;
   border-radius: 50%;
   display: inline-flex;
@@ -1681,7 +1730,7 @@ body.login-page-body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 20px 44px;
+  padding: 24px 20px 48px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -1690,16 +1739,16 @@ body.login-page-body {
   max-width: 460px;
   width: 100%;
   margin: auto;
-  padding: 32px 34px;
+  padding: 28px 30px;
 }
 
 .auth-heading-block {
-  margin: 14px 0 0;
+  margin: 0 auto 20px;
   text-align: center;
 }
 
 .auth-heading {
-  font-size: clamp(20px, 2.6vw, 25px);
+  font-size: clamp(20px, 2.6vw, 24px);
   font-weight: 600;
   color: var(--text-primary);
   margin: 0 0 6px;
@@ -1709,9 +1758,13 @@ body.login-page-body {
 }
 
 .auth-subheading {
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--text-secondary);
+  margin: 0 auto;
+  max-width: 38ch;
+  text-align: center;
+}
   margin: 0 auto;
   max-width: 38ch;
   text-align: center;
@@ -1752,37 +1805,32 @@ body.login-page-body {
 }
 
 @media (max-width: 576px) {
-  .auth-top-header {
-    padding: 14px 16px 4px;
-  }
-  .auth-top-controls {
-    gap: 8px;
-  }
-  .auth-top-controls .btn-control.icon-only {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-  }
   .auth-center-wrapper {
-    padding: 8px 12px 28px;
+    padding: 12px 14px 32px;
   }
   .auth-center-wrapper .auth-card {
-    padding: 24px 18px;
+    padding: 22px 18px;
   }
-  .auth-header {
-    padding-bottom: 14px;
+  .auth-card-topbar {
+    gap: 8px;
     margin-bottom: 18px;
+    padding-bottom: 14px;
   }
-  .auth-header .brand-logo-img {
+  .auth-card-topbar .brand-logo-img {
     width: 34px;
     height: 34px;
   }
-  .auth-header .brand-title {
-    font-size: 14.5px;
-    letter-spacing: 0.11em;
+  .auth-card-topbar .brand-title {
+    font-size: 14px;
+    letter-spacing: 0.1em;
   }
-  .auth-header .brand-subtitle {
+  .auth-card-topbar .brand-subtitle {
     font-size: 8.5px;
+  }
+  .auth-card-controls .btn-control.icon-only {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
   }
   .auth-options-row {
     gap: 8px;
@@ -1799,27 +1847,35 @@ body.login-page-body {
 
 @media (max-width: 360px) {
   .auth-center-wrapper .auth-card {
-    padding: 20px 14px;
+    padding: 18px 12px;
   }
-  .auth-header .brand-logo {
-    gap: 8px;
+  .auth-card-topbar {
+    gap: 6px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
   }
-  .auth-header .brand-logo-img {
+  .auth-card-topbar .brand-logo {
+    gap: 6px;
+  }
+  .auth-card-topbar .brand-logo-img {
+    width: 28px;
+    height: 28px;
+  }
+  .auth-card-topbar .brand-title {
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+  }
+  .auth-card-topbar .brand-subtitle {
+    font-size: 7.5px;
+    letter-spacing: 0.04em;
+  }
+  .auth-card-controls {
+    gap: 6px;
+  }
+  .auth-card-controls .btn-control.icon-only {
     width: 30px;
     height: 30px;
-  }
-  .auth-header .brand-title {
-    font-size: 13px;
-    letter-spacing: 0.08em;
-  }
-  .auth-header .brand-subtitle {
-    font-size: 7.5px;
-    letter-spacing: 0.05em;
-  }
-  .auth-top-controls .btn-control.icon-only {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
+    min-width: 30px;
   }
 }
 
@@ -2156,8 +2212,7 @@ html, body {
     gap: 6px;
   }
   .theme-toggle-btn .btn-label-text,
-  .dir-toggle-btn .dir-text-indicator,
-  .nav-login-btn .btn-label-text {
+  .dir-toggle-btn .dir-text-indicator {
     display: none !important;
   }
   .nav-actions .btn-control {
@@ -2168,11 +2223,10 @@ html, body {
     font-size: 11px;
   }
   .nav-login-btn {
-    width: 34px !important;
-    min-width: 34px !important;
     height: 34px !important;
-    padding: 0 !important;
-    font-size: 11px;
+    padding: 0 14px !important;
+    font-size: 11px !important;
+    width: auto !important;
   }
   .btn-book-primary {
     height: 34px;
@@ -2223,9 +2277,14 @@ html, body {
     font-size: 11px;
   }
   .theme-toggle-btn .btn-label-text,
-  .dir-toggle-btn .dir-text-indicator,
-  .nav-login-btn .btn-label-text {
+  .dir-toggle-btn .dir-text-indicator {
     display: none !important;
+  }
+  .nav-login-btn {
+    height: 32px !important;
+    padding: 0 12px !important;
+    font-size: 11px !important;
+    width: auto !important;
   }
   .nav-actions .btn-book-primary {
     height: 32px;
@@ -2260,8 +2319,7 @@ html, body {
     gap: 32px;
   }
   .theme-toggle-btn .btn-label-text,
-  .dir-toggle-btn .dir-text-indicator,
-  .nav-login-btn .btn-label-text {
+  .dir-toggle-btn .dir-text-indicator {
     display: none !important;
   }
 }
@@ -2299,12 +2357,14 @@ html, body {
     width: 38px;
     height: 38px;
   }
-  .btn-book-primary {
-    display: inline-flex;
-    height: 34px;
-    padding: 0 10px;
-    font-size: 11px;
-    white-space: nowrap;
+  .nav-actions .btn-book-primary {
+    display: none !important;
+  }
+  .nav-actions .nav-login-btn {
+    display: inline-flex !important;
+    height: 34px !important;
+    padding: 0 14px !important;
+    font-size: 11px !important;
   }
 }
 
@@ -2314,15 +2374,24 @@ html, body {
     padding-inline-start: 18px;
     padding-inline-end: 18px;
   }
-  /* Responsive Header: Left = brand logo & name only; Right = hamburger toggle only */
+  /* Responsive Header: Left = brand logo & name; Right = Primary Login CTA + hamburger toggle */
   .navbar-main .nav-links {
     display: none !important;
   }
   .navbar-main .nav-actions .dir-toggle-btn,
   .navbar-main .nav-actions .theme-toggle-btn,
-  .navbar-main .nav-actions .nav-login-btn,
   .navbar-main .nav-actions .btn-book-primary {
     display: none !important;
+  }
+  .navbar-main .nav-actions .nav-login-btn {
+    display: inline-flex !important;
+    height: 32px !important;
+    padding: 0 12px !important;
+    font-size: 11px !important;
+    gap: 5px !important;
+    width: auto !important;
+    border-radius: 9999px !important;
+    flex-shrink: 0 !important;
   }
   .navbar-main .nav-actions .mobile-toggle {
     display: flex !important;
@@ -2330,7 +2399,9 @@ html, body {
     justify-content: center !important;
   }
   .navbar-main .nav-actions {
-    gap: 0 !important;
+    gap: 8px !important;
+    display: flex !important;
+    align-items: center !important;
   }
   .navbar-main .brand-logo {
     display: inline-flex !important;
@@ -2369,8 +2440,16 @@ html, body {
   .nav-actions .btn-book-primary {
     display: none !important;
   }
+  .navbar-main .nav-actions .nav-login-btn {
+    display: inline-flex !important;
+    height: 32px !important;
+    padding: 0 12px !important;
+    font-size: 11px !important;
+    gap: 5px !important;
+  }
   .nav-actions {
-    gap: 5px;
+    gap: 6px;
+    align-items: center;
   }
   .nav-actions .btn-control {
     width: 32px !important;
@@ -2514,6 +2593,12 @@ html, body {
     padding: 0 !important;
     font-size: 10px;
   }
+  .navbar-main .nav-actions .nav-login-btn {
+    height: 30px !important;
+    padding: 0 10px !important;
+    font-size: 10.5px !important;
+    gap: 4px !important;
+  }
   .mobile-toggle {
     width: 34px;
     height: 34px;
@@ -2538,6 +2623,16 @@ html, body {
   }
   .navbar-main {
     height: 60px;
+  }
+  .navbar-main .nav-actions .nav-login-btn {
+    height: 28px !important;
+    padding: 0 8px !important;
+    font-size: 10px !important;
+    gap: 4px !important;
+  }
+  .navbar-main .nav-actions .nav-login-btn svg {
+    width: 12px !important;
+    height: 12px !important;
   }
 }
 
@@ -2564,7 +2659,14 @@ html, body {
     letter-spacing: 0.12em;
   }
   .nav-actions {
-    gap: 2px;
+    gap: 4px;
+  }
+  .navbar-main .nav-actions .nav-login-btn {
+    height: 28px !important;
+    padding: 0 7px !important;
+    font-size: 9.5px !important;
+    letter-spacing: 0.02em !important;
+    gap: 3px !important;
   }
   .nav-actions .btn-control {
     width: 28px !important;
@@ -4707,12 +4809,18 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     flex: 1 1 auto;
   }
   .dash-page-title {
-    font-size: clamp(13.5px, 4vw, 17px);
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-    line-height: 1.2;
-    overflow-wrap: break-word;
+    font-size: clamp(14px, 4vw, 17px) !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.2 !important;
+  }
+  .dash-title-suffix {
+    display: none !important;
+  }
+  .dash-brand-title {
+    display: inline-block !important;
+    white-space: nowrap !important;
   }
   .dash-topbar-toggle {
     display: inline-flex;
@@ -4776,11 +4884,34 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 @media (max-width: 360px) {
+  .dash-topbar {
+    padding: 8px 10px !important;
+    gap: 6px !important;
+  }
+  .dash-page-title {
+    font-size: 14px !important;
+  }
   .dash-kpi-strip {
     grid-template-columns: 1fr;
   }
   .dash-topbar-cta {
     display: none;
+  }
+}
+
+@media (max-width: 330px) {
+  .dash-topbar {
+    padding: 6px 8px !important;
+    gap: 4px !important;
+  }
+  .dash-topbar-left {
+    gap: 6px !important;
+  }
+  .dash-topbar-right {
+    gap: 5px !important;
+  }
+  .dash-page-title {
+    font-size: 13px !important;
   }
 }
 

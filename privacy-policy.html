@@ -128,11 +128,12 @@
           <span>☀️</span>
           <span class="btn-label-text">Light</span>
         </button>
-        <a href="login.html" class="btn-control nav-login-btn icon-only" aria-label="Member Login Portal" title="Member Login Portal">
+        <a href="login.html" class="nav-login-btn" aria-label="Member Login Portal" title="Member Login Portal">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
+          <span class="btn-label-text">Login</span>
         </a>
         <button onclick="openBookingModal('60-Minute Signature Sensory Float')" class="btn-book-primary">
           <span>Book A Float</span>
@@ -183,7 +184,12 @@
             <span>☀️ Light</span>
           </button>
         </div>
-        <button onclick="closeMobileMenu(); openBookingModal('60-Minute Signature Sensory Float');" class="btn-book-primary" style="justify-content:center; width:100%;">
+        <a href="login.html" class="nav-login-btn mobile-drawer-login-btn" onclick="closeMobileMenu()" aria-label="Member Login Portal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Member Login</span>
+        </a>
+
+        <button onclick="closeMobileMenu(); openBookingModal('60-Minute Signature Sensory Float');" class="btn-outline" style="justify-content:center; width:100%;">
           Book A Float Session
         </button>
       </div>
